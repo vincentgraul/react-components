@@ -1,15 +1,24 @@
 import { useEffect, useState, RefObject } from "react";
 
+interface Options {
+  once: boolean;
+}
+
 export default function useVisible(
-  ref: RefObject<HTMLElement>
+    ref: RefObject<HTMLElement>,
+    options: Options
 ): boolean {
   const [isVisible, setVisibility] = useState<boolean>(false);
 
   const handleObserver = (entry: IntersectionObserverEntry) => {
+    if (options.once && isVisible) {
+      return null;
+    }
+
     const rect: DOMRectReadOnly = entry.boundingClientRect;
     const element: Element | undefined = document
-      .elementsFromPoint(rect.x, rect.y)
-      .find((element: Element) => element.className === entry.target.className);
+        .elementsFromPoint(rect.x, rect.y)
+        .find((element: Element) => element.className === entry.target.className);
 
     alert(entry.isIntersecting);
     setVisibility(entry.isIntersecting);
@@ -17,7 +26,7 @@ export default function useVisible(
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) =>
-      handleObserver(entry)
+        handleObserver(entry)
     );
 
     if (ref.current) {
@@ -29,7 +38,7 @@ export default function useVisible(
         observer.unobserve(ref.current);
       }
     };
-  }, [ref]);
+  }, [ref, options]);
 
   return isVisible;
 }
