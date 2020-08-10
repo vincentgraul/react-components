@@ -1,0 +1,7 @@
+{
+  "name": "@react-components/visible",
+  "private": true,
+  "scripts": {
+    "build": "tsc"
+  }
+}
