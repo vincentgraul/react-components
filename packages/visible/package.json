@@ -1,7 +1,19 @@
 {
   "name": "@react-components/visible",
-  "private": true,
   "version": "1.0.0",
+  "main": "./build/useVisible.js",
+  "author": {
+    "name": "Vincent Graul",
+    "email": "vincent.graul@outlook.com",
+    "url": "http://vincentgraul.com"
+  },
+  "maintainers": [
+    {
+      "name": "Vincent Graul",
+      "email": "vincent.graul@outlook.com",
+      "url": "http://vincentgraul.com"
+    }
+  ],
   "scripts": {
     "build": "tsc"
   }
