@@ -15,12 +15,6 @@ export default function useVisible(
       return null;
     }
 
-    const rect: DOMRectReadOnly = entry.boundingClientRect;
-    const element: Element | undefined = document
-        .elementsFromPoint(rect.x, rect.y)
-        .find((element: Element) => element.className === entry.target.className);
-
-    alert(entry.isIntersecting);
     setVisibility(entry.isIntersecting);
   };
 
