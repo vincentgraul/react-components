@@ -2,6 +2,7 @@
   "name": "react-components",
   "private": true,
   "version": "1.0.0",
+  "license": "MIT",
   "author": {
     "name": "Vincent Graul",
     "email": "vincent.graul@outlook.com",

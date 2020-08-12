@@ -2,6 +2,7 @@
   "name": "@react-components/visible",
   "version": "1.0.0",
   "main": "./build/useVisible.js",
+  "license": "MIT",
   "author": {
     "name": "Vincent Graul",
     "email": "vincent.graul@outlook.com",
