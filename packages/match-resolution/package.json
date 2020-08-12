@@ -1,0 +1,20 @@
+{
+  "name": "@react-components/match-resolution",
+  "version": "1.0.0",
+  "main": "./build/useMatchResolution.js",
+  "author": {
+    "name": "Vincent Graul",
+    "email": "vincent.graul@outlook.com",
+    "url": "http://vincentgraul.com"
+  },
+  "maintainers": [
+    {
+      "name": "Vincent Graul",
+      "email": "vincent.graul@outlook.com",
+      "url": "http://vincentgraul.com"
+    }
+  ],
+  "scripts": {
+    "build": "tsc"
+  }
+}
