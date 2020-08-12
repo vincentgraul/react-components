@@ -12,6 +12,8 @@ interface Breakpoints {
   largeMobileOrUpper: string;
   largeMobileOrLower: string;
   mobile: string;
+  portrait: string;
+  landscape: string;
 }
 
 interface Resolution {
@@ -26,6 +28,8 @@ interface Resolution {
   isLargeMobileOrUpper: () => boolean;
   isLargeMobileOrLower: () => boolean;
   isMobile: () => boolean;
+  isPortrait: () => boolean;
+  isLandscape: () => boolean;
 }
 
 export interface MatchResolution {
@@ -44,7 +48,9 @@ export const defaultBreakpoints: Breakpoints = {
   largeMobile: "(min-width: 481px) and (max-width: 767px)",
   largeMobileOrUpper: "(min-width: 481px)",
   largeMobileOrLower: "(max-width: 767px)",
-  mobile: "(min-width: 320px) and (max-width: 480px)"
+  mobile: "(min-width: 320px) and (max-width: 480px)",
+  portrait: "(orientation: portrait)",
+  landscape: "(orientation: landscape)",
 };
 
 export default function useMatchResolution(
@@ -61,7 +67,9 @@ export default function useMatchResolution(
     isLargeMobile: () => match(breakpoints.largeMobile),
     isLargeMobileOrUpper: () => match(breakpoints.largeMobileOrUpper),
     isLargeMobileOrLower: () => match(breakpoints.largeMobileOrLower),
-    isMobile: () => match(breakpoints.mobile)
+    isMobile: () => match(breakpoints.mobile),
+    isPortrait: () => match(breakpoints.portrait),
+    isLandscape: () => match(breakpoints.landscape),
   });
 
   const [resolution, setResolution] = useState<Resolution>(compute());
