@@ -17,5 +17,12 @@
   ],
   "scripts": {
     "build": "tsc"
+  },
+  "peerDependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "dependencies": {
+    "@react-components/match-user-agent": "^1.0.0"
   }
 }
