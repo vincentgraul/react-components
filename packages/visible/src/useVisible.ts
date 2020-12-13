@@ -4,10 +4,7 @@ interface Options {
   once: boolean;
 }
 
-export default function useVisible(
-  ref: RefObject<HTMLElement>,
-  options: Options
-): boolean {
+export default function useVisible(ref: RefObject<HTMLElement>, options: Options): boolean {
   const [isVisible, setVisibility] = useState<boolean>(false);
 
   const handleObserver = (entry: IntersectionObserverEntry) => {
@@ -19,9 +16,7 @@ export default function useVisible(
   };
 
   useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) =>
-      handleObserver(entry)
-    );
+    const observer = new IntersectionObserver(([entry]) => handleObserver(entry));
 
     if (ref.current) {
       observer.observe(ref.current);
