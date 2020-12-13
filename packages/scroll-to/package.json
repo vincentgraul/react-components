@@ -1,0 +1,26 @@
+{
+    "name": "@react-components/scroll-to",
+    "version": "1.0.0",
+    "main": "./build/useScrollTo.js",
+    "license": "MIT",
+    "author": {
+      "name": "Vincent Graul",
+      "email": "vincent.graul@outlook.com",
+      "url": "http://vincentgraul.com"
+    },
+    "maintainers": [
+      {
+        "name": "Vincent Graul",
+        "email": "vincent.graul@outlook.com",
+        "url": "http://vincentgraul.com"
+      }
+    ],
+    "scripts": {
+      "build": "tsc"
+    },
+    "peerDependencies": {
+      "react": "^16.13.1",
+      "react-dom": "^16.13.1"
+    }
+  }
+  
