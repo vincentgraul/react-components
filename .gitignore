@@ -77,7 +77,7 @@ pids
 *.pid
 *.seed
 *.pid.lock
-build/Release
+build/
 node_modules/
 jspm_packages/
 *.tsbuildinfo
