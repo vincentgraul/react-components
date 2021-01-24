@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import UAParserJS from "ua-parser-js";
+import UAParser from "ua-parser-js";
 
 export interface UserAgent {
   isMobile: boolean;
@@ -15,13 +15,13 @@ export const defaultRegex = { mobile: /iOS|Android/i };
 export default function useMatchUserAgent(UA: string, regex: Regex = defaultRegex): UserAgent {
   const isClientSide: boolean = typeof window !== "undefined";
 
-  const compute = (OS: IUAParser.IOS) => ({
+  const compute = (OS: UAParser.IOS) => ({
     isMobile: OS && OS.name ? regex.mobile.test(OS.name) : false,
     isDesktop: OS && OS.name ? !regex.mobile.test(OS.name) : false,
   });
 
   const getOS = () => {
-    const parser = new UAParserJS.UAParser(UA);
+    const parser = new UAParser.UAParser(UA);
     return parser.getOS();
   };
 
