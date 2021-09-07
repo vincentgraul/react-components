@@ -8,7 +8,8 @@
 | useMatchResolution | A React Hook to watch screen resolution  |
 | useMatchUserAgent  | A React Hook to watch user agent         |
 | useScrollTo        | A React Hook to scroll to a container    |
+| usePagination      | A React Hook for pagination              |
 
 ## License
 
-MIT
+GNU GPLV3
