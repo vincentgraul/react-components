@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import useMatchUserAgent from "@react-components/match-user-agent";
+import useMatchUserAgent from "../match-user-agent/useMatchUserAgent";
 
 export interface Breakpoints {
   desktop: string;
@@ -62,27 +62,19 @@ export default function useMatchResolution(
   const isClientSide: boolean = typeof window !== "undefined";
   const { isDesktop, isMobile } = useMatchUserAgent(UA);
 
-  const match = (query: string): boolean =>
-    isClientSide && window.matchMedia(query).matches;
+  const match = (query: string): boolean => isClientSide && window.matchMedia(query).matches;
 
   const compute = (): Resolution => ({
     isDesktop: () => (isClientSide ? match(breakpoints.desktop) : isDesktop),
     isLaptop: () => (isClientSide ? match(breakpoints.laptop) : isDesktop),
-    isLaptopOrUpper: () =>
-      isClientSide ? match(breakpoints.laptopOrUpper) : isDesktop,
-    isLaptopOrLower: () =>
-      isClientSide ? match(breakpoints.laptopOrLower) : false,
+    isLaptopOrUpper: () => (isClientSide ? match(breakpoints.laptopOrUpper) : isDesktop),
+    isLaptopOrLower: () => (isClientSide ? match(breakpoints.laptopOrLower) : false),
     isTablet: () => (isClientSide ? match(breakpoints.tablet) : isMobile),
-    isTabletOrUpper: () =>
-      isClientSide ? match(breakpoints.tabletOrUpper) : false,
-    isTabletOrLower: () =>
-      isClientSide ? match(breakpoints.tabletOrLower) : isMobile,
-    isLargeMobile: () =>
-      isClientSide ? match(breakpoints.largeMobile) : isMobile,
-    isLargeMobileOrUpper: () =>
-      isClientSide ? match(breakpoints.largeMobileOrUpper) : false,
-    isLargeMobileOrLower: () =>
-      isClientSide ? match(breakpoints.largeMobileOrLower) : isMobile,
+    isTabletOrUpper: () => (isClientSide ? match(breakpoints.tabletOrUpper) : false),
+    isTabletOrLower: () => (isClientSide ? match(breakpoints.tabletOrLower) : isMobile),
+    isLargeMobile: () => (isClientSide ? match(breakpoints.largeMobile) : isMobile),
+    isLargeMobileOrUpper: () => (isClientSide ? match(breakpoints.largeMobileOrUpper) : false),
+    isLargeMobileOrLower: () => (isClientSide ? match(breakpoints.largeMobileOrLower) : isMobile),
     isMobile: () => (isClientSide ? match(breakpoints.mobile) : isMobile),
     isPortrait: () => (isClientSide ? match(breakpoints.portrait) : false),
     isLandscape: () => (isClientSide ? match(breakpoints.landscape) : false),

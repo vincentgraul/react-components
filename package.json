@@ -1,8 +1,8 @@
 {
-  "name": "react-components",
-  "private": true,
+  "name": "@vincentgraul/react-components",
   "version": "1.0.0",
-  "license": "MIT",
+  "main": "./build/bundle.js",
+  "license": "GNU GPLV3",
   "author": {
     "name": "Vincent Graul",
     "email": "vincent.graul@outlook.com",
@@ -15,23 +15,39 @@
       "url": "http://vincentgraul.com"
     }
   ],
-  "workspaces": {
-    "packages": [
-      "./packages/**"
-    ]
-  },
   "scripts": {
-    "bootstrap": "lerna bootstrap",
-    "build": "lerna run build",
-    "lint": "lerna run lint",
-    "test": "lerna run test"
+    "build": "tsc",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "dependencies": {
+    "@testing-library/react": "^12.0.0",
+    "@types/lodash": "^4.14.171",
+    "@types/react": "^16.9.45",
+    "@types/react-dates": "^21.8.3",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-select": "^4.0.17",
+    "@types/styled-components": "5.1.11",
+    "@types/ua-parser-js": "^0.7.33",
+    "formik": "^2.2.9",
+    "lodash": "^4.17.21",
+    "react": "^16.13.1",
+    "react-dates": "^21.8.0",
+    "react-dom": "^16.13.1",
+    "react-dropzone": "^11.3.4",
+    "react-select": "^4.3.1",
+    "styled-components": "^5.3.0",
+    "ua-parser-js": "^0.7.22",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
-    "@types/react": "^16.9.45",
-    "@types/react-dom": "^16.9.8",
-    "lerna": "^3.19.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "typescript": "^3.9.7"
+    "@babel/core": "^7.15.0",
+    "@storybook/addon-actions": "^6.3.7",
+    "@storybook/addon-essentials": "^6.3.7",
+    "@storybook/addon-links": "^6.3.7",
+    "@storybook/react": "^6.3.7",
+    "babel-loader": "^8.2.2",
+    "jest": "^27.0.6",
+    "typescript": "^4.3.5"
   }
 }
