@@ -15,7 +15,7 @@
       "outFile": "./build/bundle.js"
     },
     "include": ["./src/**/*"],
-    "files": ["./custom.d.ts"],
+    "files": ["./types.d.ts"],
     "exclude": ["./src/**/*.test.tsx"]
   }
   
