@@ -4,11 +4,12 @@
 
 | Component          | Description                              |
 | ------------------ | ---------------------------------------- |
-| useVisible         | A React Hook to watch element visibility |
-| useMatchResolution | A React Hook to watch screen resolution  |
-| useMatchUserAgent  | A React Hook to watch user agent         |
-| useScrollTo        | A React Hook to scroll to a container    |
-| usePagination      | A React Hook for pagination              |
+| useVisible         | A React hook to watch element visibility |
+| useMatchResolution | A React hook to watch screen resolution  |
+| useMatchUserAgent  | A React hook to watch user agent         |
+| useScrollTo        | A React hook to scroll to a container    |
+| usePagination      | A React hook for pagination              |
+| Table              | A React component to create table        |
 
 ## License
 
