@@ -8,6 +8,12 @@ export interface Device {
   isDesktop: boolean;
 }
 
+/**
+ * React hook to detect the device (mobile, tablet or desktop) based on the user agent.
+ * @public
+ * @param UA - The user agent.
+ * @returns An object with multiple properties (isMobile, isTablet...) used to detect the device.
+ */
 export default function useMatchDevice(UA: string): Device {
   const isClientSide: boolean = typeof window !== "undefined";
 
