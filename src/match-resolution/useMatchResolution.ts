@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import useMatchUserAgent from "../match-user-agent/useMatchUserAgent";
+import useMatchDevice from "../match-device/useMatchDevice";
 
 export interface Breakpoints {
   desktop: string;
@@ -18,19 +18,19 @@ export interface Breakpoints {
 }
 
 export interface Resolution {
-  isDesktop: () => boolean;
-  isLaptop: () => boolean;
-  isLaptopOrUpper: () => boolean;
-  isLaptopOrLower: () => boolean;
-  isTablet: () => boolean;
-  isTabletOrUpper: () => boolean;
-  isTabletOrLower: () => boolean;
-  isLargeMobile: () => boolean;
-  isLargeMobileOrUpper: () => boolean;
-  isLargeMobileOrLower: () => boolean;
-  isMobile: () => boolean;
-  isPortrait: () => boolean;
-  isLandscape: () => boolean;
+  isDesktop: boolean;
+  isLaptop: boolean;
+  isLaptopOrUpper: boolean;
+  isLaptopOrLower: boolean;
+  isTablet: boolean;
+  isTabletOrUpper: boolean;
+  isTabletOrLower: boolean;
+  isLargeMobile: boolean;
+  isLargeMobileOrUpper: boolean;
+  isLargeMobileOrLower: boolean;
+  isMobile: boolean;
+  isPortrait: boolean;
+  isLandscape: boolean;
 }
 
 export interface MatchResolution {
@@ -55,29 +55,39 @@ export const defaultBreakpoints: Breakpoints = {
   landscape: "(orientation: landscape)",
 };
 
+/**
+ * React hook to detect the resolution (desktop, laptop, tablet, mobile...).
+ * @public
+ * @param breakpoints - List of breakpoints (used for determine when a resolution is a "desktop", a "laptop" etc.).
+ * @param UA - The user agent (used for determine the resolution in case of SSR).
+ * @returns An object with three properties:
+ * - resolution: object with multiple properties (isDesktop, isLaptop...) used for know the current resolution
+ * - breakpoints: the breakpoints passed as parameters
+ * - match: function used to detect the current resolution with a custom breakpoint
+ */
 export default function useMatchResolution(
   breakpoints: Breakpoints = defaultBreakpoints,
   UA: string = ""
 ): MatchResolution {
   const isClientSide: boolean = typeof window !== "undefined";
-  const { isDesktop, isMobile } = useMatchUserAgent(UA);
+  const { isDesktop, isMobile } = useMatchDevice(UA);
 
   const match = (query: string): boolean => isClientSide && window.matchMedia(query).matches;
 
   const compute = (): Resolution => ({
-    isDesktop: () => (isClientSide ? match(breakpoints.desktop) : isDesktop),
-    isLaptop: () => (isClientSide ? match(breakpoints.laptop) : isDesktop),
-    isLaptopOrUpper: () => (isClientSide ? match(breakpoints.laptopOrUpper) : isDesktop),
-    isLaptopOrLower: () => (isClientSide ? match(breakpoints.laptopOrLower) : false),
-    isTablet: () => (isClientSide ? match(breakpoints.tablet) : isMobile),
-    isTabletOrUpper: () => (isClientSide ? match(breakpoints.tabletOrUpper) : false),
-    isTabletOrLower: () => (isClientSide ? match(breakpoints.tabletOrLower) : isMobile),
-    isLargeMobile: () => (isClientSide ? match(breakpoints.largeMobile) : isMobile),
-    isLargeMobileOrUpper: () => (isClientSide ? match(breakpoints.largeMobileOrUpper) : false),
-    isLargeMobileOrLower: () => (isClientSide ? match(breakpoints.largeMobileOrLower) : isMobile),
-    isMobile: () => (isClientSide ? match(breakpoints.mobile) : isMobile),
-    isPortrait: () => (isClientSide ? match(breakpoints.portrait) : false),
-    isLandscape: () => (isClientSide ? match(breakpoints.landscape) : false),
+    isDesktop: isClientSide ? match(breakpoints.desktop) : isDesktop,
+    isLaptop: isClientSide ? match(breakpoints.laptop) : isDesktop,
+    isLaptopOrUpper: isClientSide ? match(breakpoints.laptopOrUpper) : isDesktop,
+    isLaptopOrLower: isClientSide ? match(breakpoints.laptopOrLower) : false,
+    isTablet: isClientSide ? match(breakpoints.tablet) : isMobile,
+    isTabletOrUpper: isClientSide ? match(breakpoints.tabletOrUpper) : false,
+    isTabletOrLower: isClientSide ? match(breakpoints.tabletOrLower) : isMobile,
+    isLargeMobile: isClientSide ? match(breakpoints.largeMobile) : isMobile,
+    isLargeMobileOrUpper: isClientSide ? match(breakpoints.largeMobileOrUpper) : false,
+    isLargeMobileOrLower: isClientSide ? match(breakpoints.largeMobileOrLower) : isMobile,
+    isMobile: isClientSide ? match(breakpoints.mobile) : isMobile,
+    isPortrait: isClientSide ? match(breakpoints.portrait) : false,
+    isLandscape: isClientSide ? match(breakpoints.landscape) : false,
   });
 
   const [resolution, setResolution] = useState<Resolution>(compute());
