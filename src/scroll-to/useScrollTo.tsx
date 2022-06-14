@@ -1,37 +1,28 @@
-import { RefObject, useEffect } from "react";
+import { RefObject } from "react";
 
 export interface ScrollEvents {
   scrollToTop: () => void;
 }
 
-export default function useScrollTo(
-  ref: RefObject<HTMLElement>,
-  watchLocation?: boolean
-): ScrollEvents {
+/**
+ * React hook to scroll to an element.
+ * @public
+ * @param target - The target where we want to scroll.
+ * @returns An object which contains:
+ * - scrollToTop: function used to scroll to the top of the element
+ */
+export default function useScrollTo(target: RefObject<HTMLElement>): ScrollEvents {
   const isClientSide: boolean = typeof window !== "undefined";
 
   if (!isClientSide) {
     return { scrollToTop: () => null };
   }
 
-  const deps: [RefObject<HTMLElement>, string?] = [ref];
-
-  if (watchLocation) {
-    const { pathname } = window.location;
-    deps.push(pathname);
-  }
-
   const scrollToTop = (): void => {
-    if (ref.current) {
-      window.scrollTo(0, ref.current.offsetTop);
+    if (target.current) {
+      window.scrollTo(0, target.current.offsetTop);
     }
   };
-
-  useEffect(() => {
-    if (watchLocation) {
-      scrollToTop();
-    }
-  }, deps);
 
   return { scrollToTop };
 }
