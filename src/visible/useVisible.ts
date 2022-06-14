@@ -1,33 +1,31 @@
 import { useEffect, useState, RefObject } from "react";
 
-interface Options {
-  once: boolean;
-}
-
-export default function useVisible(ref: RefObject<HTMLElement>, options: Options): boolean {
+/**
+ * React hook to know if an element is visible.
+ * @public
+ * @param target - The target where you want to identify its visibility.
+ * @returns The visibility of the target.
+ */
+export default function useVisible(target: RefObject<HTMLElement>): boolean {
   const [isVisible, setVisibility] = useState<boolean>(false);
 
   const handleObserver = (entry: IntersectionObserverEntry) => {
-    if (options.once && isVisible) {
-      return null;
-    }
-
     setVisibility(entry.isIntersecting);
   };
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => handleObserver(entry));
 
-    if (ref.current) {
-      observer.observe(ref.current);
+    if (target && target.current) {
+      observer.observe(target.current);
     }
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      if (target && target.current) {
+        observer.unobserve(target.current);
       }
     };
-  }, [ref, options]);
+  }, [target]);
 
   return isVisible;
 }
