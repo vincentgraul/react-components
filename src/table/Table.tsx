@@ -1,8 +1,6 @@
 import React, { ReactNode } from "react";
 import styled from "styled-components";
 
-export * as UI from "./UI";
-
 export interface Column {
   name: string;
   label: string;
@@ -14,62 +12,91 @@ export interface Props<T> {
   records: T[];
   renderHeader?: () => ReactNode;
   renderFooter?: () => ReactNode;
-  renderColumn?: (column: Column, key: string) => ReactNode;
-  renderRow?: (cell: ReactNode, key: string) => ReactNode;
-  renderEmptyCell?: () => ReactNode;
+  renderColumnsRow?: (columns: ReactNode) => ReactNode;
+  renderColumnsCell?: (column: Column, key: string) => ReactNode;
+  renderRecordsRow?: (cells: ReactNode, key: string) => ReactNode;
+  renderRecordsCell?: (cell: Primitive, key: string) => ReactNode;
+  renderRecordsEmptyCell?: (key: string) => ReactNode;
   renderNoRecords?: () => ReactNode;
   className?: string;
 }
 
+/**
+ * React component used to display a data table.
+ * @public
+ * @param props - An Object which contains:
+ * - columns: the table columns
+ * - records: the table records
+ * - some properties to customise the rendering
+ * @returns A React component.
+ */
 export default function Table<T>(props: Props<T>): JSX.Element {
   const {
     columns,
     records,
     renderHeader = () => null,
     renderFooter = () => null,
-    renderColumn = () => null,
-    renderRow = () => null,
-    renderEmptyCell = () => null,
+    renderColumnsRow = (columns: ReactNode) => (
+      <tr className="table-main-columns-row">{columns}</tr>
+    ),
+    renderColumnsCell = (column: Column, key: string) => (
+      <Th className="table-main-columns-cell" key={key}>
+        {column.name}
+      </Th>
+    ),
+    renderRecordsRow = (cells: ReactNode, key: string) => (
+      <Tr className="table-main-records-row" key={key}>
+        {cells}
+      </Tr>
+    ),
+    renderRecordsCell = (cell: Primitive, key: string) => (
+      <Td className="table-main-records-cell" key={key}>
+        {cell}
+      </Td>
+    ),
+    renderRecordsEmptyCell = (key: string) => (
+      <Td className="table-main-records-cell" key={key}>
+        X
+      </Td>
+    ),
     renderNoRecords = () => null,
-    className,
+    className = "",
   } = props;
 
-  const formatRow = (record: T, columnNames: string[]): ReactNode => {
-    const row: Primitive[] = columnNames.map((name: string) => (record as ObjectLiteral)[name]);
-    return (
-      <>
-        {row.map((cell: Primitive, index: number) => (
-          <Cell key={`cell-${index}`}>{cell ? cell : renderEmptyCell()}</Cell>
-        ))}
-      </>
-    );
-  };
-
   const displayColumns = () =>
-    columns.map((column: Column, index: number) => renderColumn(column, `column-${index}`));
+    renderColumnsRow(
+      columns.map((column: Column, index: number) => renderColumnsCell(column, `column-${index}`))
+    );
 
   const displayRows = () => {
-    const columnNames = columns.map((column: Column) => column.name);
-    return records.map((record: T, index: number) =>
-      renderRow(formatRow(record, columnNames), `row-${index}`)
-    );
+    const columnNames: string[] = columns.map((column: Column) => column.name);
+
+    return records.map((record: T, rowIndex: number) => {
+      const cells: Primitive[] = columnNames.map((name: string) => (record as ObjectLiteral)[name]);
+
+      return renderRecordsRow(
+        cells.map((cell: Primitive, cellIndex: number) =>
+          cell
+            ? renderRecordsCell(cell, `cell-${cellIndex}`)
+            : renderRecordsEmptyCell(`cell-${cellIndex}`)
+        ),
+        `row-${rowIndex}`
+      );
+    });
   };
 
   return (
-    <Container className={className}>
+    <Container className={`table ${className}`}>
       {renderHeader()}
 
       {records.length === 0 ? (
         renderNoRecords()
       ) : (
         <>
-          <T>
-            <thead>
-              <tr>{displayColumns()}</tr>
-            </thead>
-
-            <TBody>{displayRows()}</TBody>
-          </T>
+          <Main className="table-main">
+            <thead className="table-main-columns">{displayColumns()}</thead>
+            <TBody className="table-main-records">{displayRows()}</TBody>
+          </Main>
         </>
       )}
 
@@ -83,7 +110,7 @@ const Container = styled.div`
   flex-flow: column;
 `;
 
-const T = styled.table`
+const Main = styled.table`
   width: 100%;
   table-layout: fixed;
   border-collapse: collapse;
@@ -96,7 +123,18 @@ const TBody = styled.tbody`
   }
 `;
 
-const Cell = styled.td`
+export const Th = styled.th`
+  padding: 2rem 1rem 1rem 0;
+  word-wrap: break-word;
+  white-space: nowrap;
+`;
+
+export const Tr = styled.tr`
+  text-align: center;
+  border-bottom: 2px solid black;
+`;
+
+export const Td = styled.td`
   padding: 2rem 1rem 1rem 0;
   word-wrap: break-word;
 `;
