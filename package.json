@@ -24,7 +24,7 @@
     "lint": "eslint './src/**/*.ts'"
   },
   "dependencies": {
-    "@testing-library/react": "^12.1.2",
+    "@testing-library/react": "^13.0.0",
     "@types/react": "^17.0.38",
     "@types/react-dom": "^18.0.0",
     "@types/styled-components": "5.1.25",
