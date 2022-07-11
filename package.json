@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "./build/bundle.js",
   "license": "GNU GPLV3",
+  "repository": "https://github.com/vincentgraul/react-components.git",
   "author": {
     "name": "Vincent Graul",
     "email": "vincent.graul@outlook.com",
