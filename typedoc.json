@@ -1,7 +1,7 @@
 {
-    "$schema": "https://typedoc.org/schema.json",
-    "entryPoints": "./src",
-    "entryPointStrategy": "Expand",
-    "exclude": "**/*+(.test|.stories).+(ts|tsx)",
-    "out": "doc"
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": "./src",
+  "entryPointStrategy": "Expand",
+  "exclude": "**/*+(.test|.stories).+(ts|tsx)",
+  "out": "doc"
 }

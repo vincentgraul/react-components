@@ -1,25 +1,25 @@
 {
-    "compilerOptions": {
-      "target": "ES6",
-      "lib": ["DOM", "ESNext"],
-      "skipLibCheck": true,
-      "esModuleInterop": true,
-      "allowSyntheticDefaultImports": true,
-      "strict": true,
-      "forceConsistentCasingInFileNames": true,
-      "module": "AMD",
-      "moduleResolution": "node",
-      "resolveJsonModule": true,
-      "jsx": "react",
-      "declaration": true,
-      "outFile": "./build/bundle.js"
-    },
-    "include": ["./src/**/*"],
-    "files": ["./types.d.ts"],
-    "exclude": [
-      "./src/**/*.test.ts",
-      "./src/**/*.test.tsx",
-      "./src/**/*.stories.ts",
-      "./src/**/*.stories.tsx"]
-  }
-  
+  "compilerOptions": {
+    "target": "ES6",
+    "lib": ["DOM", "ESNext"],
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "AMD",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "jsx": "react",
+    "declaration": true,
+    "outFile": "./build/bundle.js"
+  },
+  "include": ["./src/**/*"],
+  "files": ["./types.d.ts"],
+  "exclude": [
+    "./src/**/*.test.ts",
+    "./src/**/*.test.tsx",
+    "./src/**/*.stories.ts",
+    "./src/**/*.stories.tsx"
+  ]
+}
