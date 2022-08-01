@@ -20,7 +20,8 @@
     }
   ],
   "scripts": {
-    "build": "tsc && npm run compress",
+    "build:dev": "tsc",
+    "build:prod": "npm run lint && tsc && npm run compress",
     "storybook": "build-storybook && start-storybook -p 6006",
     "test": "jest",
     "doc": "typedoc",
