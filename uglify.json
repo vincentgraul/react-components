@@ -1,8 +1,0 @@
-{
-  "compress": true,
-  "mangle": true,
-  "sourceMap": {
-    "filename": "build/bundle.js",
-    "url": "build/bundle.js.map"
-  }
-}

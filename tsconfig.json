@@ -1,25 +1,16 @@
 {
   "compilerOptions": {
-    "target": "ES6",
-    "lib": ["DOM", "ESNext"],
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "AMD",
+    "target": "ES2015",
+    "module": "ESNext",
     "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "declaration": true,
-    "outFile": "./build/bundle.js"
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "removeComments": true,
+    "resolveJsonModule": true
   },
-  "include": ["./src/**/*"],
-  "files": ["./types.d.ts"],
-  "exclude": [
-    "./src/**/*.test.ts",
-    "./src/**/*.test.tsx",
-    "./src/**/*.stories.ts",
-    "./src/**/*.stories.tsx"
-  ]
+  "include": ["src", "types.d.ts"],
+  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx", "src/**/*.stories.tsx"]
 }

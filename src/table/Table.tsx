@@ -7,7 +7,7 @@ export interface Column {
   [field: string]: any;
 }
 
-export interface Props<T> {
+export interface TableProps<T> {
   columns: Column[];
   records: T[];
   renderHeader?: () => ReactNode;
@@ -30,7 +30,7 @@ export interface Props<T> {
  * - some properties to customise the rendering
  * @returns A React component.
  */
-export default function Table<T>(props: Props<T>): JSX.Element {
+export default function Table<T>(props: TableProps<T>): JSX.Element {
   const {
     columns,
     records,

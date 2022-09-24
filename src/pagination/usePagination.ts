@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export interface Props {
+export interface PaginationProps {
   page: number;
   totalRecords: number;
   maxRecordsPerPage?: number;
@@ -36,7 +36,7 @@ export interface Pagination {
  * - maxRecordsPerPage: the maximum number of records displayed per page
  * - some functions to change the page (goToPage, goToFirst...)
  */
-export default function usePagination(props: Props): Pagination {
+export default function usePagination(props: PaginationProps): Pagination {
   const { totalRecords, itemNeighbours = 2, minItems = 5, maxRecordsPerPage = 10 } = props;
   const [page, setPage] = useState<number>(props.page);
   const [total, setTotal] = useState<number>(0);

@@ -7,7 +7,7 @@ export enum ArrowPosition {
   RIGHT,
 }
 
-export interface Props extends Pagination {
+export interface NumberedPaginationProps extends Pagination {
   renderSingleArrow?: (position: ArrowPosition) => ReactNode;
   renderDoubleArrow?: (position: ArrowPosition) => ReactNode;
   className?: string;
@@ -21,7 +21,7 @@ export interface Props extends Pagination {
  * - some properties to customise the rendering
  * @returns A React component.
  */
-export default function NumberedPagination(props: Props) {
+export default function NumberedPagination(props: NumberedPaginationProps) {
   const {
     page,
     total,
@@ -105,7 +105,6 @@ const Item = styled.div`
   &:first-child {
     border-width: 1px 1px 1px 1px;
   }
-  background-color:
   border-style: solid;
   border-width: 1px 1px 1px 0;
   padding: 0.5rem 1rem 0.5rem 1rem;
