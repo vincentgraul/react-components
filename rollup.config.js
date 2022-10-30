@@ -1,4 +1,6 @@
 const typescript = require("@rollup/plugin-typescript");
+const nodeResolve = require("@rollup/plugin-node-resolve").default;
+const commonjs = require("@rollup/plugin-commonjs");
 
 export default [
   {
@@ -10,7 +12,11 @@ export default [
         preserveModules: true,
       },
     ],
-    plugins: [typescript({ outDir: "build/cjs", declarationDir: "build/cjs" })],
+    plugins: [
+      nodeResolve(),
+      commonjs(),
+      typescript({ outDir: "build/cjs", declarationDir: "build/cjs/src" }),
+    ],
   },
   {
     input: "src/index.ts",
@@ -22,6 +28,10 @@ export default [
         preserveModules: true,
       },
     ],
-    plugins: [typescript({ outDir: "build/esm", declarationDir: "build/esm" })],
+    plugins: [
+      nodeResolve(),
+      commonjs(),
+      typescript({ outDir: "build/esm", declarationDir: "build/esm/src" }),
+    ],
   },
 ];

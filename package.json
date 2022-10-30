@@ -1,67 +1,67 @@
 {
   "name": "@vincentgraul/react-components",
-  "version": "1.0.3",
-  "main": "esm/index.js",
-  "module": "cjs/index.js",
+  "version": "1.0.5",
+  "main": "build/esm/src/index.js",
+  "module": "build/cjs/src/index.js",
   "exports": {
     "./match-device": {
-      "import": "./esm/match-device/useMatchDevice.js",
-      "require": "./cjs/match-device/useMatchDevice.js"
+      "import": "./build/esm/src/match-device/useMatchDevice.js",
+      "require": "./build/cjs/src/match-device/useMatchDevice.js"
     },
     "./match-resolution": {
-      "import": "./esm/match-resolution/useMatchResolution.js",
-      "require": "./cjs/match-resolution/useMatchResolution.js"
+      "import": "./build/esm/src/match-resolution/useMatchResolution.js",
+      "require": "./build/cjs/src/match-resolution/useMatchResolution.js"
     },
     "./mount-react-hook": {
-      "import": "./esm/mount-react-hook/mountReactHook.js",
-      "require": "./cjs/mount-react-hook/mountReactHook.js"
+      "import": "./build/esm/src/mount-react-hook/mountReactHook.js",
+      "require": "./build/cjs/src/mount-react-hook/mountReactHook.js"
     },
     "./numbered-pagination": {
-      "import": "./esm/numbered-pagination/NumberedPagination.js",
-      "require": "./cjs/numbered-pagination/NumberedPagination.js"
+      "import": "./build/esm/src/numbered-pagination/NumberedPagination.js",
+      "require": "./build/cjs/src/numbered-pagination/NumberedPagination.js"
     },
     "./pagination": {
-      "import": "./esm/pagination/pagination.js",
-      "require": "./cjs/pagination/pagination.js"
+      "import": "./build/esm/src/pagination/pagination.js",
+      "require": "./build/cjs/src/pagination/pagination.js"
     },
     "./scroll-to": {
-      "import": "./esm/scroll-to/useScrollTo.js",
-      "require": "./cjs/scroll-to/useScrollTo.js"
+      "import": "./build/esm/src/scroll-to/useScrollTo.js",
+      "require": "./build/cjs/src/scroll-to/useScrollTo.js"
     },
     "./table": {
-      "import": "./esm/table/table.js",
-      "require": "./cjs/table/table.js"
+      "import": "./build/esm/src/table/table.js",
+      "require": "./build/cjs/src/table/table.js"
     },
     "./visible": {
-      "import": "./esm/visible/useVisible.js",
-      "require": "./cjs/visible/useVisible.js"
+      "import": "./build/esm/src/visible/useVisible.js",
+      "require": "./build/cjs/src/visible/useVisible.js"
     }
   },
   "typesVersions": {
     "*": {
       "match-device": [
-        "esm/match-device/useMatchDevice.d.ts"
+        "build/esm/src/match-device/useMatchDevice.d.ts"
       ],
       "match-resolution": [
-        "esm/match-resolution/useMatchResolution.d.ts"
+        "build/esm/src/match-resolution/useMatchResolution.d.ts"
       ],
       "mount-react-hook": [
-        "esm/mount-react-hook/mountReactHook.d.ts"
+        "build/esm/src/mount-react-hook/mountReactHook.d.ts"
       ],
       "numberedPagination": [
-        "esm/numbered-pagination/NumberedPagination.d.ts"
+        "build/esm/src/numbered-pagination/NumberedPagination.d.ts"
       ],
       "pagination": [
-        "esm/pagination/usePagination.d.ts"
+        "build/esm/src/pagination/usePagination.d.ts"
       ],
       "scroll-to": [
-        "esm/scroll-to/useScrollTo.d.ts"
+        "build/esm/src/scroll-to/useScrollTo.d.ts"
       ],
       "table": [
-        "esm/table/Table.d.ts"
+        "build/esm/src/table/Table.d.ts"
       ],
       "visible": [
-        "esm/visible/useVisible.d.ts"
+        "build/esm/src/visible/useVisible.d.ts"
       ]
     }
   },
@@ -105,6 +105,8 @@
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.5.0",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-commonjs": "^23.0.2",
     "@storybook/addon-actions": "^6.5.12",
     "@storybook/addon-essentials": "^6.5.12",
     "@storybook/addon-links": "^6.5.12",
