@@ -1,6 +1,8 @@
-const typescript = require("@rollup/plugin-typescript");
-const nodeResolve = require("@rollup/plugin-node-resolve").default;
+const peerDepsExternal = require("rollup-plugin-peer-deps-external");
+const resolve = require("@rollup/plugin-node-resolve").default;
 const commonjs = require("@rollup/plugin-commonjs");
+const typescript = require("@rollup/plugin-typescript");
+const terser = require("rollup-plugin-terser").terser;
 
 export default [
   {
@@ -13,10 +15,13 @@ export default [
       },
     ],
     plugins: [
-      nodeResolve(),
+      peerDepsExternal(),
+      resolve(),
       commonjs(),
       typescript({ outDir: "build/cjs", declarationDir: "build/cjs/src" }),
+      terser(),
     ],
+    external: ["react", "react-dom"],
   },
   {
     input: "src/index.ts",
@@ -29,9 +34,12 @@ export default [
       },
     ],
     plugins: [
-      nodeResolve(),
+      peerDepsExternal(),
+      resolve(),
       commonjs(),
       typescript({ outDir: "build/esm", declarationDir: "build/esm/src" }),
+      terser(),
     ],
+    external: ["react", "react-dom"],
   },
 ];
