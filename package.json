@@ -120,6 +120,7 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.2",
     "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-terser": "^0.4.3",
     "@rollup/plugin-typescript": "^11.1.1",
     "@storybook/addon-actions": "^7.0.23",
     "@storybook/addon-essentials": "^7.0.23",
@@ -136,9 +137,8 @@
     "prettier": "^2.7.1",
     "rollup": "^3.25.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-terser": "^7.0.2",
     "ts-jest": "^29.0.2",
-    "typedoc": "^0.23.15",
+    "typedoc": "^0.24.8",
     "typescript": "^5.1.3"
   }
 }
