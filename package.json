@@ -1,6 +1,6 @@
 {
   "name": "@vincentgraul/react-components",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "main": "build/esm/src/index.js",
   "module": "build/cjs/src/index.js",
   "exports": {
@@ -21,20 +21,28 @@
       "require": "./build/cjs/src/numbered-pagination/NumberedPagination.js"
     },
     "./pagination": {
-      "import": "./build/esm/src/pagination/pagination.js",
-      "require": "./build/cjs/src/pagination/pagination.js"
+      "import": "./build/esm/src/pagination/usePagination.js",
+      "require": "./build/cjs/src/pagination/usePagination.js"
     },
     "./scroll-to": {
       "import": "./build/esm/src/scroll-to/useScrollTo.js",
       "require": "./build/cjs/src/scroll-to/useScrollTo.js"
     },
     "./table": {
-      "import": "./build/esm/src/table/table.js",
-      "require": "./build/cjs/src/table/table.js"
+      "import": "./build/esm/src/table/Table.js",
+      "require": "./build/cjs/src/table/Table.js"
     },
     "./visible": {
       "import": "./build/esm/src/visible/useVisible.js",
       "require": "./build/cjs/src/visible/useVisible.js"
+    },
+    "./outside-alerter": {
+      "import": "./build/esm/src/outside-alerter/useOutsideAlerter.js",
+      "require": "./build/cjs/src/outside-alerter/useOutsideAlerter.js"
+    },
+    "./modal": {
+      "import": "./build/esm/src/modal/Modal.js",
+      "require": "./build/cjs/src/modal/Modal.js"
     }
   },
   "typesVersions": {
@@ -48,7 +56,7 @@
       "mount-react-hook": [
         "build/esm/src/mount-react-hook/mountReactHook.d.ts"
       ],
-      "numberedPagination": [
+      "numbered-pagination": [
         "build/esm/src/numbered-pagination/NumberedPagination.d.ts"
       ],
       "pagination": [
@@ -62,6 +70,12 @@
       ],
       "visible": [
         "build/esm/src/visible/useVisible.d.ts"
+      ],
+      "outside-alerter": [
+        "build/esm/src/outside-alerter/useOutsideAlerter.d.ts"
+      ],
+      "modal": [
+        "build/esm/src/modal/Modal.d.ts"
       ]
     }
   },

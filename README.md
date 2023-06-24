@@ -13,6 +13,7 @@
 | NumberedPagination | React component used to display a pagination (with numbers)                         |
 | mountReactHook     | React hook to mount a hook in an unit test                                          |
 | useOutsideAlerter  | React hook to know if an click has been triggered outside an element                |
+| Modal              | React component used to display a modal                                             |
 
 ## License
 

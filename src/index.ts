@@ -21,3 +21,9 @@ export * from "./table/Table";
 
 export { default as useVisible } from "./visible/useVisible";
 export * from "./visible/useVisible";
+
+export { default as useOutsideAlerter } from "./outside-alerter/useOutsideAlerter";
+export * from "./outside-alerter/useOutsideAlerter";
+
+export { default as Modal } from "./modal/Modal";
+export * from "./modal/Modal";
