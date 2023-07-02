@@ -27,3 +27,6 @@ export * from "./outside-alerter/useOutsideAlerter";
 
 export { default as Modal } from "./modal/Modal";
 export * from "./modal/Modal";
+
+export { default as Loader } from "./loader/Loader";
+export * from "./loader/Loader";
