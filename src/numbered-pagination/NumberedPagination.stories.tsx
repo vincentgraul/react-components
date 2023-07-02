@@ -107,8 +107,8 @@ export const WithSingleAndMultipleArrowsImage = () => {
         <SingleArrow
           src={
             position === ArrowPosition.LEFT
-              ? require("../../stories/assets/pagination/single-left-arrow.svg")
-              : require("../../stories/assets/pagination/single-right-arrow.svg")
+              ? "../../stories/assets/pagination/single-left-arrow.svg"
+              : "../../stories/assets/pagination/single-right-arrow.svg"
           }
         />
       )}
@@ -116,8 +116,8 @@ export const WithSingleAndMultipleArrowsImage = () => {
         <DoubleArrow
           src={
             position === ArrowPosition.LEFT
-              ? require("../../stories/assets/pagination/double-left-arrow.svg")
-              : require("../../stories/assets/pagination/double-right-arrow.svg")
+              ? "../../stories/assets/pagination/double-left-arrow.svg"
+              : "../../stories/assets/pagination/double-right-arrow.svg"
           }
         />
       )}

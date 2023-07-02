@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import useVisible from "../visible/useVisible";
 
@@ -9,7 +9,7 @@ export default {
 
 export const Basic = () => {
   const elementRef = useRef(null);
-  const isVisible = useVisible(elementRef, { once: false });
+  const isVisible = useVisible(elementRef);
 
   const Info = styled.p`
     position: fixed;

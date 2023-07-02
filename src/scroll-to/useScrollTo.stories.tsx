@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
 import useScrollTo from "../scroll-to/useScrollTo";
 
 export default {

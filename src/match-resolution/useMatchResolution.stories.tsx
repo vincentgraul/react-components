@@ -1,3 +1,4 @@
+import React from "react";
 import useMatchResolution from "./useMatchResolution";
 
 export default {

@@ -1,5 +1,5 @@
 const peerDepsExternal = require("rollup-plugin-peer-deps-external");
-const resolve = require("@rollup/plugin-node-resolve").default;
+const resolve = require("@rollup/plugin-node-resolve");
 const commonjs = require("@rollup/plugin-commonjs");
 const typescript = require("@rollup/plugin-typescript");
 const terser = require("@rollup/plugin-terser");

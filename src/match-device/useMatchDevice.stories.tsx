@@ -1,3 +1,4 @@
+import React from "react";
 import useMatchDevice, { Device } from "./useMatchDevice";
 
 export default {
