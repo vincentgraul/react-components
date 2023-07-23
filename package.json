@@ -1,88 +1,83 @@
 {
   "name": "@vincentgraul/react-components",
-  "version": "1.0.10",
+  "version": "1.0.18",
   "main": "build/esm/src/index.js",
   "module": "build/cjs/src/index.js",
   "exports": {
     "./match-device": {
-      "import": "./build/esm/src/match-device/useMatchDevice.js",
-      "require": "./build/cjs/src/match-device/useMatchDevice.js"
+      "import": "./build/match-device/useMatchDevice.js"
     },
     "./match-resolution": {
-      "import": "./build/esm/src/match-resolution/useMatchResolution.js",
-      "require": "./build/cjs/src/match-resolution/useMatchResolution.js"
+      "import": "./build/match-resolution/useMatchResolution.js"
     },
     "./mount-react-hook": {
-      "import": "./build/esm/src/mount-react-hook/mountReactHook.js",
-      "require": "./build/cjs/src/mount-react-hook/mountReactHook.js"
+      "import": "./build/mount-react-hook/mountReactHook.js"
     },
     "./numbered-pagination": {
-      "import": "./build/esm/src/numbered-pagination/NumberedPagination.js",
-      "require": "./build/cjs/src/numbered-pagination/NumberedPagination.js"
+      "import": "./build/numbered-pagination/NumberedPagination.js"
     },
     "./pagination": {
-      "import": "./build/esm/src/pagination/usePagination.js",
-      "require": "./build/cjs/src/pagination/usePagination.js"
+      "import": "./build/pagination/usePagination.js"
     },
     "./scroll-to": {
-      "import": "./build/esm/src/scroll-to/useScrollTo.js",
-      "require": "./build/cjs/src/scroll-to/useScrollTo.js"
+      "import": "./build/scroll-to/useScrollTo.js"
     },
     "./table": {
-      "import": "./build/esm/src/table/Table.js",
-      "require": "./build/cjs/src/table/Table.js"
+      "import": "./build/table/Table.js"
     },
     "./visible": {
-      "import": "./build/esm/src/visible/useVisible.js",
-      "require": "./build/cjs/src/visible/useVisible.js"
+      "import": "./build/visible/useVisible.js"
     },
     "./outside-alerter": {
-      "import": "./build/esm/src/outside-alerter/useOutsideAlerter.js",
-      "require": "./build/cjs/src/outside-alerter/useOutsideAlerter.js"
+      "import": "./build/outside-alerter/useOutsideAlerter.js"
     },
     "./modal": {
-      "import": "./build/esm/src/modal/Modal.js",
-      "require": "./build/cjs/src/modal/Modal.js"
+      "import": "./build/modal/Modal.js"
     },
     "./loader": {
-      "import": "./build/esm/src/loader/Loader.js",
-      "require": "./build/cjs/src/loader/Loader.js"
+      "import": "./build/loader/Loader.js"
+    },
+    "./image-loader": {
+      "import": "./build/loader/image-loader/ImageLoader.js"
     }
   },
   "typesVersions": {
     "*": {
       "match-device": [
-        "build/esm/src/match-device/useMatchDevice.d.ts"
+        "build/match-device/useMatchDevice.d.ts"
       ],
       "match-resolution": [
-        "build/esm/src/match-resolution/useMatchResolution.d.ts"
+        "build/match-resolution/useMatchResolution.d.ts"
       ],
       "mount-react-hook": [
-        "build/esm/src/mount-react-hook/mountReactHook.d.ts"
+        "build/mount-react-hook/mountReactHook.d.ts"
       ],
       "numbered-pagination": [
-        "build/esm/src/numbered-pagination/NumberedPagination.d.ts"
+        "build/numbered-pagination/NumberedPagination.d.ts"
       ],
       "pagination": [
-        "build/esm/src/pagination/usePagination.d.ts"
+        "build/pagination/usePagination.d.ts"
       ],
       "scroll-to": [
-        "build/esm/src/scroll-to/useScrollTo.d.ts"
+        "build/scroll-to/useScrollTo.d.ts"
       ],
       "table": [
-        "build/esm/src/table/Table.d.ts"
+        "build/table/Table.d.ts"
       ],
       "visible": [
-        "build/esm/src/visible/useVisible.d.ts"
+        "build/visible/useVisible.d.ts"
       ],
       "outside-alerter": [
-        "build/esm/src/outside-alerter/useOutsideAlerter.d.ts"
+        "build/outside-alerter/useOutsideAlerter.d.ts"
       ],
       "modal": [
-        "build/esm/src/modal/Modal.d.ts"
+        "build/modal/Modal.d.ts"
       ],
       "loader": [
-        "build/esm/src/loader/Loader.d.ts"
+        "build/loader/Loader.d.ts"
+      ],
+      "image-loader": [
+        "build/loader/image-loader/ImageLoader.d.ts"
       ]
     }
   },
@@ -104,8 +99,7 @@
     }
   ],
   "scripts": {
-    "build:dev": "rollup -c",
-    "build:prod": "npm run lint && npm run build:dev",
+    "build": "npm run lint && tsc",
     "test": "jest",
     "doc": "typedoc",
     "lint": "eslint src",
