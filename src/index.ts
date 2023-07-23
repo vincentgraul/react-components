@@ -30,3 +30,6 @@ export * from "./modal/Modal";
 
 export { default as Loader } from "./loader/Loader";
 export * from "./loader/Loader";
+
+export { default as ImageLoader } from "./loader/image-loader/ImageLoader";
+export * from "./loader/image-loader/ImageLoader";

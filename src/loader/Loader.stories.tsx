@@ -1,6 +1,6 @@
 import React from "react";
 import Loader from "./Loader";
-import ImageLoader from "./ImageLoader";
+import ImageLoader from "./image-loader/ImageLoader";
 
 export default {
   title: "Loader",

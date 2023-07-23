@@ -10,8 +10,8 @@ export default function Loader(props: Props): JSX.Element {
   const { render, className } = props;
 
   return (
-    <Overlay className={`${className}`}>
-      <Container>{render()}</Container>
+    <Overlay className={`loader-overlay ${className}`}>
+      <Container className="loader-container">{render()}</Container>
     </Overlay>
   );
 }
@@ -22,7 +22,7 @@ const Overlay = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: #121621;
+  background-color: rgba(0, 0, 0, 0.8);
   overflow-y: auto;
   z-index: 2;
 `;

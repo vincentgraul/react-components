@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 
-interface Props {
+export interface Props {
   src: string;
   text: string;
   className?: string;
@@ -11,9 +11,9 @@ export default function ImageLoader(props: Props): JSX.Element {
   const { className, src, text } = props;
 
   return (
-    <Container className={className}>
-      <Image src={src}></Image>
-      <span>{text}</span>
+    <Container className={`image-loader-container ${className}`}>
+      <Image className="image-loader-icon" src={src}></Image>
+      <span className="image-loader-text">{text}</span>
     </Container>
   );
 }
