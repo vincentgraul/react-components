@@ -15,6 +15,7 @@
 | useOutsideAlerter  | React hook to know if an click has been triggered outside an element                |
 | Modal              | React component used to display a modal                                             |
 | Loader             | React component used to display a loader                                            |
+| Select             | React component used to display a select                                            |
 
 ## License
 

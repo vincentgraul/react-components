@@ -165,15 +165,12 @@ export const Advanced = () => {
   const [advancedRecords, setAdvancedRecords] = useState<typeof records>([]);
   const pagination = usePagination({ page: 1, totalRecords: advancedTotalRecords.length });
 
-  console.log(pagination);
-
   const handleAddRecord = () => {
     setAdvancedTotalRecords([...advancedTotalRecords, advancedTotalRecords[0]]);
   };
 
   useEffect(() => {
     const offset = (pagination.page - 1) * pagination.maxRecordsPerPage;
-    console.log(offset);
     setAdvancedRecords(advancedTotalRecords.slice(offset, offset + pagination.maxRecordsPerPage));
   }, [advancedTotalRecords, pagination.page]);
 
