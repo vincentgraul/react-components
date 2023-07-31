@@ -1,7 +1,16 @@
 import { useEffect, RefObject, useState } from "react";
 
-export default function useOutsideAlerter(ref: RefObject<HTMLElement>): boolean {
+interface OutsideAlerter {
+  hasClickedOutside: boolean;
+  onReset: () => void;
+}
+
+export default function useOutsideAlerter(ref: RefObject<HTMLElement>): OutsideAlerter {
   const [hasClickedOutside, setClickedOutside] = useState<boolean>(false);
+
+  const handleOnReset = () => {
+    setClickedOutside(false);
+  };
 
   const handleOnClickOutside = (event: MouseEvent) => {
     if (event.target && ref.current) {
@@ -20,5 +29,5 @@ export default function useOutsideAlerter(ref: RefObject<HTMLElement>): boolean 
     };
   }, [ref]);
 
-  return hasClickedOutside;
+  return { hasClickedOutside, onReset: handleOnReset };
 }
