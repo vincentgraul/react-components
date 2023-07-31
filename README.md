@@ -16,6 +16,7 @@
 | Modal              | React component used to display a modal                                             |
 | Loader             | React component used to display a loader                                            |
 | Select             | React component used to display a select                                            |
+| LanguageSelector   | React component used to display a language selector                                 |
 
 ## License
 
