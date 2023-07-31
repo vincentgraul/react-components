@@ -3,7 +3,7 @@
     "target": "ES2015",
     "module": "ESNext",
     "outDir": "build",
-    "moduleResolution": "node",
+    "moduleResolution": "NodeNext",
     "jsx": "react-jsx",
     "declaration": true,
     "declarationMap": true,

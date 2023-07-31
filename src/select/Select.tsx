@@ -65,7 +65,7 @@ export default function Select(props: Props) {
     <Container className="select" ref={ref}>
       <SelectedOptionContainer onClick={handleSelectedOptionClick}>
         <SelectedOptionText>{selectedOption.label}</SelectedOptionText>
-        <SelectedOptionArrow src={Arrow.toString()}></SelectedOptionArrow>
+        <SelectedOptionArrow src={Arrow}></SelectedOptionArrow>
       </SelectedOptionContainer>
 
       {isListVisible && (

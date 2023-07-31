@@ -1,7 +1,4 @@
-declare type ObjectLiteral = import("@vincentgraul/types/src/ObjectLiteral");
-declare type Primitive = import("@vincentgraul/types/src/Primitive");
+import("@vincentgraul/types/svg");
 
-declare module "*.svg" {
-  const content: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
-  export default content;
-}
+declare type ObjectLiteral = import("@vincentgraul/types/object-literal");
+declare type Primitive = import("@vincentgraul/types/primitive");
