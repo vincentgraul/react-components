@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import Arrow from "./icons/arrow-bottom.svg";
+import { ArrowBottom } from "./icons";
 import useOutsideAlerter from "../outside-alerter/useOutsideAlerter";
 
 interface Option {
@@ -14,10 +14,11 @@ export type OptionWithoutId = Omit<Option, "id">;
 interface Props {
   options: OptionWithoutId[];
   onChange?: (option: Option) => void;
+  className?: string;
 }
 
 export default function Select(props: Props) {
-  const { onChange } = props;
+  const { className, onChange } = props;
 
   const [options, setOptions] = useState<Option[]>(null);
   const [isListVisible, setListVisibility] = useState<boolean>(false);
@@ -62,10 +63,10 @@ export default function Select(props: Props) {
   }
 
   return (
-    <Container className="select" ref={ref}>
+    <Container className={`select ${className}`} ref={ref}>
       <SelectedOptionContainer onClick={handleSelectedOptionClick}>
         <SelectedOptionText>{selectedOption.label}</SelectedOptionText>
-        <SelectedOptionArrow src={Arrow}></SelectedOptionArrow>
+        <SelectedOptionArrow />
       </SelectedOptionContainer>
 
       {isListVisible && (
@@ -102,7 +103,7 @@ const SelectedOptionText = styled.span`
   border-right: 1px solid black;
 `;
 
-const SelectedOptionArrow = styled.img`
+const SelectedOptionArrow = styled(ArrowBottom)`
   width: 15px;
   margin-left: 10px;
 `;
