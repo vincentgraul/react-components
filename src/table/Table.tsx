@@ -65,7 +65,7 @@ export default function Table<T>(props: TableProps<T>): JSX.Element {
 
   const displayColumns = () =>
     renderColumnsRow(
-      columns.map((column: Column, index: number) => renderColumnsCell(column, `column-${index}`))
+      columns.map((column: Column, index: number) => renderColumnsCell(column, `column-${index}`)),
     );
 
   const displayRows = () => {
@@ -78,9 +78,9 @@ export default function Table<T>(props: TableProps<T>): JSX.Element {
         cells.map((cell: Primitive, cellIndex: number) =>
           cell
             ? renderRecordsCell(cell, `cell-${cellIndex}`)
-            : renderRecordsEmptyCell(`cell-${cellIndex}`)
+            : renderRecordsEmptyCell(`cell-${cellIndex}`),
         ),
-        `row-${rowIndex}`
+        `row-${rowIndex}`,
       );
     });
   };

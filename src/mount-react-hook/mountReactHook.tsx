@@ -16,7 +16,7 @@ export interface MountedHook {
  */
 export default function mountReactHook(
   Component: ComponentType,
-  props: ObjectLiteral = {}
+  props: ObjectLiteral = {},
 ): MountedHook {
   let value: ObjectLiteral | Primitive = null;
 
@@ -26,7 +26,7 @@ export default function mountReactHook(
         value = hookValue;
         return null;
       }}
-    </Component>
+    </Component>,
   );
 
   return { container, unmount, value };

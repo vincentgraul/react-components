@@ -1,8 +1,6 @@
 {
   "name": "@vincentgraul/react-components",
-  "version": "1.0.18",
-  "main": "build/esm/src/index.js",
-  "module": "build/cjs/src/index.js",
+  "version": "1.0.28",
   "exports": {
     "./match-device": {
       "import": "./build/match-device/useMatchDevice.js"
@@ -39,6 +37,12 @@
     },
     "./image-loader": {
       "import": "./build/loader/image-loader/ImageLoader.js"
+    },
+    "./select": {
+      "import": "./build/select/Select.js"
+    },
+    "./country-selector": {
+      "import": "./build/country-selector/CountrySelector.js"
     }
   },
   "typesVersions": {
@@ -78,6 +82,12 @@
       ],
       "image-loader": [
         "build/loader/image-loader/ImageLoader.d.ts"
+      ],
+      "select": [
+        "build/select/Select.d.ts"
+      ],
+      "country-selector": [
+        "build/country-selector/CountrySelector.d.ts"
       ]
     }
   },
@@ -112,6 +122,7 @@
     "@types/styled-components": "^5.1.26",
     "@types/ua-parser-js": "^0.7.37",
     "@vincentgraul/types": "^1.0.3",
+    "@vincentgraul/utils": "^1.0.7",
     "intersection-observer": "^0.12.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

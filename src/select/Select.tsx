@@ -42,7 +42,7 @@ export default function Select(props: Props) {
 
   useEffect(() => {
     setOptions(
-      props.options.map((option: OptionWithoutId, index: number) => ({ ...option, id: index }))
+      props.options.map((option: OptionWithoutId, index: number) => ({ ...option, id: index })),
     );
   }, [props.options]);
 

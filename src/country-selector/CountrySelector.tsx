@@ -32,8 +32,8 @@ export default function CountrySelector(props: Props) {
               value: language,
               label: <Flag style={{ ...FlagStyle }} />,
             };
-          })
-        )
+          }),
+        ),
       );
     };
 

@@ -10,7 +10,7 @@ describe("usePagination", () => {
         maxRecordsPerPage: 10,
         itemNeighbours: 2,
         minItems: 5,
-      })
+      }),
     );
 
   it("should return correct values", () => {

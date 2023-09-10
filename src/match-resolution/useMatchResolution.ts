@@ -67,7 +67,7 @@ export const defaultBreakpoints: Breakpoints = {
  */
 export default function useMatchResolution(
   breakpoints: Breakpoints = defaultBreakpoints,
-  UA: string = ""
+  UA: string = "",
 ): MatchResolution {
   const isClientSide: boolean = typeof window !== "undefined";
   const { isDesktop, isMobile } = useMatchDevice(UA);

@@ -8,7 +8,7 @@ describe("useVisible", () => {
   let unobserveSpy: jest.SpyInstance;
 
   const Visible = forwardRef((props: ObjectLiteral, ref: ForwardedRef<HTMLElement>) =>
-    props.children(useVisible(ref as RefObject<HTMLElement>))
+    props.children(useVisible(ref as RefObject<HTMLElement>)),
   );
 
   beforeAll(() => {
