@@ -1,8 +1,7 @@
 {
   "name": "@vincentgraul/react-components",
-  "version": "1.0.18",
-  "main": "build/esm/src/index.js",
-  "module": "build/cjs/src/index.js",
+  "version": "1.0.26",
+  "main": "build/index.js",
   "exports": {
     "./match-device": {
       "import": "./build/match-device/useMatchDevice.js"
@@ -39,6 +38,12 @@
     },
     "./image-loader": {
       "import": "./build/loader/image-loader/ImageLoader.js"
+    },
+    "./select": {
+      "import": "./build/select/Select.js"
+    },
+    "./country-selector": {
+      "import": "./build/country-selector/CountrySelector.js"
     }
   },
   "typesVersions": {
@@ -78,6 +83,12 @@
       ],
       "image-loader": [
         "build/loader/image-loader/ImageLoader.d.ts"
+      ],
+      "select": [
+        "build/select/Select.d.ts"
+      ],
+      "country-selector": [
+        "build/country-selector/CountrySelector.d.ts"
       ]
     }
   },
@@ -99,7 +110,7 @@
     }
   ],
   "scripts": {
-    "build": "npm run lint && tsc",
+    "build": "npm run lint && tsc && copyfiles -u 1 src/**/*.svg build",
     "test": "jest",
     "doc": "typedoc",
     "lint": "eslint src",
@@ -112,6 +123,7 @@
     "@types/styled-components": "^5.1.26",
     "@types/ua-parser-js": "^0.7.36",
     "@vincentgraul/types": "^1.0.0",
+    "@vincentgraul/utils": "^1.0.0",
     "intersection-observer": "^0.12.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -130,6 +142,7 @@
     "@types/jest": "^29.5.2",
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.60.1",
+    "copyfiles": "^2.4.1",
     "eslint": "^8.44.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
