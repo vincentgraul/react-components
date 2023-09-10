@@ -64,9 +64,14 @@ export default function Select(props: Props) {
 
   return (
     <Container className={`select ${className}`} ref={ref}>
-      <SelectedOptionContainer onClick={handleSelectedOptionClick}>
-        <SelectedOptionText>{selectedOption.label}</SelectedOptionText>
-        <SelectedOptionArrow />
+      <SelectedOptionContainer
+        className="select-selected-option"
+        onClick={handleSelectedOptionClick}
+      >
+        <SelectedOptionText className="select-selected-option-text">
+          {selectedOption.label}
+        </SelectedOptionText>
+        <SelectedOptionArrow className="select-arrow" />
       </SelectedOptionContainer>
 
       {isListVisible && (
@@ -74,7 +79,11 @@ export default function Select(props: Props) {
           {options
             .filter((option: Option) => option.id !== selectedOption.id)
             .map((option: Option) => (
-              <Option key={option.id} onClick={() => handleOptionClick(option)}>
+              <Option
+                className="select-option"
+                key={option.id}
+                onClick={() => handleOptionClick(option)}
+              >
                 {option.label}
               </Option>
             ))}

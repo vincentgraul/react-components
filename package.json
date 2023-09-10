@@ -1,6 +1,6 @@
 {
   "name": "@vincentgraul/react-components",
-  "version": "1.0.28",
+  "version": "1.0.31",
   "exports": {
     "./match-device": {
       "import": "./build/match-device/useMatchDevice.js"

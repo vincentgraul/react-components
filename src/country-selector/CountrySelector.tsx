@@ -5,6 +5,7 @@ import { capitalize } from "@vincentgraul/utils/word";
 interface Props {
   languages: string[];
   onChange?: (option: Option) => void;
+  flagWidth?: string;
   className?: string;
 }
 
@@ -14,8 +15,15 @@ interface Option {
 }
 
 export default function CountrySelector(props: Props) {
-  const { className, languages, onChange } = props;
+  const { className, languages, onChange, flagWidth = "30px" } = props;
   const [options, setOptions] = useState<Option[]>(null);
+
+  const FlagStyle = {
+    display: "block",
+    width: flagWidth,
+    margin: "auto",
+    borderRadius: "2px",
+  };
 
   useEffect(() => {
     const fetchIcon = async (name: string) => {
@@ -30,7 +38,7 @@ export default function CountrySelector(props: Props) {
             const Flag = await fetchIcon(language);
             return {
               value: language,
-              label: <Flag style={{ ...FlagStyle }} />,
+              label: <Flag className="country-selector-flag" style={{ ...FlagStyle }} />,
             };
           }),
         ),
@@ -52,10 +60,3 @@ export default function CountrySelector(props: Props) {
     ></Select>
   );
 }
-
-const FlagStyle = {
-  display: "block",
-  width: "30px",
-  margin: "auto",
-  borderRadius: "2px",
-};
