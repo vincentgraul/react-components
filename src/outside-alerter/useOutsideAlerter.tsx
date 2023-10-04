@@ -12,22 +12,22 @@ export default function useOutsideAlerter(ref: RefObject<HTMLElement>): OutsideA
     setClickedOutside(false);
   };
 
-  const handleOnClickOutside = (event: MouseEvent) => {
-    if (event.target && ref.current) {
-      if (!ref.current.contains(event.target as Node)) {
-        setClickedOutside(true);
-      }
-    }
-  };
-
   useEffect(() => {
-    if (ref) {
-      document.addEventListener("mousedown", (event: MouseEvent) => handleOnClickOutside(event));
-    }
-    return () => {
-      document.removeEventListener("mousedown", (event: MouseEvent) => handleOnClickOutside(event));
+    const handleOnClickOutside = (event: MouseEvent) => {
+      if (event.target && ref.current) {
+        const value: boolean = !ref.current.contains(event.target as Node);
+
+        if (value !== hasClickedOutside) {
+          setClickedOutside(value);
+        }
+      }
     };
-  }, [ref]);
+
+    document.addEventListener("mousedown", handleOnClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleOnClickOutside);
+    };
+  }, [ref, hasClickedOutside]);
 
   return { hasClickedOutside, onReset: handleOnReset };
 }

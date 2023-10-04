@@ -11,7 +11,7 @@ interface Props {
 export default function Modal(props: Props): JSX.Element | null {
   const { className, children, onClickedOutside } = props;
   const ref = useRef(null);
-  const hasClickedOutside = useOutsideAlerter(ref);
+  const { hasClickedOutside } = useOutsideAlerter(ref);
 
   useEffect(() => {
     if (onClickedOutside && hasClickedOutside) {
