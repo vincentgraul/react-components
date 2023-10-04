@@ -1,6 +1,7 @@
 import React, { ReactNode, useEffect, useState } from "react";
 import Select from "../select/Select";
 import { capitalize } from "@vincentgraul/utils/word";
+import * as Icons from "./icons";
 
 interface Props {
   languages: string[];
@@ -26,16 +27,11 @@ export default function CountrySelector(props: Props) {
   };
 
   useEffect(() => {
-    const fetchIcon = async (name: string) => {
-      const { default: Flag } = await import(`./icons/${capitalize(name)}.js`);
-      return Flag;
-    };
-
     const prepareOptions = async () => {
       setOptions(
         await Promise.all(
           languages.map(async (language: string) => {
-            const Flag = await fetchIcon(language);
+            const Flag = Icons[capitalize(language)];
             return {
               value: language,
               label: <Flag className="country-selector-flag" style={{ ...FlagStyle }} />,
