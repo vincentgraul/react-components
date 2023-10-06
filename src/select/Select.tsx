@@ -47,7 +47,7 @@ export default function Select(props: Props) {
   }, [props.options]);
 
   useEffect(() => {
-    if (options) {
+    if (options && !selectedOption) {
       setSelectedOption(options[0]);
     }
   }, [options]);
