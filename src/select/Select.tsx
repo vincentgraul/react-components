@@ -13,12 +13,13 @@ export type OptionWithoutId = Omit<Option, "id">;
 
 interface Props {
   options: OptionWithoutId[];
+  selectedValue?: string;
   onChange?: (option: Option) => void;
   className?: string;
 }
 
 export default function Select(props: Props) {
-  const { className, onChange } = props;
+  const { selectedValue, className, onChange } = props;
 
   const [options, setOptions] = useState<Option[]>(null);
   const [isListVisible, setListVisibility] = useState<boolean>(false);
@@ -48,7 +49,9 @@ export default function Select(props: Props) {
 
   useEffect(() => {
     if (options && !selectedOption) {
-      setSelectedOption(options[0]);
+      setSelectedOption(
+        selectedValue ? options.find((option) => option.value === selectedValue) : options[0],
+      );
     }
   }, [options]);
 

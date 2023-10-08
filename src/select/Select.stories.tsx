@@ -18,3 +18,17 @@ export const Basic = () => {
     />
   );
 };
+
+export const WithSelectedOption = () => {
+  return (
+    <Select
+      selectedValue="it"
+      options={[
+        { label: "France", value: "fr" },
+        { label: "England", value: "en" },
+        { label: "Italy", value: "it" },
+        { label: "Scotland", value: "sc" },
+      ]}
+    />
+  );
+};

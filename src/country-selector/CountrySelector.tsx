@@ -5,6 +5,7 @@ import * as Icons from "./icons";
 
 interface Props {
   languages: string[];
+  value?: string;
   onChange?: (option: Option) => void;
   flagWidth?: string;
   className?: string;
@@ -16,7 +17,7 @@ interface Option {
 }
 
 export default function CountrySelector(props: Props) {
-  const { className, languages, onChange, flagWidth = "30px" } = props;
+  const { value, className, languages, onChange, flagWidth = "30px" } = props;
   const [options, setOptions] = useState<Option[]>(null);
 
   const FlagStyle = {
@@ -50,6 +51,7 @@ export default function CountrySelector(props: Props) {
 
   return (
     <Select
+      selectedValue={value}
       className={`country-selector ${className}`}
       options={options}
       onChange={onChange}
