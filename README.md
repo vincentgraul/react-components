@@ -3,7 +3,7 @@
 ## Hooks and UI components
 
 | Component          | Description                                                                         |
-| ------------------ | ----------------------------------------------------------------------------------- |
+|--------------------|-------------------------------------------------------------------------------------|
 | useVisible         | React hook to know if an element is visible                                         |
 | useMatchResolution | React hook to detect the resolution (desktop, laptop, tablet, mobile...)            |
 | useMatchDevice     | React hook to detect the device (mobile, tablet or desktop) based on the user agent |
@@ -17,6 +17,8 @@
 | Loader             | React component used to display a loader                                            |
 | Select             | React component used to display a select                                            |
 | CountrySelector    | React component used to display a country selector                                  |
+| useBreadcrumb      | React hook used to handle a breadcrumb                                              |
+| Breadcrumb         | React component used to display a breadcrumb                                        |
 
 ## License
 
