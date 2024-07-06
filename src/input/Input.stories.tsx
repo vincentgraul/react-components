@@ -24,7 +24,7 @@ export const Basic = () => {
   );
 };
 
-export const withMessage = () => {
+export const WithMessage = () => {
   return (
     <Input
       name="firstname"
