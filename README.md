@@ -20,6 +20,7 @@
 | useBreadcrumb      | React hook used to handle a breadcrumb                                              |
 | Breadcrumb         | React component used to display a breadcrumb                                        |
 | Input              | React component used to display an input                                            |
+| Wizard             | React component used to display a wizard                                            |
 
 ## License
 

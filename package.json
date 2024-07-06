@@ -43,6 +43,15 @@
     },
     "./country-selector": {
       "import": "./build/country-selector/CountrySelector.js"
+    },
+    "./breadcrumb": {
+      "import": "./build/breadcrumb"
+    },
+    "./input": {
+      "import": "./build/input/Input.js"
+    },
+    "./wizard": {
+      "import": "./build/wizard/Wizard.js"
     }
   },
   "typesVersions": {
@@ -88,7 +97,9 @@
       ],
       "country-selector": [
         "build/country-selector/CountrySelector.d.ts"
-      ]
+      ],
+      "./input": ["./build/input/Input.d.ts"],
+      "./wizard": ["./build/wizard/Wizard.d.ts"]
     }
   },
   "license": "GNU GPLV3",
