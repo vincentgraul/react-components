@@ -1,12 +1,12 @@
-export interface BreadcrumbElementType {
+export type BreadcrumbElementType = {
   label: string;
   url: string;
-}
+};
 
-export interface BreadcrumbType {
+export type BreadcrumbType = {
   url?: URL;
   mapping?: {
     url: string;
     label: string;
   }[];
-}
+};

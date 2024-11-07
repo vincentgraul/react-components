@@ -1,107 +1,6 @@
 {
   "name": "@vincentgraul/react-components",
   "version": "1.0.38",
-  "exports": {
-    "./match-device": {
-      "import": "./build/match-device/useMatchDevice.js"
-    },
-    "./match-resolution": {
-      "import": "./build/match-resolution/useMatchResolution.js"
-    },
-    "./mount-react-hook": {
-      "import": "./build/mount-react-hook/mountReactHook.js"
-    },
-    "./numbered-pagination": {
-      "import": "./build/numbered-pagination/NumberedPagination.js"
-    },
-    "./pagination": {
-      "import": "./build/pagination/usePagination.js"
-    },
-    "./scroll-to": {
-      "import": "./build/scroll-to/useScrollTo.js"
-    },
-    "./table": {
-      "import": "./build/table/Table.js"
-    },
-    "./visible": {
-      "import": "./build/visible/useVisible.js"
-    },
-    "./outside-alerter": {
-      "import": "./build/outside-alerter/useOutsideAlerter.js"
-    },
-    "./modal": {
-      "import": "./build/modal/Modal.js"
-    },
-    "./loader": {
-      "import": "./build/loader/Loader.js"
-    },
-    "./image-loader": {
-      "import": "./build/loader/image-loader/ImageLoader.js"
-    },
-    "./select": {
-      "import": "./build/select/Select.js"
-    },
-    "./country-selector": {
-      "import": "./build/country-selector/CountrySelector.js"
-    },
-    "./breadcrumb": {
-      "import": "./build/breadcrumb"
-    },
-    "./input": {
-      "import": "./build/input/Input.js"
-    },
-    "./wizard": {
-      "import": "./build/wizard/Wizard.js"
-    }
-  },
-  "typesVersions": {
-    "*": {
-      "match-device": [
-        "build/match-device/useMatchDevice.d.ts"
-      ],
-      "match-resolution": [
-        "build/match-resolution/useMatchResolution.d.ts"
-      ],
-      "mount-react-hook": [
-        "build/mount-react-hook/mountReactHook.d.ts"
-      ],
-      "numbered-pagination": [
-        "build/numbered-pagination/NumberedPagination.d.ts"
-      ],
-      "pagination": [
-        "build/pagination/usePagination.d.ts"
-      ],
-      "scroll-to": [
-        "build/scroll-to/useScrollTo.d.ts"
-      ],
-      "table": [
-        "build/table/Table.d.ts"
-      ],
-      "visible": [
-        "build/visible/useVisible.d.ts"
-      ],
-      "outside-alerter": [
-        "build/outside-alerter/useOutsideAlerter.d.ts"
-      ],
-      "modal": [
-        "build/modal/Modal.d.ts"
-      ],
-      "loader": [
-        "build/loader/Loader.d.ts"
-      ],
-      "image-loader": [
-        "build/loader/image-loader/ImageLoader.d.ts"
-      ],
-      "select": [
-        "build/select/Select.d.ts"
-      ],
-      "country-selector": [
-        "build/country-selector/CountrySelector.d.ts"
-      ],
-      "./input": ["./build/input/Input.d.ts"],
-      "./wizard": ["./build/wizard/Wizard.d.ts"]
-    }
-  },
   "license": "GNU GPLV3",
   "repository": "https://github.com/vincentgraul/react-components.git",
   "files": [
@@ -110,13 +9,13 @@
   "author": {
     "name": "Vincent Graul",
     "email": "vincent.graul@outlook.com",
-    "url": "http://vincentgraul.com"
+    "url": "https://vincentgraul.com"
   },
   "maintainers": [
     {
       "name": "Vincent Graul",
       "email": "vincent.graul@outlook.com",
-      "url": "http://vincentgraul.com"
+      "url": "https://vincentgraul.com"
     }
   ],
   "scripts": {
@@ -141,6 +40,8 @@
     "ua-parser-js": "^1.0.39"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.1.0",
+    "@eslint/js": "^9.14.0",
     "@storybook/addon-essentials": "^8.4.0",
     "@storybook/addon-interactions": "^8.4.0",
     "@storybook/addon-links": "^8.4.0",
@@ -163,5 +64,6 @@
     "ts-jest": "^29.2.5",
     "typedoc": "^0.26.10",
     "typescript": "^5.6.3"
-  }
+  },
+  "packageManager": "pnpm@9.12.3+sha512.cce0f9de9c5a7c95bef944169cc5dfe8741abfb145078c0d508b868056848a87c81e626246cb60967cbd7fd29a6c062ef73ff840d96b3c86c40ac92cf4a813ee"
 }
