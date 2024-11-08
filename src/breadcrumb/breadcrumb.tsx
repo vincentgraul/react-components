@@ -1,8 +1,7 @@
 import React, { Fragment } from "react";
-import { useBreadcrumb } from "./use-breadcrumb";
-import { Arrow } from "./icons";
-import { BreadcrumbType, BreadcrumbElementType } from "./breadcrumb.types";
 import styles from "./breadcrumb.module.css";
+import { Arrow } from "./icons";
+import { useBreadcrumb, BreadcrumbType, BreadcrumbElementType } from "..";
 
 type Props = BreadcrumbType & {
   onClick: (element: BreadcrumbElementType) => void;

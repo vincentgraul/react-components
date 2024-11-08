@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BreadcrumbType, BreadcrumbElementType } from "./breadcrumb.types";
+import { BreadcrumbType, BreadcrumbElementType } from "./use-breadcrumb.types";
 
 export const useBreadcrumb = ({
   url = new URL(location.href),

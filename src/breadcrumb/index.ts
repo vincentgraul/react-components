@@ -1,3 +1,3 @@
 export * from "./breadcrumb";
-export * from "./breadcrumb.types";
-export * from "./use-breadcrumb";
+export * from "../use-breadcrumb/use-breadcrumb.types";
+export * from "../use-breadcrumb/use-breadcrumb";

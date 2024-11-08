@@ -1,4 +1,5 @@
 export * from "./breadcrumb";
+export * from "./use-breadcrumb";
 export * from "./country-selector";
 export * from "./input";
 export * from "./loader";
