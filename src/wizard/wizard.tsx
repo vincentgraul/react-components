@@ -35,7 +35,7 @@ export const Wizard = (props: Props) => {
   };
 
   return (
-    <div className="wizard">
+    <div>
       {renderHeader({ step, previousStep, nextStep, isFirstPage, isLastPage })}
       {React.cloneElement(currentPage)}
       {renderFooter({ step, previousStep, nextStep, isFirstPage, isLastPage })}

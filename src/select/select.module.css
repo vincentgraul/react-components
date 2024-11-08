@@ -1,0 +1,54 @@
+.container {
+  width: fit-content;
+}
+
+.selected-option-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.selected-option-text {
+  padding-right: 10px;
+  border-right: 1px solid black;
+}
+
+.selected-option-arrow {
+  width: 15px;
+  margin-left: 10px;
+}
+
+.options-list {
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0 0;
+  user-select: none;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.option {
+  padding: 10px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #ecf0f1;
+
+    &:first-child {
+      border-radius: 5px 5px 0 0;
+    }
+
+    &:last-child {
+      border-radius: 0 0 5px 5px;
+    }
+
+    &:only-child {
+      border-radius: 5px;
+    }
+  }
+}

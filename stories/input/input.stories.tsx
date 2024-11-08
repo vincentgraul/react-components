@@ -13,7 +13,6 @@ export const Basic = () => {
       label="firstname"
       autoComplete="off"
       colors={{
-        default: "grey",
         error: "red",
         focus: "blue",
         success: "green",
@@ -33,7 +32,6 @@ export const WithMessage = () => {
       status="error"
       autoComplete="off"
       colors={{
-        default: "grey",
         error: "red",
         focus: "blue",
         success: "green",

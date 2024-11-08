@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-flow: column;
+}
+
+.main {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.tbody {
+  user-select: text;
+  tr:last-child {
+    border: none;
+  }
+}
+
+.th {
+  padding: 2rem 1rem 1rem 0;
+  word-wrap: break-word;
+  white-space: nowrap;
+}
+
+.tr {
+  text-align: center;
+  border-bottom: 2px solid black;
+}
+
+.td {
+  padding: 2rem 1rem 1rem 0;
+  word-wrap: break-word;
+}

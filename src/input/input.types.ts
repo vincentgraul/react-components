@@ -1,7 +1,6 @@
 export type InputType = "text" | "password";
 
 export type InputColors = {
-  default: string;
   focus: string;
   success: string;
   error: string;

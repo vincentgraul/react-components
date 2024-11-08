@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import styled from "styled-components";
+import { useState, useEffect, PropsWithChildren } from "react";
 import {
   Table,
   Column,
@@ -42,17 +41,8 @@ export const WithUnknownColumn = () => {
 };
 
 export const WithCustomColumnsRow = () => {
-  const CustomColumnRow = styled.tr`
-    background-color: black;
-    color: white;
-  `;
-
   return (
-    <Table
-      columns={columns}
-      records={records}
-      renderColumnsRow={(columns) => <CustomColumnRow>{columns}</CustomColumnRow>}
-    />
+    <Table columns={columns} records={records} renderColumnsRow={(columns) => <Tr>{columns}</Tr>} />
   );
 };
 
@@ -67,15 +57,11 @@ export const WithCustomColumnsCell = () => {
 };
 
 export const WithCustomRecordsRow = () => {
-  const CustomRecordsRow = styled(Tr)`
-    border-color: red;
-  `;
-
   return (
     <Table
       columns={columns}
       records={records}
-      renderRecordsRow={(cells, key) => <CustomRecordsRow key={key}>{cells}</CustomRecordsRow>}
+      renderRecordsRow={(cells, key) => <Tr key={key}>{cells}</Tr>}
     />
   );
 };
@@ -115,46 +101,53 @@ export const WithCustomRecordsEmptyCell = () => {
 };
 
 export const WithHeader = () => {
-  const Header = styled.div`
-    background-color: black;
-    color: white;
-    margin-bottom: 2vw;
-    padding: 0.2vw 1.5vw;
-  `;
-
-  return (
-    <Table columns={columns} records={records} renderHeader={() => <Header>Users data</Header>} />
-  );
-};
-
-export const WithFooter = () => {
-  const Footer = styled.div`
-    background-color: black;
-    color: white;
-    margin-top: 2vw;
-    padding: 0.2vw 1.5vw;
-  `;
-
   return (
     <Table
       columns={columns}
       records={records}
-      renderFooter={() => <Footer>Total: {records.length} records</Footer>}
+      renderHeader={() => (
+        <div
+          style={{
+            backgroundColor: "black",
+            color: "white",
+            marginBottom: "2vw",
+            padding: "0.2vw 1.5vw",
+          }}
+        >
+          Users data
+        </div>
+      )}
+    />
+  );
+};
+
+export const WithFooter = () => {
+  return (
+    <Table
+      columns={columns}
+      records={records}
+      renderFooter={() => (
+        <div
+          style={{
+            backgroundColor: "black",
+            color: "white",
+            marginTop: "2vw",
+            padding: "0.2vw 1.5vw",
+          }}
+        >
+          Total: {records.length} records
+        </div>
+      )}
     />
   );
 };
 
 export const WithNoRecords = () => {
-  const Block = styled.div`
-    background-color: black;
-    color: white;
-    padding: 0.2vw 1.5vw;
-  `;
-
-  const NoRecords = styled.div`
-    margin: 2vw 0;
-    text-align: center;
-  `;
+  const Block = ({ children }: PropsWithChildren) => (
+    <div style={{ backgroundColor: "black", color: "white", padding: "0.2vw 1.5vw" }}>
+      {children}
+    </div>
+  );
 
   return (
     <Table
@@ -162,7 +155,7 @@ export const WithNoRecords = () => {
       records={[]}
       renderHeader={() => <Block>Users data</Block>}
       renderFooter={() => <Block>Coypright 1990 - 2021</Block>}
-      renderNoRecords={() => <NoRecords>No data</NoRecords>}
+      renderNoRecords={() => <div style={{ margin: "2vw 0", textAlign: "center" }}>No data</div>}
     />
   );
 };
@@ -181,45 +174,13 @@ export const Advanced = () => {
     setAdvancedRecords(advancedTotalRecords.slice(offset, offset + pagination.maxRecordsPerPage));
   }, [advancedTotalRecords, pagination.page]);
 
-  const Block = styled.div`
-    background-color: black;
-    color: white;
-    padding: 1vw 0;
-    text-align: center;
-  `;
-
-  const Button = styled.button`
-    background-color: white;
-    border: none;
-    width: 5vw;
-    cursor: pointer;
-  `;
-
-  const Pagination = styled(NumberedPagination)`
-    display: inline-flex;
-
-    .pagination-item:hover:not(.selected) {
-      background-color: lightgrey;
-      color: black;
-    }
-
-    .selected {
-      background-color: white;
-      color: black;
-    }
-  `;
-
-  const SingleArrow = styled.img`
-    min-width: 0;
-    min-height: 0;
-    width: 0.5rem;
-  `;
-
-  const DoubleArrow = styled.img`
-    min-width: 0;
-    min-height: 0;
-    width: 0.8rem;
-  `;
+  const Block = ({ children }: PropsWithChildren) => (
+    <div
+      style={{ backgroundColor: "black", color: "white", padding: "1vw 0", textAlign: "center" }}
+    >
+      {children}
+    </div>
+  );
 
   return (
     <Table
@@ -227,15 +188,21 @@ export const Advanced = () => {
       records={advancedRecords}
       renderHeader={() => (
         <Block>
-          <Button onClick={handleAddRecord}>Add</Button>
+          <button
+            style={{ backgroundColor: "white", border: "none", width: "5vw", cursor: "pointer" }}
+            onClick={handleAddRecord}
+          >
+            Add
+          </button>
         </Block>
       )}
       renderFooter={() => (
         <Block>
-          <Pagination
+          <NumberedPagination
             {...pagination}
             renderSingleArrow={(position: ArrowPosition) => (
-              <SingleArrow
+              <img
+                style={{ minWidth: 0, minHeight: 0, width: "0.5rem" }}
                 src={
                   position === ArrowPosition.LEFT
                     ? require("./assets/single-left-arrow.svg")
@@ -244,7 +211,8 @@ export const Advanced = () => {
               />
             )}
             renderDoubleArrow={(position: ArrowPosition) => (
-              <DoubleArrow
+              <img
+                style={{ minWidth: 0, minHeight: 0, width: "0.8rem" }}
                 src={
                   position === ArrowPosition.LEFT
                     ? require("./assets/double-left-arrow.svg")

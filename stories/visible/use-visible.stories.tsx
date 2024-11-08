@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import styled from "styled-components";
 import { useVisible } from "../../src";
 
 export default {
@@ -11,16 +10,11 @@ export const Basic = () => {
   const elementRef = useRef(null);
   const isVisible = useVisible(elementRef);
 
-  const Info = styled.p`
-    position: fixed;
-    font-weight: bold;
-    color: red;
-    z-index: 2;
-  `;
-
   return (
     <div>
-      <Info>{`Title is visible: ${isVisible}`}</Info>
+      <p
+        style={{ position: "fixed", fontWeight: "bold", color: "red", zIndex: 2 }}
+      >{`Title is visible: ${isVisible}`}</p>
       <h1 ref={elementRef}>Title</h1>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et tortor rutrum,

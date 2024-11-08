@@ -1,6 +1,8 @@
-import React, { ReactNode } from "react";
-import styled from "styled-components";
+import React, { CSSProperties, ReactNode } from "react";
+import clsx from "clsx";
+import styles from "./numbered-pagination.module.css";
 import { Pagination } from "..";
+import { NumberedPaginationColors } from "./numbered-pagination.types";
 
 export enum ArrowPosition {
   LEFT,
@@ -8,9 +10,9 @@ export enum ArrowPosition {
 }
 
 type Props = Pagination & {
+  colors?: NumberedPaginationColors;
   renderSingleArrow?: (position: ArrowPosition) => ReactNode;
   renderDoubleArrow?: (position: ArrowPosition) => ReactNode;
-  className?: string;
 };
 
 /**
@@ -21,94 +23,69 @@ type Props = Pagination & {
  * - some properties to customise the rendering
  * @returns A React component.
  */
-export const NumberedPagination = (props: Props) => {
-  const {
-    page,
-    total,
-    items,
-    goToFirst,
-    goToLeft,
-    goToRight,
-    goToLast,
-    goToPage,
-    renderSingleArrow,
-    renderDoubleArrow,
-    className = "",
-  } = props;
+export const NumberedPagination = ({
+  page,
+  total,
+  items,
+  colors,
+  goToFirst,
+  goToLeft,
+  goToRight,
+  goToLast,
+  goToPage,
+  renderSingleArrow,
+  renderDoubleArrow,
+}: Props) => {
+  const CSSVariables = {
+    "--hover-background-color": colors?.hover.background,
+    "--hover-text-color": colors?.hover.text,
+    "--selected-background-color": colors?.selected.background,
+    "--selected-text-color": colors?.selected.text,
+  } as CSSProperties;
 
   return (
-    <Container className={`${className} pagination`}>
+    <div className={styles.container} style={CSSVariables}>
       {page > 1 && (
         <>
           {renderDoubleArrow && (
-            <Item
-              className="pagination-item pagination-item-arrow pagination-item-double-arrow"
-              onClick={() => goToFirst()}
-            >
+            <div className={styles.item} onClick={() => goToFirst()}>
               {renderDoubleArrow(ArrowPosition.LEFT)}
-            </Item>
+            </div>
           )}
 
           {renderSingleArrow && (
-            <Item
-              className="pagination-item pagination-item-arrow pagination-item-single-arrow"
-              onClick={() => goToLeft()}
-            >
+            <div className={styles.item} onClick={() => goToLeft()}>
               {renderSingleArrow(ArrowPosition.LEFT)}
-            </Item>
+            </div>
           )}
         </>
       )}
 
-      {items.map((page: number, index: number) => (
-        <Item
-          className={`pagination-item pagination-item-number ${
-            page === props.page ? "selected" : ""
-          }`}
+      {items.map((currentPage: number, index: number) => (
+        <div
+          className={clsx(styles.item, currentPage === page && styles.selected)}
           key={index}
-          onClick={() => goToPage(page)}
+          onClick={() => goToPage(currentPage)}
         >
-          {page}
-        </Item>
+          {currentPage}
+        </div>
       ))}
 
       {page < total && (
         <>
           {renderSingleArrow && (
-            <Item
-              className="pagination-item pagination-item-arrow pagination-item-single-arrow"
-              onClick={() => goToRight()}
-            >
+            <div className={styles.item} onClick={() => goToRight()}>
               {renderSingleArrow(ArrowPosition.RIGHT)}
-            </Item>
+            </div>
           )}
 
           {renderDoubleArrow && (
-            <Item
-              className="pagination-item pagination-item-arrow pagination-item-double-arrow"
-              onClick={() => goToLast()}
-            >
+            <div className={styles.item} onClick={() => goToLast()}>
               {renderDoubleArrow(ArrowPosition.RIGHT)}
-            </Item>
+            </div>
           )}
         </>
       )}
-    </Container>
+    </div>
   );
 };
-
-const Container = styled.div`
-  display: flex;
-`;
-
-const Item = styled.div`
-  &:first-child {
-    border-width: 1px 1px 1px 1px;
-  }
-  border-style: solid;
-  border-width: 1px 1px 1px 0;
-  padding: 0.5rem 1rem 0.5rem 1rem;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-`;

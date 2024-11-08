@@ -1,0 +1,71 @@
+.container {
+  --success-color: green;
+  --warning-color: orange;
+  --error-color: red;
+  --focus-color: blue;
+
+  position: relative;
+}
+
+.input-container {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+.input {
+  padding: 10px;
+  width: 100%;
+  border: 0;
+  background-color: transparent;
+  outline: none;
+  z-index: 1;
+  color: black;
+
+  &:focus + .fieldset {
+    border-width: 2px;
+
+    &:not(:global(.success), :global(.warning), :global(.error)) {
+      border-color: var(--focus-color);
+    }
+  }
+}
+
+.fieldset {
+  border: 1px solid black;
+  border-radius: 5px;
+  position: absolute;
+  inset: -8.5px 0 0;
+  font-size: 15px;
+  margin: 0;
+
+  :global(&.success) {
+    border-color: var(--success-color);
+    color: var(--success-color);
+  }
+
+  :global(&.warning) {
+    border-color: var(--warning-color);
+    color: var(--warning-color);
+  }
+
+  :global(&.error) {
+    border-color: var(--error-color);
+    color: var(--error-color);
+  }
+}
+
+.legend {
+  padding: 0 5px;
+}
+
+.message-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.message {
+  font-size: 14px;
+}
