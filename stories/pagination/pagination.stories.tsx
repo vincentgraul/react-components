@@ -1,30 +1,30 @@
-import { usePagination, NumberedPagination, ArrowPosition } from "../../src";
+import { usePagination, Pagination, ArrowPosition } from "../../src";
 
 export default {
-  title: "Numbered Pagination",
-  component: NumberedPagination,
+  title: "Pagination",
+  component: Pagination,
 };
 
 export const Basic = () => {
   const pagination = usePagination({ page: 1, totalRecords: 15 });
-  return <NumberedPagination {...pagination} />;
+  return <Pagination {...pagination} />;
 };
 
 export const WithOnePage = () => {
   const pagination = usePagination({ page: 1, totalRecords: 5 });
-  return <NumberedPagination {...pagination} />;
+  return <Pagination {...pagination} />;
 };
 
 export const WithMultiplePages = () => {
   const pagination = usePagination({ page: 1, totalRecords: 150 });
-  return <NumberedPagination {...pagination} />;
+  return <Pagination {...pagination} />;
 };
 
 export const WithSingleArrow = () => {
   const pagination = usePagination({ page: 1, totalRecords: 150 });
 
   return (
-    <NumberedPagination
+    <Pagination
       {...pagination}
       renderSingleArrow={(position: ArrowPosition) => (position === ArrowPosition.LEFT ? "<" : ">")}
     />
@@ -35,7 +35,7 @@ export const WithMultipleArrow = () => {
   const pagination = usePagination({ page: 1, totalRecords: 150 });
 
   return (
-    <NumberedPagination
+    <Pagination
       {...pagination}
       renderDoubleArrow={(position: ArrowPosition) =>
         position === ArrowPosition.LEFT ? "<<" : ">>"
@@ -48,7 +48,7 @@ export const WithSingleAndMultipleArrows = () => {
   const pagination = usePagination({ page: 1, totalRecords: 150 });
 
   return (
-    <NumberedPagination
+    <Pagination
       {...pagination}
       renderSingleArrow={(position: ArrowPosition) => (position === ArrowPosition.LEFT ? "<" : ">")}
       renderDoubleArrow={(position: ArrowPosition) =>
@@ -62,7 +62,7 @@ export const WithSingleAndMultipleArrowsImage = () => {
   const pagination = usePagination({ page: 1, totalRecords: 150 });
 
   return (
-    <NumberedPagination
+    <Pagination
       {...pagination}
       renderSingleArrow={(position: ArrowPosition) => (
         <img

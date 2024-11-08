@@ -1,4 +1,4 @@
-export type Pagination = {
+export type PaginationData = {
   page: number;
   total: number;
   items: number[];

@@ -1,16 +1,15 @@
 import React, { CSSProperties, ReactNode } from "react";
 import clsx from "clsx";
-import styles from "./numbered-pagination.module.css";
-import { Pagination } from "..";
-import { NumberedPaginationColors } from "./numbered-pagination.types";
+import styles from "./pagination.module.css";
+import { PaginationData, PaginationColors } from "..";
 
 export enum ArrowPosition {
   LEFT,
   RIGHT,
 }
 
-type Props = Pagination & {
-  colors?: NumberedPaginationColors;
+type Props = PaginationData & {
+  colors?: PaginationColors;
   renderSingleArrow?: (position: ArrowPosition) => ReactNode;
   renderDoubleArrow?: (position: ArrowPosition) => ReactNode;
 };
@@ -23,7 +22,7 @@ type Props = Pagination & {
  * - some properties to customise the rendering
  * @returns A React component.
  */
-export const NumberedPagination = ({
+export const Pagination = ({
   page,
   total,
   items,

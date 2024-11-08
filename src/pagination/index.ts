@@ -1,2 +1,2 @@
-export * from "./use-pagination";
-export * from "./use-pagination.types";
+export * from "./pagination";
+export * from "./pagination.types";
