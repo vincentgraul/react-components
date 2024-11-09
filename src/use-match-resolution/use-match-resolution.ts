@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useMatchDevice } from "..";
 import { Breakpoints, MatchResolution, Resolution } from "./use-match-resolution.types";
+import { useMatchDevice } from "..";
 
 export const defaultBreakpoints: Breakpoints = {
   desktop: "(min-width: 1281px)",

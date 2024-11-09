@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect, useRef } from "react";
-import { useOutsideAlerter } from "..";
 import styles from "./modal.module.css";
+import { useOutsideAlerter } from "..";
 
 type Props = {
   children: ReactNode;

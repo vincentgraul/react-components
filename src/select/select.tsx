@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./select.module.css";
-import { ArrowBottom } from "./icons";
-import { useOutsideAlerter } from "..";
 import { SelectOptionWithoutId, SelectOption } from "./select.types";
+import { useOutsideAlerter } from "..";
+import { ArrowBottom } from "./icons";
 
 type Props = {
   options: SelectOptionWithoutId[];

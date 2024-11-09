@@ -1,14 +1,5 @@
 import { useState, useEffect, PropsWithChildren } from "react";
-import {
-  Table,
-  Column,
-  Th,
-  Td,
-  Tr,
-  usePagination,
-  NumberedPagination,
-  ArrowPosition,
-} from "../../src";
+import { Table, Column, Th, Td, Tr, usePagination, Pagination, ArrowPosition } from "../../src";
 
 export default {
   title: "Table",
@@ -198,7 +189,7 @@ export const Advanced = () => {
       )}
       renderFooter={() => (
         <Block>
-          <NumberedPagination
+          <Pagination
             {...pagination}
             renderSingleArrow={(position: ArrowPosition) => (
               <img

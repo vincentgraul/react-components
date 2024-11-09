@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Select } from "..";
 import { capitalize } from "@vincentgraul/utils/word";
-import * as Icons from "./icons";
-import { CountrySelectorOption } from "./country-selector.types";
 import styles from "./country-selector.module.css";
+import { CountrySelectorOption } from "./country-selector.types";
+import { Select } from "..";
+import * as Icons from "./icons";
 
 type Props = {
   languages: string[];

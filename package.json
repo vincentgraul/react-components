@@ -1,11 +1,9 @@
 {
   "name": "@vincentgraul/react-components",
-  "version": "1.0.38",
+  "version": "1.0.40",
+  "main": "dist/index.js",
   "license": "GNU GPLV3",
   "repository": "https://github.com/vincentgraul/react-components.git",
-  "files": [
-    "build"
-  ],
   "author": {
     "name": "Vincent Graul",
     "email": "vincent.graul@outlook.com",

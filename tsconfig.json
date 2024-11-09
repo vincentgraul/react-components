@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES2015",
     "module": "ESNext",
-    "outDir": "build",
+    "outDir": "dist",
     "moduleResolution": "Node",
     "jsx": "react-jsx",
     "declaration": true,
