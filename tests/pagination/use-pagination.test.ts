@@ -1,5 +1,4 @@
-import usePagination from "../../src/pagination/use-pagination";
-import mountReactHook from "../../src/mount-react-hook/mount-react-hook";
+import { usePagination, mountReactHook } from "../../src";
 
 describe("usePagination", () => {
   const Pagination = (props: ObjectLiteral) =>

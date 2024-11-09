@@ -12,6 +12,5 @@
     "removeComments": true,
     "resolveJsonModule": true
   },
-  "include": ["src", "types.d.ts"],
-  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx", "src/**/*.stories.tsx"]
+  "include": ["src", "types.d.ts"]
 }
