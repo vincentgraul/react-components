@@ -1,9 +1,13 @@
 {
   "name": "@vincentgraul/react-components",
-  "version": "1.0.40",
-  "main": "dist/index.js",
+  "version": "1.0.45",
+  "main": "dist/react-components.mjs",
+  "types": "dist/index.d.ts",
   "license": "GNU GPLV3",
   "repository": "https://github.com/vincentgraul/react-components.git",
+  "files": [
+    "dist"
+  ],
   "author": {
     "name": "Vincent Graul",
     "email": "vincent.graul@outlook.com",
@@ -17,7 +21,7 @@
     }
   ],
   "scripts": {
-    "build": "npm run lint && tsc",
+    "build": "npm run lint && vite build",
     "test": "jest",
     "doc": "typedoc",
     "lint": "eslint src",
@@ -50,6 +54,7 @@
     "@types/jest": "^29.5.14",
     "@typescript-eslint/eslint-plugin": "^8.12.2",
     "@typescript-eslint/parser": "^8.12.2",
+    "@vitejs/plugin-react": "^4.3.3",
     "eslint": "^9.13.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
@@ -60,7 +65,9 @@
     "storybook": "^8.4.0",
     "ts-jest": "^29.2.5",
     "typedoc": "^0.26.10",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10",
+    "vite-plugin-dts": "^4.3.0"
   },
   "packageManager": "pnpm@9.12.3+sha512.cce0f9de9c5a7c95bef944169cc5dfe8741abfb145078c0d508b868056848a87c81e626246cb60967cbd7fd29a6c062ef73ff840d96b3c86c40ac92cf4a813ee"
 }
