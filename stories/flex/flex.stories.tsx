@@ -9,7 +9,7 @@ export const Basic = () => (
   <>
     <h1>Title</h1>
     <Flex justify="space-between" align="center" padding={{ top: "5%", bottom: "5%" }}>
-      <Flex direction="column" align="center" width="50%">
+      <Flex direction="column" align="center" width="50%" margin="10%">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam iaculis est at ipsum
           tempor, id elementum odio sollicitudin. Nam accumsan est diam, vitae semper ex dignissim

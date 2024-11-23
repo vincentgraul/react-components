@@ -18,8 +18,8 @@ type Props = {
   wrap?: "nowrap" | "wrap" | "wrap-reverse";
   width?: string;
   height?: string;
-  margin?: Sides;
-  padding?: Sides;
+  margin?: Sides | string;
+  padding?: Sides | string;
   className?: string;
 };
 
@@ -34,29 +34,45 @@ export const Flex = ({
   height,
   margin,
   padding,
-}: Props) => (
-  <div
-    className={clsx(
-      styles.container,
-      styles[`direction-${direction}`],
-      styles[`justify-${justify}`],
-      styles[`align-${align}`],
-      styles[`wrap-${wrap}`],
-      className,
-    )}
-    style={{
-      width: width ? width : undefined,
-      height: height ? height : undefined,
-      marginTop: margin?.top,
-      marginRight: margin?.right,
-      marginBottom: margin?.bottom,
-      marginLeft: margin?.left,
-      paddingTop: padding?.top,
-      paddingRight: padding?.right,
-      paddingBottom: padding?.bottom,
-      paddingLeft: padding?.left,
-    }}
-  >
-    {children}
-  </div>
-);
+}: Props) => {
+  const marginCSS =
+    typeof margin === "string"
+      ? { margin }
+      : {
+          marginTop: margin?.top,
+          marginRight: margin?.right,
+          marginBottom: margin?.bottom,
+          marginLeft: margin?.left,
+        };
+
+  const paddingCSS =
+    typeof padding === "string"
+      ? { padding }
+      : {
+          paddingTop: padding?.top,
+          paddingRight: padding?.right,
+          paddingBottom: padding?.bottom,
+          paddingLeft: padding?.left,
+        };
+
+  return (
+    <div
+      className={clsx(
+        styles.container,
+        styles[`direction-${direction}`],
+        styles[`justify-${justify}`],
+        styles[`align-${align}`],
+        styles[`wrap-${wrap}`],
+        className,
+      )}
+      style={{
+        width: width ? width : undefined,
+        height: height ? height : undefined,
+        ...marginCSS,
+        ...paddingCSS,
+      }}
+    >
+      {children}
+    </div>
+  );
+};
