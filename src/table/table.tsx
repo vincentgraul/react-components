@@ -1,4 +1,5 @@
 import React, { ReactNode, PropsWithChildren } from "react";
+import clsx from "clsx";
 import styles from "./table.module.css";
 import { Column } from "./table.types";
 
@@ -13,6 +14,7 @@ type Props<T> = {
   renderRecordsCell?: (cell: Primitive, key: string) => ReactNode;
   renderRecordsEmptyCell?: (key: string) => ReactNode;
   renderNoRecords?: () => ReactNode;
+  className?: string;
 };
 
 /**
@@ -25,6 +27,7 @@ type Props<T> = {
  * @returns A React component.
  */
 export const Table = <T,>({
+  className,
   columns,
   records,
   renderHeader = () => null,
@@ -59,7 +62,7 @@ export const Table = <T,>({
   };
 
   return (
-    <div className={styles.container}>
+    <div className={clsx(styles.container, className)}>
       {renderHeader()}
 
       {records.length === 0 ? (

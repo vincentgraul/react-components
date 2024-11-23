@@ -1,18 +1,20 @@
 import React, { Fragment } from "react";
+import clsx from "clsx";
 import styles from "./breadcrumb.module.css";
 import { Arrow } from "./icons";
 import { useBreadcrumb, BreadcrumbType, BreadcrumbElementType } from "..";
 
 type Props = BreadcrumbType & {
   onClick: (element: BreadcrumbElementType) => void;
+  className?: string;
 };
 
 export const Breadcrumb = (props: Props) => {
-  const { url, mapping, onClick } = props;
+  const { className, url, mapping, onClick } = props;
   const elements: BreadcrumbElementType[] = useBreadcrumb({ url, mapping });
 
   return (
-    <div className={styles.container}>
+    <div className={clsx(styles.container, className)}>
       {elements.map((element: BreadcrumbElementType, index: number) => {
         return (
           <Fragment key={index}>

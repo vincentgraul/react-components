@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import clsx from "clsx";
 import styles from "./select.module.css";
 import { SelectOptionWithoutId, SelectOption } from "./select.types";
 import { useOutsideAlerter } from "..";
@@ -8,9 +9,10 @@ type Props = {
   options: SelectOptionWithoutId[];
   selectedValue?: string;
   onChange?: (option: SelectOption) => void;
+  className?: string;
 };
 
-export const Select = ({ options: optionsProps, selectedValue, onChange }: Props) => {
+export const Select = ({ className, options: optionsProps, selectedValue, onChange }: Props) => {
   const [options, setOptions] = useState<SelectOption[]>(null);
   const [isListVisible, setListVisibility] = useState<boolean>(false);
   const [selectedOption, setSelectedOption] = useState<SelectOption>(null);
@@ -59,7 +61,7 @@ export const Select = ({ options: optionsProps, selectedValue, onChange }: Props
   }
 
   return (
-    <div className={styles.container} ref={ref}>
+    <div className={clsx(styles.container, className)} ref={ref}>
       <div className={styles["selected-option-container"]} onClick={handleSelectedOptionClick}>
         <span className={styles["selected-option-text"]}>{selectedOption.label}</span>
         <ArrowBottom className={styles["selected-option-arrow"]} />

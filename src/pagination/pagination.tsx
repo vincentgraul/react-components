@@ -12,6 +12,7 @@ type Props = PaginationData & {
   colors?: PaginationColors;
   renderSingleArrow?: (position: ArrowPosition) => ReactNode;
   renderDoubleArrow?: (position: ArrowPosition) => ReactNode;
+  className?: string;
 };
 
 /**
@@ -23,6 +24,7 @@ type Props = PaginationData & {
  * @returns A React component.
  */
 export const Pagination = ({
+  className,
   page,
   total,
   items,
@@ -43,7 +45,7 @@ export const Pagination = ({
   } as CSSProperties;
 
   return (
-    <div className={styles.container} style={CSSVariables}>
+    <div className={clsx(styles.container, className)} style={CSSVariables}>
       {page > 1 && (
         <>
           {renderDoubleArrow && (

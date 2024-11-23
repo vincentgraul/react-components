@@ -4,16 +4,18 @@ import styles from "./country-selector.module.css";
 import { CountrySelectorOption } from "./country-selector.types";
 import { Select } from "..";
 import * as Icons from "./icons";
+import clsx from "clsx";
 
 type Props = {
   languages: string[];
   value?: string;
   onChange?: (option: CountrySelectorOption) => void;
   flagWidth?: string;
+  className?: string;
 };
 
 export const CountrySelector = (props: Props) => {
-  const { value, languages, onChange, flagWidth = "30px" } = props;
+  const { className, value, languages, onChange, flagWidth = "30px" } = props;
   const [options, setOptions] = useState<CountrySelectorOption[]>(null);
 
   useEffect(() => {
@@ -38,5 +40,12 @@ export const CountrySelector = (props: Props) => {
     return null;
   }
 
-  return <Select selectedValue={value} options={options} onChange={onChange}></Select>;
+  return (
+    <Select
+      className={clsx(className)}
+      selectedValue={value}
+      options={options}
+      onChange={onChange}
+    ></Select>
+  );
 };

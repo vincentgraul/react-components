@@ -1,4 +1,5 @@
 import React, { ReactElement, useEffect, useState } from "react";
+import clsx from "clsx";
 import { StepProps } from "./wizard.types";
 
 type Props = {
@@ -6,18 +7,24 @@ type Props = {
   step?: number;
   renderHeader?: (props: StepProps) => ReactElement;
   renderFooter?: (props: StepProps) => ReactElement;
+  className?: string;
 };
 
-export const Wizard = (props: Props) => {
-  const { children, renderHeader, renderFooter } = props;
+export const Wizard = ({
+  className,
+  children,
+  step: stepProps,
+  renderHeader,
+  renderFooter,
+}: Props) => {
   const [step, setStep] = useState(1);
   const totalSteps = React.Children.count(children);
   const [isFirstPage, setFirstPage] = useState(false);
   const [isLastPage, setLastPage] = useState(false);
 
   useEffect(() => {
-    if (props.step <= totalSteps) setStep(props.step);
-  }, [props.step]);
+    if (stepProps <= totalSteps) setStep(stepProps);
+  }, [stepProps]);
 
   useEffect(() => {
     setFirstPage(step === 1);
@@ -35,7 +42,7 @@ export const Wizard = (props: Props) => {
   };
 
   return (
-    <div>
+    <div className={clsx(className)}>
       {renderHeader({ step, previousStep, nextStep, isFirstPage, isLastPage })}
       {React.cloneElement(currentPage)}
       {renderFooter({ step, previousStep, nextStep, isFirstPage, isLastPage })}
