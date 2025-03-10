@@ -5,14 +5,19 @@ import { SelectOptionWithoutId, SelectOption } from "./select.types";
 import { useOutsideAlerter } from "..";
 import { ArrowBottom } from "./icons";
 
-type Props = {
+export type SelectProps = {
   options: SelectOptionWithoutId[];
   selectedValue?: string;
   onChange?: (option: SelectOption) => void;
   className?: string;
 };
 
-export const Select = ({ className, options: optionsProps, selectedValue, onChange }: Props) => {
+export const Select = ({
+  className,
+  options: optionsProps,
+  selectedValue,
+  onChange,
+}: SelectProps) => {
   const [options, setOptions] = useState<SelectOption[]>(null);
   const [isListVisible, setListVisibility] = useState<boolean>(false);
   const [selectedOption, setSelectedOption] = useState<SelectOption>(null);

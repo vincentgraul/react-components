@@ -6,7 +6,7 @@ import { Select } from "..";
 import * as Icons from "./icons";
 import clsx from "clsx";
 
-type Props = {
+export type CountrySelectorProps = {
   languages: string[];
   value?: string;
   onChange?: (option: CountrySelectorOption) => void;
@@ -14,7 +14,7 @@ type Props = {
   className?: string;
 };
 
-export const CountrySelector = (props: Props) => {
+export const CountrySelector = (props: CountrySelectorProps) => {
   const { className, value, languages, onChange, flagWidth = "30px" } = props;
   const [options, setOptions] = useState<CountrySelectorOption[]>(null);
 

@@ -4,12 +4,12 @@ import styles from "./breadcrumb.module.css";
 import { Arrow } from "./icons";
 import { useBreadcrumb, BreadcrumbType, BreadcrumbElementType } from "..";
 
-type Props = BreadcrumbType & {
+export type BreadcrumbProps = BreadcrumbType & {
   onClick: (element: BreadcrumbElementType) => void;
   className?: string;
 };
 
-export const Breadcrumb = (props: Props) => {
+export const Breadcrumb = (props: BreadcrumbProps) => {
   const { className, url, mapping, onClick } = props;
   const elements: BreadcrumbElementType[] = useBreadcrumb({ url, mapping });
 

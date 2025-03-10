@@ -3,13 +3,13 @@ import clsx from "clsx";
 import styles from "./modal.module.css";
 import { useOutsideAlerter } from "..";
 
-type Props = {
+export type ModalProps = {
   children: ReactNode;
   onClickedOutside?: () => void;
   className?: string;
 };
 
-export const Modal = ({ className, children, onClickedOutside }: Props) => {
+export const Modal = ({ className, children, onClickedOutside }: ModalProps) => {
   const ref = useRef(null);
   const { hasClickedOutside } = useOutsideAlerter(ref);
 

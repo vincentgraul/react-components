@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useState } from "react";
 import clsx from "clsx";
 import { StepProps } from "./wizard.types";
 
-type Props = {
+export type WizardProps = {
   children: ReactElement[];
   step?: number;
   renderHeader?: (props: StepProps) => ReactElement;
@@ -16,7 +16,7 @@ export const Wizard = ({
   step: stepProps,
   renderHeader,
   renderFooter,
-}: Props) => {
+}: WizardProps) => {
   const [step, setStep] = useState(1);
   const totalSteps = React.Children.count(children);
   const [isFirstPage, setFirstPage] = useState(false);

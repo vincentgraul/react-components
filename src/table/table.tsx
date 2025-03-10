@@ -3,7 +3,7 @@ import clsx from "clsx";
 import styles from "./table.module.css";
 import { Column } from "./table.types";
 
-type Props<T> = {
+export type TableProps<T> = {
   columns: Column[];
   records: T[];
   renderHeader?: () => ReactNode;
@@ -38,7 +38,7 @@ export const Table = <T,>({
   renderRecordsCell = (cell: Primitive, key: string) => <Td key={key}>{cell}</Td>,
   renderRecordsEmptyCell = (key: string) => <Td key={key}>X</Td>,
   renderNoRecords = () => null,
-}: Props<T>) => {
+}: TableProps<T>) => {
   const displayColumns = () =>
     renderColumnsRow(
       columns.map((column: Column, index: number) => renderColumnsCell(column, `column-${index}`)),

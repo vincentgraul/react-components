@@ -3,7 +3,7 @@ import clsx from "clsx";
 import styles from "./flex.module.css";
 import { Sides } from "./flex.types";
 
-type Props = {
+export type FlexProps = {
   children: ReactNode;
   direction?: "row" | "column";
   justify?:
@@ -34,7 +34,7 @@ export const Flex = ({
   height,
   margin,
   padding,
-}: Props) => {
+}: FlexProps) => {
   const marginCSS =
     typeof margin === "string"
       ? { margin }

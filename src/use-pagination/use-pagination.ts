@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { PaginationData } from "./use-pagination.types";
 
-type Props = {
+export type usePaginationProps = {
   page: number;
   totalRecords: number;
   maxRecordsPerPage?: number;
@@ -25,7 +25,7 @@ type Props = {
  * - maxRecordsPerPage: the maximum number of records displayed per page
  * - some functions to change the page (goToPage, goToFirst...)
  */
-export const usePagination = (props: Props): PaginationData => {
+export const usePagination = (props: usePaginationProps): PaginationData => {
   const { totalRecords, itemNeighbours = 2, minItems = 5, maxRecordsPerPage = 10 } = props;
   const [page, setPage] = useState<number>(props.page);
   const [total, setTotal] = useState<number>(0);

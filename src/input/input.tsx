@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { InputType, InputColors, InputStatus } from "./input.types";
 import styles from "./input.module.css";
 
-type Props = Exclude<React.InputHTMLAttributes<HTMLInputElement>, "type"> & {
+export type InputProps = Exclude<React.InputHTMLAttributes<HTMLInputElement>, "type"> & {
   label: string;
   type: InputType;
   colors?: InputColors;
@@ -23,7 +23,7 @@ export const Input = ({
   width,
   height,
   ...rest
-}: Props) => {
+}: InputProps) => {
   const CSSVariables = {
     "--success-color": colors?.success,
     "--warning-color": colors?.warning,

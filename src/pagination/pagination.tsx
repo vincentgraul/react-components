@@ -8,7 +8,7 @@ export enum ArrowPosition {
   RIGHT,
 }
 
-type Props = PaginationData & {
+export type PaginationProps = PaginationData & {
   colors?: PaginationColors;
   renderSingleArrow?: (position: ArrowPosition) => ReactNode;
   renderDoubleArrow?: (position: ArrowPosition) => ReactNode;
@@ -36,7 +36,7 @@ export const Pagination = ({
   goToPage,
   renderSingleArrow,
   renderDoubleArrow,
-}: Props) => {
+}: PaginationProps) => {
   const CSSVariables = {
     "--hover-background-color": colors?.hover.background,
     "--hover-text-color": colors?.hover.text,

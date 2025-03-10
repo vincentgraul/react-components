@@ -2,12 +2,12 @@ import React, { ReactNode } from "react";
 import clsx from "clsx";
 import styles from "./loader.module.css";
 
-type LoaderProps = {
+export type LoaderProps = {
   children: ReactNode;
   className?: string;
 };
 
-type LoaderWithImageProps = {
+export type LoaderWithImageProps = {
   src: string;
   text: string;
   className?: string;
