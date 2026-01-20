@@ -18,9 +18,9 @@ export const Select = ({
   selectedValue,
   onChange,
 }: SelectProps) => {
-  const [options, setOptions] = useState<SelectOption[]>(null);
+  const [options, setOptions] = useState<SelectOption[]>([]);
   const [isListVisible, setListVisibility] = useState<boolean>(false);
-  const [selectedOption, setSelectedOption] = useState<SelectOption>(null);
+  const [selectedOption, setSelectedOption] = useState<SelectOption | null>(null);
   const ref = useRef(null);
   const { hasClickedOutside, onReset: onResetOutsideAlerter } = useOutsideAlerter(ref);
 
@@ -49,9 +49,10 @@ export const Select = ({
 
   useEffect(() => {
     if (options && !selectedOption) {
-      setSelectedOption(
-        selectedValue ? options.find((option) => option.value === selectedValue) : options[0],
-      );
+      const matchOption = selectedValue
+        ? options.find((option) => option.value === selectedValue)
+        : options[0];
+      setSelectedOption(matchOption ?? null);
     }
   }, [options]);
 

@@ -13,7 +13,7 @@ export type WizardProps = {
 export const Wizard = ({
   className,
   children,
-  step: stepProps,
+  step: stepProps = 1,
   renderHeader,
   renderFooter,
 }: WizardProps) => {
@@ -43,9 +43,9 @@ export const Wizard = ({
 
   return (
     <div className={clsx(className)}>
-      {renderHeader({ step, previousStep, nextStep, isFirstPage, isLastPage })}
+      {renderHeader && renderHeader({ step, previousStep, nextStep, isFirstPage, isLastPage })}
       {React.cloneElement(currentPage)}
-      {renderFooter({ step, previousStep, nextStep, isFirstPage, isLastPage })}
+      {renderFooter && renderFooter({ step, previousStep, nextStep, isFirstPage, isLastPage })}
     </div>
   );
 };

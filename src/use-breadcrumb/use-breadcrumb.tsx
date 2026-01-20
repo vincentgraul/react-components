@@ -29,7 +29,7 @@ export const useBreadcrumb = ({
     const paths: string[] = url.pathname.split("/");
 
     setElements(prepareElements(paths));
-  }, []);
+  }, [url]);
 
   return elements;
 };

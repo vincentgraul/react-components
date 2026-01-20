@@ -16,14 +16,14 @@ export type CountrySelectorProps = {
 
 export const CountrySelector = (props: CountrySelectorProps) => {
   const { className, value, languages, onChange, flagWidth = "30px" } = props;
-  const [options, setOptions] = useState<CountrySelectorOption[]>(null);
+  const [options, setOptions] = useState<CountrySelectorOption[]>([]);
 
   useEffect(() => {
     const prepareOptions = async () => {
       setOptions(
         await Promise.all(
           languages.map(async (language: string) => {
-            const Flag = Icons[capitalize(language)];
+            const Flag = Icons[capitalize(language) as keyof typeof Icons];
             return {
               value: language,
               label: <Flag className={styles.flag} style={{ width: flagWidth }} />,

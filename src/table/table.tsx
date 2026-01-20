@@ -83,4 +83,4 @@ export const Table = <T,>({
 
 export const Th = ({ children }: PropsWithChildren) => <th className={styles.th}>{children}</th>;
 export const Tr = ({ children }: PropsWithChildren) => <tr className={styles.tr}>{children}</tr>;
-export const Td = ({ children }: PropsWithChildren) => <th className={styles.td}>{children}</th>;
+export const Td = ({ children }: PropsWithChildren) => <td className={styles.td}>{children}</td>;

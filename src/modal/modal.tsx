@@ -10,7 +10,7 @@ export type ModalProps = {
 };
 
 export const Modal = ({ className, children, onClickedOutside }: ModalProps) => {
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   const { hasClickedOutside } = useOutsideAlerter(ref);
 
   useEffect(() => {

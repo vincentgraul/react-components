@@ -1,7 +1,7 @@
 import { useEffect, RefObject, useState } from "react";
 import { OutsideAlerter } from "./use-outside-alerter.types";
 
-export const useOutsideAlerter = (ref: RefObject<HTMLElement>): OutsideAlerter => {
+export const useOutsideAlerter = (ref: RefObject<HTMLElement | null>): OutsideAlerter => {
   const [hasClickedOutside, setClickedOutside] = useState<boolean>(false);
 
   const handleOnReset = () => {

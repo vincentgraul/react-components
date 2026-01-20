@@ -62,7 +62,7 @@ export const WithCustomRecordsCell = () => {
     <Table
       columns={columns}
       records={records}
-      renderRecordsCell={(cell, key) => <Th key={key}>* {cell} *</Th>}
+      renderRecordsCell={(cell, key) => <Td key={key}>* {cell} *</Td>}
     />
   );
 };

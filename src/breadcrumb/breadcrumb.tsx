@@ -26,7 +26,6 @@ export const Breadcrumb = (props: BreadcrumbProps) => {
           </Fragment>
         );
       })}
-      ;
     </div>
   );
 };
