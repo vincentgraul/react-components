@@ -96,3 +96,5 @@ jspm_packages/
 
 ### Storybook ###
 storybook-static
+
+dist
