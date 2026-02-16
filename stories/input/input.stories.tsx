@@ -1,42 +1,25 @@
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Input } from "../../src";
 
-export default {
-  title: "Input",
+const meta = {
   component: Input,
-};
+  args: {
+    name: "firstname",
+    type: "text",
+    label: "firstname",
+    autoComplete: "off",
+  },
+} satisfies Meta<typeof Input>;
 
-export const Basic = () => {
-  return (
-    <Input
-      name="firstname"
-      type="text"
-      label="firstname"
-      autoComplete="off"
-      colors={{
-        error: "red",
-        focus: "blue",
-        success: "green",
-        warning: "orange",
-      }}
-    />
-  );
-};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const WithMessage = () => {
-  return (
-    <Input
-      name="firstname"
-      type="text"
-      label="firstname"
-      message="firstname error"
-      status="error"
-      autoComplete="off"
-      colors={{
-        error: "red",
-        focus: "blue",
-        success: "green",
-        warning: "orange",
-      }}
-    />
-  );
+export const Basic: Story = {};
+
+export const WithMessage: Story = {
+  args: {
+    message: "firstname error",
+    status: "error",
+    autoComplete: "off",
+  },
 };

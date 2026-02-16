@@ -9,8 +9,10 @@ export type InputProps = Exclude<React.InputHTMLAttributes<HTMLInputElement>, "t
   colors?: InputColors;
   status?: InputStatus;
   message?: string;
-  width?: string;
-  height?: string;
+  width?: number;
+  height?: number;
+  borderWidth?: number;
+  fontWeight?: number;
   className?: string;
 };
 
@@ -22,6 +24,8 @@ export const Input = ({
   status,
   width,
   height,
+  borderWidth,
+  fontWeight,
   ...rest
 }: InputProps) => {
   const CSSVariables = {
@@ -29,17 +33,14 @@ export const Input = ({
     "--warning-color": colors?.warning,
     "--error-color": colors?.error,
     "--focus-color": colors?.focus,
+    "--width": width && `${width}%`,
+    "--height": height && `${height}rem`,
+    "--border-width": borderWidth && `${borderWidth}px`,
+    "--font-weight": fontWeight,
   } as CSSProperties;
 
   return (
-    <div
-      className={clsx(styles.container, className)}
-      style={{
-        width: width ? width : undefined,
-        height: height ? height : undefined,
-        ...CSSVariables,
-      }}
-    >
+    <div className={clsx(styles.container, className)} style={CSSVariables}>
       <div className={styles["input-container"]}>
         <input className={clsx(styles.input, status)} {...rest} />
         <fieldset className={clsx(styles.fieldset, status)}>

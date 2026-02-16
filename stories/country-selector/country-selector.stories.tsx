@@ -1,14 +1,20 @@
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { CountrySelector } from "../../src";
 
-export default {
-  title: "CountrySelector",
+const meta = {
   component: CountrySelector,
-};
+  args: {
+    languages: ["fr", "ye", "vu", "uz"],
+  },
+} satisfies Meta<typeof CountrySelector>;
 
-export const Basic = () => {
-  return <CountrySelector languages={["fr", "ye", "vu", "uz"]} />;
-};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const WithValue = () => {
-  return <CountrySelector value="vu" languages={["fr", "ye", "vu", "uz"]} />;
+export const Basic: Story = {};
+
+export const WithValue: Story = {
+  args: {
+    value: "vu",
+  },
 };

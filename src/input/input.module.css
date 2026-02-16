@@ -1,10 +1,7 @@
 .container {
-  --success-color: green;
-  --warning-color: orange;
-  --error-color: red;
-  --focus-color: blue;
-
   position: relative;
+  width: var(--width, 100%);
+  height: var(--height, auto);
 }
 
 .input-container {
@@ -29,13 +26,13 @@
     border-width: 2px;
 
     &:not(:global(.success), :global(.warning), :global(.error)) {
-      border-color: var(--focus-color);
+      border-color: var(--focus-color, blue);
     }
   }
 }
 
 .fieldset {
-  border: 1px solid black;
+  border: var(--border-width, 1px) solid black;
   border-radius: 5px;
   position: absolute;
   inset: -8.5px 0 0;
@@ -43,23 +40,24 @@
   margin: 0;
 
   :global(&.success) {
-    border-color: var(--success-color);
-    color: var(--success-color);
+    border-color: var(--success-color, green);
+    color: var(--success-color, green);
   }
 
   :global(&.warning) {
-    border-color: var(--warning-color);
-    color: var(--warning-color);
+    border-color: var(--warning-color, orange);
+    color: var(--warning-color, orange);
   }
 
   :global(&.error) {
-    border-color: var(--error-color);
-    color: var(--error-color);
+    border-color: var(--error-color, red);
+    color: var(--error-color, red);
   }
 }
 
 .legend {
   padding: 0 5px;
+  font-weight: var(--font-weight, 400);
 }
 
 .message-container {
