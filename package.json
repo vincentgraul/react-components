@@ -1,9 +1,15 @@
 {
   "name": "@vincentgraul/react-components",
-  "version": "1.0.53",
-  "main": "dist/react-components.mjs",
-  "types": "dist/index.d.ts",
-  "license": "GNU GPLV3",
+  "version": "1.0.57",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/react-components.js"
+    },
+    "./styles": "./dist/react-components.css"
+  },
+  "license": "GPL-3.0-only",
   "repository": "https://github.com/vincentgraul/react-components.git",
   "files": [
     "dist"
@@ -13,13 +19,6 @@
     "email": "vincent.graul@outlook.com",
     "url": "https://vincentgraul.com"
   },
-  "maintainers": [
-    {
-      "name": "Vincent Graul",
-      "email": "vincent.graul@outlook.com",
-      "url": "https://vincentgraul.com"
-    }
-  ],
   "scripts": {
     "build": "npm run lint && vite build",
     "test": "jest",
@@ -29,8 +28,8 @@
     "build-storybook": "storybook build"
   },
   "peerDependencies": {
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "dependencies": {
     "@vincentgraul/types": "^1.0.3",
