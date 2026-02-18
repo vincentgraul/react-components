@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { InputType, InputColors, InputStatus } from "./input.types";
 import styles from "./input.module.css";
 
-export type InputProps = Exclude<React.InputHTMLAttributes<HTMLInputElement>, "type"> & {
+export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "type"> & {
   label: string;
   type: InputType;
   colors?: InputColors;

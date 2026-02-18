@@ -1,67 +1,11 @@
 .container {
   display: flex;
-}
-
-.direction-row {
-  flex-direction: row;
-}
-
-.direction-column {
-  flex-direction: column;
-}
-
-.justify-start {
-  justify-content: start;
-}
-
-.justify-center {
-  justify-content: center;
-}
-
-.justify-end {
-  justify-content: end;
-}
-
-.justify-space-between {
-  justify-content: space-between;
-}
-
-.justify-space-around {
-  justify-content: space-around;
-}
-
-.justify-space-evenly {
-  justify-content: space-evenly;
-}
-
-.justify-stretch {
-  justify-content: stretch;
-}
-
-.align-start {
-  align-items: start;
-}
-
-.align-center {
-  align-items: center;
-}
-
-.align-end {
-  align-items: end;
-}
-
-.align-stretch {
-  align-items: stretch;
-}
-
-.wrap-nowrap {
-  flex-wrap: nowrap;
-}
-
-.wrap-wrap {
-  flex-wrap: wrap;
-}
-
-.wrap-wrap-reverse {
-  flex-wrap: wrap-reverse;
+  width: var(--width, 100%);
+  height: var(--height, 100%);
+  flex-direction: var(--direction, row);
+  justify-content: var(--justify-content, normal);
+  align-items: var(--align-items, normal);
+  flex-wrap: var(--wrap, nowrap);
+  padding: var(--padding, 0);
+  gap: var(--gap, 0);
 }
