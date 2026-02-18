@@ -57,7 +57,8 @@
 
 .legend {
   padding: 0 5px;
-  font-weight: var(--font-weight, 400);
+  font-weight: var(--label-weight, 400);
+  font-size: var(--label-size, 1rem)
 }
 
 .message-container {
@@ -68,5 +69,6 @@
 }
 
 .message {
-  font-size: 14px;
+  font-weight: var(--message-weight, 400);
+  font-size: var(--message-size, 1rem);
 }

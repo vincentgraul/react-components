@@ -12,7 +12,10 @@ export type InputProps = Exclude<React.InputHTMLAttributes<HTMLInputElement>, "t
   width?: number;
   height?: number;
   borderWidth?: number;
-  fontWeight?: number;
+  labelWeight?: 400 | 500 | 600 | 700 | 800 | 900;
+  labelSize?: number;
+  messageWeight?: 400 | 500 | 600 | 700 | 800 | 900;
+  messageSize?: number;
   className?: string;
 };
 
@@ -25,7 +28,10 @@ export const Input = ({
   width,
   height,
   borderWidth,
-  fontWeight,
+  labelWeight,
+  labelSize,
+  messageWeight,
+  messageSize,
   ...rest
 }: InputProps) => {
   const CSSVariables = {
@@ -36,7 +42,10 @@ export const Input = ({
     "--width": width && `${width}%`,
     "--height": height && `${height}rem`,
     "--border-width": borderWidth && `${borderWidth}px`,
-    "--font-weight": fontWeight,
+    "--label-weight": labelWeight,
+    "--label-size": labelSize && `${labelSize}rem`,
+    "--message-weight": messageWeight,
+    "--message-size": messageSize && `${messageSize}rem`,
   } as CSSProperties;
 
   return (
