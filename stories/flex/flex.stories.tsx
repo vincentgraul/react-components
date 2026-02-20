@@ -13,8 +13,8 @@ export const Basic: Story = {
     children: (
       <>
         <h1>Title</h1>
-        <Flex justify="space-between" align="center" padding={{ top: "5%", bottom: "5%" }}>
-          <Flex direction="column" align="center" width="50%" margin="10%">
+        <Flex justifyContent="space-between" alignItems="center" padding="5% 5%">
+          <Flex direction="column" alignItems="center" width={50}>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam iaculis est at ipsum
               tempor, id elementum odio sollicitudin. Nam accumsan est diam, vitae semper ex
@@ -27,7 +27,7 @@ export const Basic: Story = {
             </p>
             <button>Next</button>
           </Flex>
-          <Flex direction="column" align="center" width="50%">
+          <Flex direction="column" alignItems="center" width={50}>
             <p>Lorem ipsum dolor sit amet</p>
             <button>Next</button>
           </Flex>

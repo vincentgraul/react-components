@@ -1,7 +1,5 @@
 .container {
   position: relative;
-  width: var(--width, 100%);
-  height: var(--height, auto);
 }
 
 .input-container {
@@ -32,7 +30,7 @@
 }
 
 .fieldset {
-  border: var(--border-width, 1px) solid black;
+  border: 1px solid black;
   border-radius: 5px;
   position: absolute;
   inset: -8.5px 0 0;
@@ -57,8 +55,6 @@
 
 .legend {
   padding: 0 5px;
-  font-weight: var(--label-weight, 400);
-  font-size: var(--label-size, 1rem)
 }
 
 .message-container {
@@ -66,9 +62,16 @@
   align-items: center;
   gap: 5px;
   margin-top: 5px;
-}
 
-.message {
-  font-weight: var(--message-weight, 400);
-  font-size: var(--message-size, 1rem);
+  :global(&.success) {
+    color: var(--success-color, green);
+  }
+
+  :global(&.warning) {
+    color: var(--warning-color, orange);
+  }
+
+  :global(&.error) {
+    color: var(--error-color, red);
+  }
 }

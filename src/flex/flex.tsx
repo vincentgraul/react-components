@@ -1,4 +1,4 @@
-import { CSSProperties, ReactNode } from "react";
+import { ReactNode } from "react";
 import clsx from "clsx";
 import styles from "./flex.module.css";
 
@@ -33,21 +33,20 @@ export const Flex = ({
   height,
   padding,
   gap,
-}: FlexProps) => {
-  const CSSVariables = {
-    "--width": width && `${width}%`,
-    "--height": height && `${height}%`,
-    "--direction": direction,
-    "--justify-content": justifyContent,
-    "--align-items": alignItems,
-    "--wrap": wrap,
-    "--padding": padding,
-    "--gap": gap && `${gap}rem`,
-  } as CSSProperties;
-
-  return (
-    <div className={clsx(styles.container, className)} style={CSSVariables}>
-      {children}
-    </div>
-  );
-};
+}: FlexProps) => (
+  <div
+    className={clsx(styles.container, className)}
+    style={{
+      width: `${width ?? 100}%`,
+      height: height !== undefined ? `${height}rem` : "auto",
+      flexDirection: direction,
+      justifyContent,
+      alignItems,
+      flexWrap: wrap,
+      padding,
+      gap: `${gap ?? 0}rem`,
+    }}
+  >
+    {children}
+  </div>
+);

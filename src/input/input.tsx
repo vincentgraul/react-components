@@ -39,27 +39,45 @@ export const Input = ({
     "--warning-color": colors?.warning,
     "--error-color": colors?.error,
     "--focus-color": colors?.focus,
-    "--width": width && `${width}%`,
-    "--height": height && `${height}rem`,
-    "--border-width": borderWidth && `${borderWidth}px`,
-    "--label-weight": labelWeight,
-    "--label-size": labelSize && `${labelSize}rem`,
-    "--message-weight": messageWeight,
-    "--message-size": messageSize && `${messageSize}rem`,
   } as CSSProperties;
 
   return (
-    <div className={clsx(styles.container, className)} style={CSSVariables}>
+    <div
+      className={clsx(styles.container, className)}
+      style={{
+        width: `${width ?? 100}%`,
+        height: height !== undefined ? `${height}rem` : "auto",
+        ...CSSVariables,
+      }}
+    >
       <div className={styles["input-container"]}>
         <input className={clsx(styles.input, status)} {...rest} />
-        <fieldset className={clsx(styles.fieldset, status)}>
-          <legend className={styles.legend}>{label}</legend>
+        <fieldset
+          className={clsx(styles.fieldset, status)}
+          style={{
+            borderWidth,
+          }}
+        >
+          <legend
+            className={styles.legend}
+            style={{
+              fontWeight: labelWeight ?? 400,
+              fontSize: `${labelSize ?? 1}rem`,
+            }}
+          >
+            {label}
+          </legend>
         </fieldset>
       </div>
 
       {message && (
-        <div className={styles["message-container"]}>
-          <span className={styles.message}>{message}</span>
+        <div className={clsx(styles["message-container"], status)}>
+          <span
+            className={styles.message}
+            style={{ fontWeight: messageWeight ?? 400, fontSize: `${messageSize ?? 1}rem` }}
+          >
+            {message}
+          </span>
         </div>
       )}
     </div>

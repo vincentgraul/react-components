@@ -1,11 +1,3 @@
 .container {
   display: flex;
-  width: var(--width, 100%);
-  height: var(--height, 100%);
-  flex-direction: var(--direction, row);
-  justify-content: var(--justify-content, normal);
-  align-items: var(--align-items, normal);
-  flex-wrap: var(--wrap, nowrap);
-  padding: var(--padding, 0);
-  gap: var(--gap, 0);
 }
