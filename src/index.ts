@@ -16,3 +16,4 @@ export * from "./table";
 export * from "./use-visible";
 export * from "./wizard";
 export * from "./flex";
+export * from "./button";
