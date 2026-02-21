@@ -21,9 +21,8 @@
   color: black;
 
   &:focus + .fieldset {
-    border-width: 2px;
-
     &:not(:global(.success), :global(.warning), :global(.error)) {
+      color: var(--focus-color, blue);
       border-color: var(--focus-color, blue);
     }
   }

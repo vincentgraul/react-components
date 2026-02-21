@@ -7,4 +7,4 @@ export type InputColors = {
   warning: string;
 };
 
-export type InputStatus = "success" | "warning" | "error";
+export type InputStatus = "success" | "warning" | "error" | "focus";

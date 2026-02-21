@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, useState, FocusEvent } from "react";
 import clsx from "clsx";
 import { InputType, InputColors, InputStatus } from "./input.types";
 import styles from "./input.module.css";
@@ -12,6 +12,7 @@ export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "type
   width?: number;
   height?: number;
   borderWidth?: number;
+  borderWidthFocus?: number;
   labelWeight?: 400 | 500 | 600 | 700 | 800 | 900;
   labelSize?: number;
   messageWeight?: 400 | 500 | 600 | 700 | 800 | 900;
@@ -28,18 +29,36 @@ export const Input = ({
   width,
   height,
   borderWidth,
+  borderWidthFocus,
   labelWeight,
   labelSize,
   messageWeight,
   messageSize,
+  onFocus,
+  onBlur,
   ...rest
 }: InputProps) => {
+  const [isFocus, setIsFocus] = useState(false);
   const CSSVariables = {
     "--success-color": colors?.success,
     "--warning-color": colors?.warning,
     "--error-color": colors?.error,
     "--focus-color": colors?.focus,
   } as CSSProperties;
+
+  const handleOnFocus = (e: FocusEvent<HTMLInputElement>) => {
+    if (onFocus) {
+      onFocus(e);
+    }
+    setIsFocus(true);
+  };
+
+  const handleOnBlur = (e: FocusEvent<HTMLInputElement>) => {
+    if (onBlur) {
+      onBlur(e);
+    }
+    setIsFocus(false);
+  };
 
   return (
     <div
@@ -51,11 +70,16 @@ export const Input = ({
       }}
     >
       <div className={styles["input-container"]}>
-        <input className={clsx(styles.input, status)} {...rest} />
+        <input
+          className={clsx(styles.input, status)}
+          {...rest}
+          onFocus={handleOnFocus}
+          onBlur={handleOnBlur}
+        />
         <fieldset
           className={clsx(styles.fieldset, status)}
           style={{
-            borderWidth,
+            borderWidth: `${isFocus ? borderWidthFocus : borderWidth}px`,
           }}
         >
           <legend

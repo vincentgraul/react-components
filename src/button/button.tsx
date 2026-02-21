@@ -5,6 +5,8 @@ import clsx from "clsx";
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   children: ReactNode;
   color?: string;
+  width?: number;
+  height?: number;
   backgroundColor?: string;
   borderColor?: string;
   alignSelf?: "start" | "center" | "end";
@@ -19,6 +21,8 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 export const Button = ({
   className,
   children,
+  width,
+  height,
   alignSelf,
   fontSize,
   fontWeight,
@@ -33,6 +37,8 @@ export const Button = ({
   <button
     className={clsx(styles.container, className)}
     style={{
+      width: `${width ?? 100}%`,
+      height: height !== undefined ? `${height}rem` : "auto",
       borderRadius: `${borderRadius ?? 0}px`,
       borderWidth: `${borderWidth ?? 1}px`,
       fontSize: `${fontSize ?? 1}rem`,
