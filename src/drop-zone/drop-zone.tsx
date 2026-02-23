@@ -8,6 +8,7 @@ type DropZoneProps = {
   onFileChanged: (file: File | undefined) => void;
   label?: string;
   labelSize?: number;
+  labelWeight?: 400 | 500 | 600 | 700 | 800 | 900;
   labelGap?: number;
   previewIcon?: string;
   previewIconSize?: number;
@@ -15,6 +16,7 @@ type DropZoneProps = {
   removeIconSize?: number;
   text?: string;
   textSize?: number;
+  textWeight?: 400 | 500 | 600 | 700 | 800 | 900;
   width?: number;
   height?: number;
   gap?: number;
@@ -26,8 +28,11 @@ type DropZoneProps = {
   className?: string;
 };
 
-type NoFileProps = Pick<DropZoneProps, "previewIcon" | "previewIconSize" | "text" | "textSize">;
-const NoFile = ({ previewIcon, previewIconSize, text, textSize }: NoFileProps) => (
+type NoFileProps = Pick<
+  DropZoneProps,
+  "previewIcon" | "previewIconSize" | "text" | "textSize" | "textWeight"
+>;
+const NoFile = ({ previewIcon, previewIconSize, text, textSize, textWeight }: NoFileProps) => (
   <>
     <img
       className={styles["preview-icon"]}
@@ -35,7 +40,10 @@ const NoFile = ({ previewIcon, previewIconSize, text, textSize }: NoFileProps) =
       style={{ width: `${previewIconSize ?? 50}px` }}
     ></img>
     {text && (
-      <p className={styles.text} style={{ fontSize: `${textSize ?? 1}rem` }}>
+      <p
+        className={styles.text}
+        style={{ fontSize: `${textSize ?? 1}rem`, fontWeight: textWeight ?? 400 }}
+      >
         {text}
       </p>
     )}
@@ -52,6 +60,7 @@ export const DropZone = ({
   onFileChanged,
   label,
   labelSize,
+  labelWeight,
   labelGap,
   previewIcon,
   previewIconSize,
@@ -59,6 +68,7 @@ export const DropZone = ({
   removeIconSize,
   text,
   textSize,
+  textWeight,
   width,
   height,
   gap,
@@ -129,7 +139,10 @@ export const DropZone = ({
       }}
     >
       {label && (
-        <div className={styles.label} style={{ fontSize: `${labelSize ?? 1}rem` }}>
+        <div
+          className={styles.label}
+          style={{ fontSize: `${labelSize ?? 1}rem`, fontWeight: labelWeight ?? 400 }}
+        >
           {label}
         </div>
       )}
@@ -150,7 +163,7 @@ export const DropZone = ({
         {preview ? (
           <WithFile preview={preview} />
         ) : (
-          <NoFile {...{ previewIcon, previewIconSize, text, textSize }} />
+          <NoFile {...{ previewIcon, previewIconSize, text, textSize, textWeight }} />
         )}
       </div>
 
