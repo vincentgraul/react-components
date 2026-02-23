@@ -14,6 +14,7 @@ export type FlexProps = {
     | "space-evenly"
     | "stretch";
   alignItems?: "start" | "center" | "end" | "stretch";
+  alignSelf?: "start" | "center" | "end" | "stretch";
   wrap?: "nowrap" | "wrap" | "wrap-reverse";
   width?: number;
   height?: number;
@@ -28,6 +29,7 @@ export const Flex = ({
   direction,
   justifyContent,
   alignItems,
+  alignSelf,
   wrap,
   width,
   height,
@@ -42,6 +44,7 @@ export const Flex = ({
       flexDirection: direction,
       justifyContent,
       alignItems,
+      alignSelf,
       flexWrap: wrap,
       padding,
       gap: `${gap ?? 0}rem`,
