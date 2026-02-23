@@ -3,7 +3,7 @@
 ## Hooks and UI components
 
 | Component          | Description                                                                         |
-|--------------------|-------------------------------------------------------------------------------------|
+| ------------------ | ----------------------------------------------------------------------------------- |
 | useVisible         | React hook to know if an element is visible                                         |
 | useMatchResolution | React hook to detect the resolution (desktop, laptop, tablet, mobile...)            |
 | useMatchDevice     | React hook to detect the device (mobile, tablet or desktop) based on the user agent |
@@ -22,6 +22,8 @@
 | Input              | React component used to display an input                                            |
 | Wizard             | React component used to display a wizard                                            |
 | Flex               | React component used to display a flex layout                                       |
+| Button             | React component used to display a button                                            |
+| DropZone           | React component used to display a drop zone                                         |
 
 ## License
 

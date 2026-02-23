@@ -1,0 +1,34 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.drop-zone {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  border: 5px dashed black;
+  align-items: center;
+  cursor: pointer;
+  padding: 1rem;
+}
+
+.drop-zone--dragging {
+  opacity: 0.5;
+}
+
+.text {
+  margin: 0;
+}
+
+.preview-file {
+  width: 100%;
+}
+
+.remove-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}

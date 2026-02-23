@@ -17,3 +17,4 @@ export * from "./use-visible";
 export * from "./wizard";
 export * from "./flex";
 export * from "./button";
+export * from "./drop-zone";
