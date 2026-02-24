@@ -24,6 +24,7 @@
 | Flex               | React component used to display a flex layout                                       |
 | Button             | React component used to display a button                                            |
 | DropZone           | React component used to display a drop zone                                         |
+| Card               | React component used to display a card                                              |
 
 ## License
 
