@@ -10,6 +10,7 @@ export type CardProps = {
   titleWeight?: 400 | 500 | 600 | 700 | 800 | 900;
   titleColor?: string;
   titleAlign?: "start" | "center" | "end";
+  titleGap?: number;
   backgroundColor?: string;
   borderRadius?: number;
   padding?: string;
@@ -27,6 +28,7 @@ export const Card = ({
   titleWeight,
   titleColor,
   titleAlign,
+  titleGap,
   backgroundColor,
   borderRadius,
   width,
@@ -42,6 +44,7 @@ export const Card = ({
         borderRadius: `${borderRadius ?? 0}px`,
         width: `${width ?? 100}%`,
         height: height !== undefined ? `${height}rem` : "auto",
+        gap: `${titleGap ?? 2}rem`,
         backgroundColor,
         padding,
       }}

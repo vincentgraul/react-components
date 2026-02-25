@@ -1,4 +1,6 @@
 .container {
+  display: flex;
+  flex-direction: column;
   padding: 1rem;
   background-color: white;
   width: 100%;
@@ -7,4 +9,5 @@
 .title {
   color: black;
   text-align: center;
+  margin: 0;
 }
