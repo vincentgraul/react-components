@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes, ReactNode, CSSProperties } from "react";
 import styles from "./button.module.css";
 import clsx from "clsx";
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   children: ReactNode;
   color?: string;
   width?: number;

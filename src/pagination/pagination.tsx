@@ -3,15 +3,10 @@ import clsx from "clsx";
 import styles from "./pagination.module.css";
 import { PaginationData, PaginationColors } from "..";
 
-export enum ArrowPosition {
-  LEFT,
-  RIGHT,
-}
-
 export type PaginationProps = PaginationData & {
   colors?: PaginationColors;
-  renderSingleArrow?: (position: ArrowPosition) => ReactNode;
-  renderDoubleArrow?: (position: ArrowPosition) => ReactNode;
+  renderSingleArrow?: (position: "left" | "right") => ReactNode;
+  renderDoubleArrow?: (position: "left" | "right") => ReactNode;
   className?: string;
 };
 
@@ -50,13 +45,13 @@ export const Pagination = ({
         <>
           {renderDoubleArrow && (
             <div className={styles.item} onClick={() => goToFirst()}>
-              {renderDoubleArrow(ArrowPosition.LEFT)}
+              {renderDoubleArrow("left")}
             </div>
           )}
 
           {renderSingleArrow && (
             <div className={styles.item} onClick={() => goToLeft()}>
-              {renderSingleArrow(ArrowPosition.LEFT)}
+              {renderSingleArrow("left")}
             </div>
           )}
         </>
@@ -76,13 +71,13 @@ export const Pagination = ({
         <>
           {renderSingleArrow && (
             <div className={styles.item} onClick={() => goToRight()}>
-              {renderSingleArrow(ArrowPosition.RIGHT)}
+              {renderSingleArrow("right")}
             </div>
           )}
 
           {renderDoubleArrow && (
             <div className={styles.item} onClick={() => goToLast()}>
-              {renderDoubleArrow(ArrowPosition.RIGHT)}
+              {renderDoubleArrow("right")}
             </div>
           )}
         </>

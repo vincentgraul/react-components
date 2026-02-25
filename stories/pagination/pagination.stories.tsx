@@ -1,4 +1,4 @@
-import { usePagination, Pagination, ArrowPosition } from "../../src";
+import { usePagination, Pagination } from "../../src";
 
 export default {
   title: "Pagination",
@@ -26,7 +26,7 @@ export const WithSingleArrow = () => {
   return (
     <Pagination
       {...pagination}
-      renderSingleArrow={(position: ArrowPosition) => (position === ArrowPosition.LEFT ? "<" : ">")}
+      renderSingleArrow={(position) => (position === "left" ? "<" : ">")}
     />
   );
 };
@@ -37,9 +37,7 @@ export const WithMultipleArrow = () => {
   return (
     <Pagination
       {...pagination}
-      renderDoubleArrow={(position: ArrowPosition) =>
-        position === ArrowPosition.LEFT ? "<<" : ">>"
-      }
+      renderDoubleArrow={(position) => (position === "left" ? "<<" : ">>")}
     />
   );
 };
@@ -50,10 +48,8 @@ export const WithSingleAndMultipleArrows = () => {
   return (
     <Pagination
       {...pagination}
-      renderSingleArrow={(position: ArrowPosition) => (position === ArrowPosition.LEFT ? "<" : ">")}
-      renderDoubleArrow={(position: ArrowPosition) =>
-        position === ArrowPosition.LEFT ? "<<" : ">>"
-      }
+      renderSingleArrow={(position) => (position === "left" ? "<" : ">")}
+      renderDoubleArrow={(position) => (position === "left" ? "<<" : ">>")}
     />
   );
 };
@@ -64,21 +60,21 @@ export const WithSingleAndMultipleArrowsImage = () => {
   return (
     <Pagination
       {...pagination}
-      renderSingleArrow={(position: ArrowPosition) => (
+      renderSingleArrow={(position) => (
         <img
           style={{ minWidth: 0, minHeight: 0, width: "0.5rem" }}
           src={
-            position === ArrowPosition.LEFT
+            position === "left"
               ? "./assets/single-left-arrow.svg"
               : "./assets/single-right-arrow.svg"
           }
         />
       )}
-      renderDoubleArrow={(position: ArrowPosition) => (
+      renderDoubleArrow={(position) => (
         <img
           style={{ minWidth: 0, minHeight: 0, width: "0.8rem" }}
           src={
-            position === ArrowPosition.LEFT
+            position === "left"
               ? "./assets/double-left-arrow.svg"
               : "./assets/double-right-arrow.svg"
           }

@@ -4,7 +4,7 @@ import styles from "./drop-zone.module.css";
 import UserIcon from "./assets/user.svg";
 import TrashIcon from "./assets/trash.svg";
 
-type DropZoneProps = {
+export type DropZoneProps = {
   onFileChanged: (file: File | undefined) => void;
   label?: string;
   labelSize?: number;

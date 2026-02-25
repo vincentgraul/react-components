@@ -1,16 +1,25 @@
 import { Fragment } from "react";
 import clsx from "clsx";
 import styles from "./breadcrumb.module.css";
-import { Arrow } from "./icons";
-import { useBreadcrumb, BreadcrumbType, BreadcrumbElementType } from "..";
+import ArrowRightIcon from "./assets/arrow-right.svg";
+import { useBreadcrumb } from "./use-breadcrumb";
+import type { BreadcrumbType, BreadcrumbElementType } from "./breadcrumb.types";
 
 export type BreadcrumbProps = BreadcrumbType & {
   onClick: (element: BreadcrumbElementType) => void;
+  icon?: string;
+  iconSize?: number;
   className?: string;
 };
 
-export const Breadcrumb = (props: BreadcrumbProps) => {
-  const { className, url, mapping, onClick } = props;
+export const Breadcrumb = ({
+  className,
+  onClick,
+  icon,
+  iconSize,
+  url,
+  mapping,
+}: BreadcrumbProps) => {
   const elements: BreadcrumbElementType[] = useBreadcrumb({ url, mapping });
 
   return (
@@ -22,7 +31,13 @@ export const Breadcrumb = (props: BreadcrumbProps) => {
               {element.label}
             </a>
 
-            {index < elements.length - 1 ? <Arrow className={styles.arrow} /> : null}
+            {index < elements.length - 1 ? (
+              <img
+                className={styles.arrow}
+                src={icon ?? ArrowRightIcon}
+                style={{ width: `${iconSize ?? 50}px` }}
+              />
+            ) : null}
           </Fragment>
         );
       })}

@@ -3,11 +3,13 @@ import clsx from "clsx";
 import styles from "./select.module.css";
 import { SelectOptionWithoutId, SelectOption } from "./select.types";
 import { useOutsideAlerter } from "..";
-import { ArrowBottom } from "./icons";
+import ArrowBottomIcon from "./assets/arrow-down.svg";
 
 export type SelectProps = {
   options: SelectOptionWithoutId[];
   selectedValue?: string;
+  icon?: string;
+  iconSize?: number;
   onChange?: (option: SelectOption) => void;
   className?: string;
 };
@@ -16,6 +18,8 @@ export const Select = ({
   className,
   options: optionsProps,
   selectedValue,
+  icon,
+  iconSize,
   onChange,
 }: SelectProps) => {
   const [options, setOptions] = useState<SelectOption[]>([]);
@@ -70,7 +74,11 @@ export const Select = ({
     <div className={clsx(styles.container, className)} ref={ref}>
       <div className={styles["selected-option-container"]} onClick={handleSelectedOptionClick}>
         <span className={styles["selected-option-text"]}>{selectedOption.label}</span>
-        <ArrowBottom className={styles["selected-option-arrow"]} />
+        <img
+          className={styles["selected-option-arrow"]}
+          src={icon ?? ArrowBottomIcon}
+          style={{ width: `${iconSize ?? 20}px` }}
+        ></img>
       </div>
 
       {isListVisible && (
