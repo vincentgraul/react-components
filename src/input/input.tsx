@@ -1,9 +1,9 @@
-import React, { CSSProperties, useState, FocusEvent } from "react";
+import { useState, FocusEvent, InputHTMLAttributes, CSSProperties } from "react";
 import clsx from "clsx";
 import { InputType, InputColors, InputStatus } from "./input.types";
 import styles from "./input.module.css";
 
-export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "type"> & {
+export type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, "type"> & {
   label: string;
   type: InputType;
   colors?: InputColors;

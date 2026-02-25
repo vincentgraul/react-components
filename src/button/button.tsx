@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, ReactNode } from "react";
+import { ButtonHTMLAttributes, ReactNode, CSSProperties } from "react";
 import styles from "./button.module.css";
 import clsx from "clsx";
 
@@ -15,6 +15,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   borderRadius?: number;
   borderWidth?: number;
   padding?: string;
+  hoverOpacity?: number;
   className?: string;
 };
 
@@ -32,25 +33,33 @@ export const Button = ({
   color,
   backgroundColor,
   borderColor,
+  hoverOpacity,
   ...rest
-}: ButtonProps) => (
-  <button
-    className={clsx(styles.container, className)}
-    style={{
-      width: `${width ?? 100}%`,
-      height: height !== undefined ? `${height}rem` : "auto",
-      borderRadius: `${borderRadius ?? 0}px`,
-      borderWidth: `${borderWidth ?? 1}px`,
-      fontSize: `${fontSize ?? 1}rem`,
-      fontWeight: fontWeight ?? 400,
-      alignSelf,
-      padding,
-      color: color ?? "black",
-      backgroundColor: backgroundColor ?? "white",
-      borderColor: borderColor ?? "black",
-    }}
-    {...rest}
-  >
-    {children}
-  </button>
-);
+}: ButtonProps) => {
+  const CSSVariables = {
+    "--hover-opacity": hoverOpacity,
+  } as CSSProperties;
+
+  return (
+    <button
+      className={clsx(styles.container, className)}
+      style={{
+        width: `${width ?? 100}%`,
+        height: height !== undefined ? `${height}rem` : "auto",
+        borderRadius: `${borderRadius ?? 0}px`,
+        borderWidth: `${borderWidth ?? 1}px`,
+        fontSize: `${fontSize ?? 1}rem`,
+        fontWeight: fontWeight ?? 400,
+        alignSelf,
+        padding,
+        color: color ?? "black",
+        backgroundColor: backgroundColor ?? "white",
+        borderColor: borderColor ?? "black",
+        ...CSSVariables,
+      }}
+      {...rest}
+    >
+      {children}
+    </button>
+  );
+};

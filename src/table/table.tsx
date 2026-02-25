@@ -1,4 +1,4 @@
-import React, { ReactNode, PropsWithChildren } from "react";
+import { ReactNode, PropsWithChildren } from "react";
 import clsx from "clsx";
 import styles from "./table.module.css";
 import { Column } from "./table.types";

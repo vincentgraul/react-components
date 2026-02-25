@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 import clsx from "clsx";
 import styles from "./breadcrumb.module.css";
 import { Arrow } from "./icons";
@@ -17,7 +17,7 @@ export const Breadcrumb = (props: BreadcrumbProps) => {
     <div className={clsx(styles.container, className)}>
       {elements.map((element: BreadcrumbElementType, index: number) => {
         return (
-          <Fragment key={index}>
+          <Fragment key={element.label}>
             <a className={styles.link} onClick={() => onClick(element)}>
               {element.label}
             </a>

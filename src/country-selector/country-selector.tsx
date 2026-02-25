@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { capitalize } from "@vincentgraul/utils/word";
 import styles from "./country-selector.module.css";
 import { CountrySelectorOption } from "./country-selector.types";

@@ -10,6 +10,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
   args: {
+    onFileChanged: () => null,
     label: "Photo (optionnel)",
     text: "Glissez-déposez votre image ici",
     width: 40,

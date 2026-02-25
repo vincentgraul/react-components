@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useEffect, useState, Children, cloneElement } from "react";
 import clsx from "clsx";
 import { StepProps } from "./wizard.types";
 
@@ -18,7 +18,7 @@ export const Wizard = ({
   renderFooter,
 }: WizardProps) => {
   const [step, setStep] = useState(1);
-  const totalSteps = React.Children.count(children);
+  const totalSteps = Children.count(children);
   const [isFirstPage, setFirstPage] = useState(false);
   const [isLastPage, setLastPage] = useState(false);
 
@@ -31,7 +31,7 @@ export const Wizard = ({
     setLastPage(step === totalSteps);
   }, [step]);
 
-  const currentPage: ReactElement = React.Children.toArray(children)[step - 1] as ReactElement;
+  const currentPage: ReactElement = Children.toArray(children)[step - 1] as ReactElement;
 
   const nextStep = () => {
     if (step < totalSteps) setStep(step + 1);
@@ -44,7 +44,7 @@ export const Wizard = ({
   return (
     <div className={clsx(className)}>
       {renderHeader && renderHeader({ step, previousStep, nextStep, isFirstPage, isLastPage })}
-      {React.cloneElement(currentPage)}
+      {cloneElement(currentPage)}
       {renderFooter && renderFooter({ step, previousStep, nextStep, isFirstPage, isLastPage })}
     </div>
   );

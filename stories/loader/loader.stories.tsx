@@ -17,6 +17,6 @@ export const Basic: Story = {
 export const WithImage: Story = {
   args: {
     text: "In progress...",
-    hasImage: true,
+    showImage: true,
   },
 };
