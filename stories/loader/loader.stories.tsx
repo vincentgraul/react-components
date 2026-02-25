@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Loader } from "../../src";
-import loaderSVG from "./assets/white-loader.svg";
 
 const meta = {
   component: Loader,
@@ -11,13 +10,13 @@ type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
   args: {
-    children: <Loader>In progress...</Loader>,
+    text: "In progress...",
   },
 };
 
 export const WithImage: Story = {
   args: {
-    src: loaderSVG,
     text: "In progress...",
+    hasImage: true,
   },
 };

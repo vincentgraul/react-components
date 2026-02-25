@@ -13,15 +13,10 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 50%;
   color: #f9fbff;
-}
-
-.image-container {
   display: flex;
-  flex-flow: column;
+  flex-direction: column;
   align-items: center;
-  transform: translate(-50%, 0);
 }
 
 @keyframes loading {
@@ -35,6 +30,5 @@
 }
 
 .image {
-  animation: loading 3s linear infinite;
-  margin-bottom: 2rem;
+  animation: loading 1s linear infinite;
 }

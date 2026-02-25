@@ -27,10 +27,5 @@ export default [
     languageOptions: {
       parser: tsParser,
     },
-
-    rules: {
-      "@typescript-eslint/no-inferrable-types": 0,
-      "@typescript-eslint/no-explicit-any": "off",
-    },
   },
 ];

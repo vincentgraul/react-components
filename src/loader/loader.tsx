@@ -1,33 +1,35 @@
-import React, { ReactNode } from "react";
 import clsx from "clsx";
 import styles from "./loader.module.css";
+import LoaderIcon from "./assets/loader.svg";
 
 export type LoaderProps = {
-  children: ReactNode;
+  text?: string;
+  hasImage?: boolean;
+  srcImage?: string;
+  imageSize?: number;
+  imageGap?: number;
   className?: string;
 };
 
-export type LoaderWithImageProps = {
-  src: string;
-  text: string;
-  className?: string;
-};
-
-export const Loader = (props: LoaderProps | LoaderWithImageProps) => {
-  const Root = ({ className, children }: LoaderProps) => (
-    <div className={clsx(styles.overlay, className)}>
-      <div className={styles.container}>{children}</div>
+export const Loader = ({
+  className,
+  text,
+  hasImage,
+  srcImage,
+  imageSize,
+  imageGap,
+}: LoaderProps) => (
+  <div className={clsx(styles.overlay, className)}>
+    <div className={styles.container} style={{ gap: `${imageGap ?? 1}rem` }}>
+      {hasImage && (
+        <img
+          className={styles.image}
+          src={srcImage ?? LoaderIcon}
+          style={{ width: `${imageSize ?? 50}px` }}
+          alt=""
+        ></img>
+      )}
+      {text && <span>{text}</span>}
     </div>
-  );
-
-  const LoaderWithImage = ({ className, src, text }: LoaderWithImageProps) => (
-    <Root className={className}>
-      <div className={styles["image-container"]}>
-        <img className={styles.image} src={src} alt="loader-image"></img>
-        <span>{text}</span>
-      </div>
-    </Root>
-  );
-
-  return "children" in props ? Root(props) : LoaderWithImage(props);
-};
+  </div>
+);
