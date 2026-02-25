@@ -30,5 +30,5 @@
 }
 
 .image {
-  animation: loading 1s linear infinite;
+  animation: loading var(--animation-duration) linear infinite;
 }

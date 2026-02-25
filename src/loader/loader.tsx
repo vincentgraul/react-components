@@ -1,35 +1,44 @@
 import clsx from "clsx";
 import styles from "./loader.module.css";
 import LoaderIcon from "./assets/loader.svg";
+import { CSSProperties } from "react";
 
 export type LoaderProps = {
   text?: string;
-  hasImage?: boolean;
-  srcImage?: string;
+  showImage?: boolean;
+  imageSrc?: string;
   imageSize?: number;
   imageGap?: number;
+  imageSpeed?: number;
   className?: string;
 };
 
 export const Loader = ({
   className,
   text,
-  hasImage,
-  srcImage,
+  showImage,
+  imageSrc,
   imageSize,
   imageGap,
-}: LoaderProps) => (
-  <div className={clsx(styles.overlay, className)}>
-    <div className={styles.container} style={{ gap: `${imageGap ?? 1}rem` }}>
-      {hasImage && (
-        <img
-          className={styles.image}
-          src={srcImage ?? LoaderIcon}
-          style={{ width: `${imageSize ?? 50}px` }}
-          alt=""
-        ></img>
-      )}
-      {text && <span>{text}</span>}
+  imageSpeed,
+}: LoaderProps) => {
+  const CSSVariables = {
+    "--animation-duration": `${imageSpeed ?? 1}s`,
+  } as CSSProperties;
+
+  return (
+    <div className={clsx(styles.overlay, className)} style={CSSVariables}>
+      <div className={styles.container} style={{ gap: `${imageGap ?? 1}rem` }}>
+        {showImage && (
+          <img
+            className={styles.image}
+            src={imageSrc ?? LoaderIcon}
+            style={{ width: `${imageSize ?? 50}px` }}
+            alt=""
+          ></img>
+        )}
+        {text && <span>{text}</span>}
+      </div>
     </div>
-  </div>
-);
+  );
+};
