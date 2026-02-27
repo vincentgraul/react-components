@@ -10,6 +10,7 @@ export type CheckboxProps = Omit<InputHTMLAttributes<HTMLInputElement>, "type"> 
   borderColor?: string;
   checkColor?: string;
   checkBackgroundColor?: string;
+  iconSize?: "small" | "medium" | "large";
   size?: number;
   gap?: number;
   className?: string;
@@ -24,6 +25,7 @@ export const Checkbox = ({
   borderColor,
   checkColor,
   checkBackgroundColor,
+  iconSize,
   size,
   gap,
   ...rest
@@ -40,7 +42,7 @@ export const Checkbox = ({
       style={{ fontWeight: labelWeight ?? 400, gap: `${gap ?? 0.2}rem`, ...CSSVariables }}
     >
       <input
-        className={styles.input}
+        className={clsx(styles.input, iconSize && styles[`icon-${iconSize}`])}
         type="checkbox"
         style={{
           borderColor,
