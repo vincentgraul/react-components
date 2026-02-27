@@ -18,3 +18,4 @@ export * from "./flex";
 export * from "./button";
 export * from "./drop-zone";
 export * from "./card";
+export * from "./checkbox";
