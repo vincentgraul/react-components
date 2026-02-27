@@ -1,5 +1,5 @@
 import { useState, useEffect, PropsWithChildren } from "react";
-import { Table, Column, Th, Td, Tr, usePagination, Pagination, ArrowPosition } from "../../src";
+import { Table, Column, Th, Td, Tr, usePagination, Pagination } from "../../src";
 
 export default {
   title: "Table",
@@ -191,21 +191,21 @@ export const Advanced = () => {
         <Block>
           <Pagination
             {...pagination}
-            renderSingleArrow={(position: ArrowPosition) => (
+            renderSingleArrow={(position) => (
               <img
                 style={{ minWidth: 0, minHeight: 0, width: "0.5rem" }}
                 src={
-                  position === ArrowPosition.LEFT
+                  position === "left"
                     ? require("./assets/single-left-arrow.svg")
                     : require("./assets/single-right-arrow.svg")
                 }
               />
             )}
-            renderDoubleArrow={(position: ArrowPosition) => (
+            renderDoubleArrow={(position) => (
               <img
                 style={{ minWidth: 0, minHeight: 0, width: "0.8rem" }}
                 src={
-                  position === ArrowPosition.LEFT
+                  position === "left"
                     ? require("./assets/double-left-arrow.svg")
                     : require("./assets/double-right-arrow.svg")
                 }

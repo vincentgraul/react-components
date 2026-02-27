@@ -25,6 +25,7 @@
 | DropZone           | React component used to display a drop zone                                         |
 | Card               | React component used to display a card                                              |
 | Checkbox           | React component used to display a checkbox                                          |
+| List               | React component used to display a list                                              |
 
 ## License
 
