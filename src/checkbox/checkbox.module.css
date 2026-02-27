@@ -1,8 +1,9 @@
 .container {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   font-size: var(--checkbox-size, 1rem);
   cursor: pointer;
+  width: fit-content;
 }
 
 .input {
