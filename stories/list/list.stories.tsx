@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { List, ListItem } from "../../src";
-import ArrowRightIcon from "./assets/arrow-right.svg";
+import ArrowRightIcon from "./assets/arrow-right.svg?react";
 
 const meta = {
   component: List,
@@ -13,8 +13,8 @@ export const Basic: Story = {
   args: {
     children: (
       <>
-        <ListItem icon={ArrowRightIcon} text="cool"></ListItem>
-        <ListItem icon={ArrowRightIcon} text="top"></ListItem>
+        <ListItem icon={<ArrowRightIcon />} text="cool"></ListItem>
+        <ListItem icon={<ArrowRightIcon />} text="top"></ListItem>
       </>
     ),
   },
