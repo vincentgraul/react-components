@@ -12,7 +12,7 @@ type Story = StoryObj<typeof meta>;
 export const Basic: Story = {
   args: {
     children: <></>,
-    render: (args) => {
+    render: () => {
       const [isOpen, setOpen] = useState<boolean>(false);
       return (
         <div>
