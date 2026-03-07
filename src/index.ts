@@ -20,3 +20,4 @@ export * from "./drop-zone";
 export * from "./card";
 export * from "./checkbox";
 export * from "./list";
+export * from "./text";
