@@ -51,6 +51,8 @@ type FooterProps = {
   footerButton?: ElementType;
   footerButtonNextText?: string;
   footerButtonPreviousText?: string;
+  footerFinalizeButtonText?: string;
+  onFinalize?: () => void;
   footerJustifyContent?: "left" | "center" | "right";
   footerGap?: number;
 };
@@ -59,14 +61,17 @@ const Footer = ({
   footerButton,
   footerButtonNextText,
   footerButtonPreviousText,
+  footerFinalizeButtonText,
+  onFinalize,
+  footerJustifyContent,
+  footerGap,
   isFirstPage,
   isLastPage,
   previousStep,
   nextStep,
-  footerJustifyContent,
-  footerGap,
 }: FooterProps & Omit<StepProps, "step" | "totalSteps">) => {
   const WizardButton = footerButton ?? "button";
+  console.log(onFinalize);
   return (
     <div
       className={styles.footer}
@@ -77,6 +82,9 @@ const Footer = ({
       )}
       {!isLastPage && (
         <WizardButton onClick={nextStep}>{footerButtonNextText ?? "Next"}</WizardButton>
+      )}
+      {isLastPage && onFinalize && (
+        <WizardButton onClick={onFinalize}>{footerFinalizeButtonText ?? "Finalize"}</WizardButton>
       )}
     </div>
   );
@@ -109,6 +117,8 @@ export const Wizard = ({
   footerJustifyContent,
   footerButtonNextText,
   footerButtonPreviousText,
+  footerFinalizeButtonText,
+  onFinalize,
   gap,
 }: WizardProps) => {
   const [step, setStep] = useState(1);
@@ -158,6 +168,8 @@ export const Wizard = ({
           footerJustifyContent={footerJustifyContent}
           footerButtonNextText={footerButtonNextText}
           footerButtonPreviousText={footerButtonPreviousText}
+          footerFinalizeButtonText={footerFinalizeButtonText}
+          onFinalize={onFinalize}
           isFirstPage={isFirstPage}
           isLastPage={isLastPage}
           nextStep={nextStep}

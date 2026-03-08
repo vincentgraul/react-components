@@ -111,3 +111,24 @@ export const WithCustomButton: Story = {
     ],
   },
 };
+
+export const WithFinalize: Story = {
+  args: {
+    onFinalize: () => {
+      console.log("finalize");
+    },
+    children: [
+      <div>
+        <p>Welcome to the first step</p>
+      </div>,
+
+      <div>
+        <p>Welcome to the second step</p>
+      </div>,
+
+      <div>
+        <p>Welcome to the last step</p>
+      </div>,
+    ],
+  },
+};
