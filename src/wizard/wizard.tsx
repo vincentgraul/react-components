@@ -1,40 +1,42 @@
-import { ReactElement, useEffect, useState, Children, ElementType, ReactNode } from "react";
+import { ReactElement, useState, Children, ElementType } from "react";
 import clsx from "clsx";
 import styles from "./wizard.module.css";
 import { StepProps } from "./wizard.types";
+import { FontWeight, JustifyContent, Title } from "../types";
+import { toRem } from "../utils";
 
 type HeaderProps = {
   titles?: string[];
-  titleAs?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "span" | "p";
-  titleSize?: number;
-  titleWeight?: 400 | 500 | 600 | 700 | 800 | 900;
-  stepIndicatorWeight?: 400 | 500 | 600 | 700 | 800 | 900;
+  titleAs?: Title;
+  titleFontSize?: number;
+  titleFontWeight?: FontWeight;
+  stepIndicatorFontWeight?: FontWeight;
   hasStepIndicator?: boolean;
 };
 
 const Header = ({
   titles,
-  titleAs,
+  titleAs = "h2",
   step,
-  titleSize,
-  titleWeight,
+  titleFontSize = 1.5,
+  titleFontWeight = 700,
   totalSteps,
   hasStepIndicator,
-  stepIndicatorWeight,
-}: HeaderProps & Omit<StepProps, "previousStep" | "nextStep" | "isFirstPage" | "isLastPage">) => {
-  const Title = titleAs ?? "h2";
+  stepIndicatorFontWeight = 400,
+}: HeaderProps & Omit<StepProps, "previousStep" | "nextStep" | "isFirstStep" | "isLastStep">) => {
+  const Title = titleAs;
   return (
     <div className={styles.header}>
       {titles && (
         <Title
           className={styles.title}
-          style={{ fontSize: `${titleSize ?? 1.5}rem`, fontWeight: titleWeight ?? 700 }}
+          style={{ fontSize: toRem(titleFontSize), fontWeight: titleFontWeight }}
         >
           {titles[step - 1]}
         </Title>
       )}
       {hasStepIndicator && (
-        <span style={{ fontWeight: stepIndicatorWeight ?? 400 }}>
+        <span style={{ fontWeight: stepIndicatorFontWeight }}>
           {step}/{totalSteps}
         </span>
       )}
@@ -42,138 +44,104 @@ const Header = ({
   );
 };
 
-export type FooterButtonProps = {
-  onClick: () => void;
-  children: ReactNode;
-};
-
 type FooterProps = {
-  footerButton?: ElementType;
-  footerButtonNextText?: string;
-  footerButtonPreviousText?: string;
-  footerFinalizeButtonText?: string;
+  Button?: ElementType;
+  nextButtonText?: string;
+  previousButtonText?: string;
+  finalizeButtonText?: string;
   onFinalize?: () => void;
-  footerJustifyContent?: "left" | "center" | "right";
-  footerGap?: number;
+  justifyContent?: JustifyContent;
+  gap?: number;
 };
 
 const Footer = ({
-  footerButton,
-  footerButtonNextText,
-  footerButtonPreviousText,
-  footerFinalizeButtonText,
+  Button = "button",
+  nextButtonText = "Next",
+  previousButtonText = "Previous",
+  finalizeButtonText = "Finalize",
   onFinalize,
-  footerJustifyContent,
-  footerGap,
-  isFirstPage,
-  isLastPage,
+  justifyContent = "center",
+  gap = 1,
+  isFirstStep,
+  isLastStep,
   previousStep,
   nextStep,
-}: FooterProps & Omit<StepProps, "step" | "totalSteps">) => {
-  const WizardButton = footerButton ?? "button";
-  console.log(onFinalize);
-  return (
-    <div
-      className={styles.footer}
-      style={{ justifyContent: footerJustifyContent ?? "center", gap: `${footerGap ?? 1}rem` }}
-    >
-      {!isFirstPage && (
-        <WizardButton onClick={previousStep}>{footerButtonPreviousText ?? "Previous"}</WizardButton>
-      )}
-      {!isLastPage && (
-        <WizardButton onClick={nextStep}>{footerButtonNextText ?? "Next"}</WizardButton>
-      )}
-      {isLastPage && onFinalize && (
-        <WizardButton onClick={onFinalize}>{footerFinalizeButtonText ?? "Finalize"}</WizardButton>
-      )}
-    </div>
-  );
-};
+}: FooterProps & Omit<StepProps, "step" | "totalSteps">) => (
+  <div className={styles.footer} style={{ justifyContent, gap: toRem(gap) }}>
+    {!isFirstStep && <Button onClick={previousStep}>{previousButtonText}</Button>}
+    {!isLastStep && <Button onClick={nextStep}>{nextButtonText}</Button>}
+    {isLastStep && onFinalize && <Button onClick={onFinalize}>{finalizeButtonText}</Button>}
+  </div>
+);
 
-export type WizardProps = HeaderProps &
-  FooterProps & {
-    children: ReactElement[];
-    step?: number;
-    renderHeader?: (props: StepProps) => ReactElement;
-    renderFooter?: (props: StepProps) => ReactElement;
-    gap?: number;
-    className?: string;
-  };
+export type WizardProps = {
+  className?: string;
+  children: ReactElement[];
+  step?: number;
+  renderHeader?: (props: StepProps) => ReactElement;
+  renderFooter?: (props: StepProps) => ReactElement;
+  gap?: number;
+  header?: HeaderProps;
+  footer?: FooterProps;
+};
 
 export const Wizard = ({
   className,
   children,
-  step: stepProps = 1,
+  step = 1,
   renderHeader,
   renderFooter,
-  titles,
-  titleAs,
-  titleSize,
-  titleWeight,
-  hasStepIndicator,
-  stepIndicatorWeight,
-  footerButton,
-  footerGap,
-  footerJustifyContent,
-  footerButtonNextText,
-  footerButtonPreviousText,
-  footerFinalizeButtonText,
-  onFinalize,
-  gap,
+  gap = 1,
+  header,
+  footer,
 }: WizardProps) => {
-  const [step, setStep] = useState(1);
   const totalSteps = Children.count(children);
-  const isFirstPage = step === 1;
-  const isLastPage = step === totalSteps;
-
-  useEffect(() => {
-    if (stepProps <= totalSteps) setStep(stepProps);
-  }, [stepProps]);
-
-  const currentPage: ReactElement = Children.toArray(children)[step - 1] as ReactElement;
+  const [currentStep, setCurrentStep] = useState(step <= totalSteps ? step : 1);
+  const isFirstStep = currentStep === 1;
+  const isLastStep = currentStep === totalSteps;
+  const currentPage: ReactElement = Children.toArray(children)[currentStep - 1] as ReactElement;
 
   const nextStep = () => {
-    if (step < totalSteps) setStep(step + 1);
+    if (currentStep < totalSteps) setCurrentStep(currentStep + 1);
   };
 
   const previousStep = () => {
-    if (step > 1) setStep(step - 1);
+    if (currentStep > 1) setCurrentStep(currentStep - 1);
   };
 
   return (
-    <div className={clsx(styles.container, className)} style={{ gap: `${gap ?? 1}rem` }}>
+    <div className={clsx(styles.container, className)} style={{ gap: toRem(gap) }}>
       {renderHeader ? (
-        renderHeader({ step, previousStep, nextStep, isFirstPage, isLastPage, totalSteps })
+        renderHeader({
+          step: currentStep,
+          previousStep,
+          nextStep,
+          isFirstStep,
+          isLastStep,
+          totalSteps,
+        })
       ) : (
-        <Header
-          titles={titles}
-          titleAs={titleAs}
-          titleSize={titleSize}
-          titleWeight={titleWeight}
-          hasStepIndicator={hasStepIndicator}
-          stepIndicatorWeight={stepIndicatorWeight}
-          step={step}
-          totalSteps={totalSteps}
-        />
+        <Header step={currentStep} totalSteps={totalSteps} {...header} />
       )}
 
       {currentPage}
 
       {renderFooter ? (
-        renderFooter({ step, previousStep, nextStep, isFirstPage, isLastPage, totalSteps })
+        renderFooter({
+          step: currentStep,
+          previousStep,
+          nextStep,
+          isFirstStep,
+          isLastStep,
+          totalSteps,
+        })
       ) : (
         <Footer
-          footerButton={footerButton}
-          footerGap={footerGap}
-          footerJustifyContent={footerJustifyContent}
-          footerButtonNextText={footerButtonNextText}
-          footerButtonPreviousText={footerButtonPreviousText}
-          footerFinalizeButtonText={footerFinalizeButtonText}
-          onFinalize={onFinalize}
-          isFirstPage={isFirstPage}
-          isLastPage={isLastPage}
+          isFirstStep={isFirstStep}
+          isLastStep={isLastStep}
           nextStep={nextStep}
           previousStep={previousStep}
+          {...footer}
         />
       )}
     </div>

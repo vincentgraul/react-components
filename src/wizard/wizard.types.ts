@@ -3,6 +3,6 @@ export type StepProps = {
   totalSteps: number;
   previousStep: () => void;
   nextStep: () => void;
-  isFirstPage: boolean;
-  isLastPage: boolean;
+  isFirstStep: boolean;
+  isLastStep: boolean;
 };
