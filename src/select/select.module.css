@@ -1,43 +1,56 @@
 .container {
-  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  min-width: fit-content;
 }
 
 .selected-option-container {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: fit-content;
   cursor: pointer;
   user-select: none;
-  padding: 10px;
   background-color: white;
   border-radius: 5px;
 }
 
 .selected-option-text {
-  padding-right: 10px;
-  border-right: 1px solid black;
+  padding: 10px;
+}
+
+.selected-option-arrow-container {
+  display: flex;
+  align-items: center;
+  border-left: 1px solid black;
+  padding: 0 10px;
+  height: 100%;
 }
 
 .selected-option-arrow {
-  width: 15px;
-  margin-left: 10px;
+  width: auto;
+  height: 60%;
 }
 
 .options-list {
   width: 100%;
   list-style: none;
-  padding: 0;
   margin: 10px 0 0 0;
   user-select: none;
   background-color: white;
   border-radius: 5px;
+  padding: 0;
 }
 
 .option {
-  padding: 10px;
   cursor: pointer;
+  padding: 10px;
 
   &:hover {
-    background-color: #ecf0f1;
+    background-color: var(--hover-background-color);
+    color: var(--hover-text-color);
+    font-weight: var(--hover-text-weight);
 
     &:first-child {
       border-radius: 5px 5px 0 0;

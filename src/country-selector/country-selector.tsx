@@ -1,40 +1,33 @@
-import { useEffect, useState } from "react";
 import { capitalize } from "@vincentgraul/utils/word";
 import styles from "./country-selector.module.css";
 import { CountrySelectorOption } from "./country-selector.types";
-import { Select } from "..";
+import { Select, SelectProps } from "..";
 import * as Icons from "./icons";
-import clsx from "clsx";
+import { toPx } from "../utils";
 
 export type CountrySelectorProps = {
   languages: string[];
   value?: string;
+  flagHeight?: number;
   onChange?: (option: CountrySelectorOption) => void;
-  flagWidth?: string;
   className?: string;
 };
 
-export const CountrySelector = (props: CountrySelectorProps) => {
-  const { className, value, languages, onChange, flagWidth = "30px" } = props;
-  const [options, setOptions] = useState<CountrySelectorOption[]>([]);
-
-  useEffect(() => {
-    const prepareOptions = async () => {
-      setOptions(
-        await Promise.all(
-          languages.map(async (language: string) => {
-            const Flag = Icons[capitalize(language) as keyof typeof Icons];
-            return {
-              value: language,
-              label: <Flag className={styles.flag} style={{ width: flagWidth }} />,
-            };
-          }),
-        ),
-      );
+export const CountrySelector = ({
+  value,
+  languages,
+  onChange,
+  flagHeight = 25,
+  className,
+  ...rest
+}: CountrySelectorProps & Omit<SelectProps, "options">) => {
+  const options = languages.map((language: string) => {
+    const Flag = Icons[capitalize(language) as keyof typeof Icons];
+    return {
+      value: language,
+      label: <Flag className={styles.flag} style={{ height: toPx(flagHeight) }} />,
     };
-
-    prepareOptions();
-  }, [languages]);
+  });
 
   if (!options) {
     return null;
@@ -42,10 +35,12 @@ export const CountrySelector = (props: CountrySelectorProps) => {
 
   return (
     <Select
-      className={clsx(className)}
+      className={className}
       selectedValue={value}
       options={options}
       onChange={onChange}
+      width="fit-content"
+      {...rest}
     ></Select>
   );
 };

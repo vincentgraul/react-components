@@ -1,6 +1,6 @@
 {
   "name": "@vincentgraul/react-components",
-  "version": "1.0.84",
+  "version": "1.0.90",
   "type": "module",
   "exports": {
     ".": {
