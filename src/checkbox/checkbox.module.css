@@ -1,17 +1,18 @@
 .container {
   display: flex;
   align-items: center;
-  font-size: var(--checkbox-size);
+  font-size: calc(var(--checkbox-size) * 0.7);
   cursor: pointer;
   width: fit-content;
+  gap: calc(var(--checkbox-size) * 0.25);
 }
 
 .input {
   appearance: none;
-  border: 2px solid black;
+  border: calc(var(--checkbox-size) * 0.08) solid black;
   cursor: pointer;
-  width: calc(var(--checkbox-size, 1rem) * 1.25);
-  height: calc(var(--checkbox-size, 1rem) * 1.25);
+  width: var(--checkbox-size);
+  height: var(--checkbox-size);
 
   &:checked {
     background-color: var(--checkbox-background-color-checked);

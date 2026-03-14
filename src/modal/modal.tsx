@@ -101,7 +101,7 @@ export const Modal = ({
           ? (closeIcon ?? (
               <CloseIcon
                 className={styles.close}
-                onClick={onClose}
+                onClick={handleOnClose}
                 style={{ marginBottom: toRem(closeIconMarginBottom), color: closeIconColor }}
               ></CloseIcon>
             ))
