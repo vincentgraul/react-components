@@ -2,6 +2,8 @@ import { useState, FocusEvent, InputHTMLAttributes, CSSProperties } from "react"
 import clsx from "clsx";
 import { InputType, InputColors, InputStatus } from "./input.types";
 import styles from "./input.module.css";
+import { FontWeight, Size } from "../types";
+import { isNumber, toPercentage, toPx, toRem } from "../utils";
 
 export type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, "type"> & {
   label: string;
@@ -9,14 +11,14 @@ export type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, "type"> & {
   colors?: InputColors;
   status?: InputStatus;
   message?: string;
-  width?: number;
-  height?: number;
+  width?: Size;
+  height?: Size;
   borderWidth?: number;
   borderWidthFocus?: number;
-  labelWeight?: 400 | 500 | 600 | 700 | 800 | 900;
-  labelSize?: number;
-  messageWeight?: 400 | 500 | 600 | 700 | 800 | 900;
-  messageSize?: number;
+  labelFontWeight?: FontWeight;
+  labelFontSize?: number;
+  messageFontWeight?: FontWeight;
+  messageFontSize?: number;
   className?: string;
 };
 
@@ -24,26 +26,31 @@ export const Input = ({
   className,
   label,
   message,
-  colors,
+  colors = {
+    success: "green",
+    error: "red",
+    warning: "orange",
+    focus: "blue",
+  },
   status,
-  width,
-  height,
-  borderWidth,
-  borderWidthFocus,
-  labelWeight,
-  labelSize,
-  messageWeight,
-  messageSize,
+  width = 100,
+  height = "auto",
+  borderWidth = 1,
+  borderWidthFocus = 2,
+  labelFontWeight = 400,
+  labelFontSize = 1,
+  messageFontWeight = 400,
+  messageFontSize = 1,
   onFocus,
   onBlur,
   ...rest
 }: InputProps) => {
   const [isFocus, setIsFocus] = useState(false);
   const CSSVariables = {
-    "--success-color": colors?.success,
-    "--warning-color": colors?.warning,
-    "--error-color": colors?.error,
-    "--focus-color": colors?.focus,
+    "--success-color": colors.success,
+    "--warning-color": colors.warning,
+    "--error-color": colors.error,
+    "--focus-color": colors.focus,
   } as CSSProperties;
 
   const handleOnFocus = (e: FocusEvent<HTMLInputElement>) => {
@@ -64,8 +71,8 @@ export const Input = ({
     <div
       className={clsx(styles.container, className)}
       style={{
-        width: `${width ?? 100}%`,
-        height: height !== undefined ? `${height}rem` : "auto",
+        width: isNumber(width) ? toPercentage(width) : width,
+        height: isNumber(height) ? toRem(height) : height,
         ...CSSVariables,
       }}
     >
@@ -79,14 +86,14 @@ export const Input = ({
         <fieldset
           className={clsx(styles.fieldset, status)}
           style={{
-            borderWidth: `${isFocus ? borderWidthFocus : borderWidth}px`,
+            borderWidth: toPx(isFocus ? borderWidthFocus : borderWidth),
           }}
         >
           <legend
             className={styles.legend}
             style={{
-              fontWeight: labelWeight ?? 400,
-              fontSize: `${labelSize ?? 1}rem`,
+              fontWeight: labelFontWeight,
+              fontSize: toRem(labelFontSize),
             }}
           >
             {label}
@@ -98,7 +105,7 @@ export const Input = ({
         <div className={clsx(styles["message-container"], status)}>
           <span
             className={styles.message}
-            style={{ fontWeight: messageWeight ?? 400, fontSize: `${messageSize ?? 1}rem` }}
+            style={{ fontWeight: messageFontWeight, fontSize: toRem(messageFontSize) }}
           >
             {message}
           </span>

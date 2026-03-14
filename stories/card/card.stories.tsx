@@ -12,9 +12,9 @@ export const Basic: Story = {
   args: {
     title: "Sign up",
     titleAs: "h2",
-    titleSize: 2,
-    titleWeight: 700,
-    titleAlign: "center",
+    titleFontSize: 2,
+    titleFontWeight: 700,
+    titleTextAlign: "center",
     borderRadius: 5,
     children: (
       <Flex>

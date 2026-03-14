@@ -2,7 +2,7 @@ import { ReactElement, useState, Children, ElementType } from "react";
 import clsx from "clsx";
 import styles from "./wizard.module.css";
 import { StepProps } from "./wizard.types";
-import { FontWeight, JustifyContent, Title } from "../types";
+import { FontWeight, Position, Title } from "../types";
 import { toRem } from "../utils";
 
 type HeaderProps = {
@@ -16,33 +16,30 @@ type HeaderProps = {
 
 const Header = ({
   titles,
-  titleAs = "h2",
+  titleAs: Title = "h2",
   step,
   titleFontSize = 1.5,
   titleFontWeight = 700,
   totalSteps,
   hasStepIndicator,
   stepIndicatorFontWeight = 400,
-}: HeaderProps & Omit<StepProps, "previousStep" | "nextStep" | "isFirstStep" | "isLastStep">) => {
-  const Title = titleAs;
-  return (
-    <div className={styles.header}>
-      {titles && (
-        <Title
-          className={styles.title}
-          style={{ fontSize: toRem(titleFontSize), fontWeight: titleFontWeight }}
-        >
-          {titles[step - 1]}
-        </Title>
-      )}
-      {hasStepIndicator && (
-        <span style={{ fontWeight: stepIndicatorFontWeight }}>
-          {step}/{totalSteps}
-        </span>
-      )}
-    </div>
-  );
-};
+}: HeaderProps & Omit<StepProps, "previousStep" | "nextStep" | "isFirstStep" | "isLastStep">) => (
+  <div className={styles.header}>
+    {titles && (
+      <Title
+        className={styles.title}
+        style={{ fontSize: toRem(titleFontSize), fontWeight: titleFontWeight }}
+      >
+        {titles[step - 1]}
+      </Title>
+    )}
+    {hasStepIndicator && (
+      <span style={{ fontWeight: stepIndicatorFontWeight }}>
+        {step}/{totalSteps}
+      </span>
+    )}
+  </div>
+);
 
 type FooterProps = {
   Button?: ElementType;
@@ -50,7 +47,7 @@ type FooterProps = {
   previousButtonText?: string;
   finalizeButtonText?: string;
   onFinalize?: () => void;
-  justifyContent?: JustifyContent;
+  justifyContent?: Position;
   gap?: number;
 };
 

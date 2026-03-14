@@ -1,14 +1,15 @@
-import { Fragment } from "react";
+import { Fragment, ReactNode } from "react";
 import clsx from "clsx";
 import styles from "./breadcrumb.module.css";
-import ArrowRightIcon from "./assets/arrow-right.svg";
+import ArrowRightIcon from "./assets/arrow-right.svg?react";
 import { useBreadcrumb } from "./use-breadcrumb";
 import type { BreadcrumbType, BreadcrumbElementType } from "./breadcrumb.types";
+import { toPx } from "../utils";
 
 export type BreadcrumbProps = BreadcrumbType & {
   onClick: (element: BreadcrumbElementType) => void;
-  icon?: string;
-  iconSize?: number;
+  icon?: ReactNode;
+  iconWidth?: number;
   className?: string;
 };
 
@@ -16,7 +17,7 @@ export const Breadcrumb = ({
   className,
   onClick,
   icon,
-  iconSize,
+  iconWidth = 50,
   url,
   mapping,
 }: BreadcrumbProps) => {
@@ -24,23 +25,24 @@ export const Breadcrumb = ({
 
   return (
     <div className={clsx(styles.container, className)}>
-      {elements.map((element: BreadcrumbElementType, index: number) => {
-        return (
-          <Fragment key={element.label}>
-            <a className={styles.link} onClick={() => onClick(element)}>
-              {element.label}
-            </a>
+      {elements.map((element: BreadcrumbElementType, index: number) => (
+        <Fragment key={element.label}>
+          <a className={styles.link} onClick={() => onClick(element)}>
+            {element.label}
+          </a>
 
-            {index < elements.length - 1 ? (
-              <img
-                className={styles.arrow}
-                src={icon ?? ArrowRightIcon}
-                style={{ width: `${iconSize ?? 50}px` }}
-              />
-            ) : null}
-          </Fragment>
-        );
-      })}
+          {index < elements.length - 1 && (
+            <>
+              {icon ?? (
+                <ArrowRightIcon
+                  className={styles.arrow}
+                  style={{ width: toPx(iconWidth) }}
+                ></ArrowRightIcon>
+              )}
+            </>
+          )}
+        </Fragment>
+      ))}
     </div>
   );
 };

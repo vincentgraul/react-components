@@ -1,7 +1,7 @@
 .container {
   display: flex;
   align-items: center;
-  font-size: var(--checkbox-size, 1rem);
+  font-size: var(--checkbox-size);
   cursor: pointer;
   width: fit-content;
 }

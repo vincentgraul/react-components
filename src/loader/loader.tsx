@@ -1,41 +1,41 @@
+import { CSSProperties, ReactNode } from "react";
 import clsx from "clsx";
 import styles from "./loader.module.css";
-import LoaderIcon from "./assets/loader.svg";
-import { CSSProperties } from "react";
+import LoaderIcon from "./assets/loader.svg?react";
+import { toPx, toRem, toSeconds } from "../utils";
 
 export type LoaderProps = {
   text?: string;
-  showImage?: boolean;
-  imageSrc?: string;
-  imageSize?: number;
+  hasIcon?: boolean;
+  icon?: ReactNode;
+  imageWidth?: number;
   imageGap?: number;
-  imageSpeed?: number;
+  imageAnimationDuration?: number;
   className?: string;
 };
 
 export const Loader = ({
   className,
   text,
-  showImage,
-  imageSrc,
-  imageSize,
-  imageGap,
-  imageSpeed,
+  hasIcon,
+  icon,
+  imageWidth = 50,
+  imageGap = 1,
+  imageAnimationDuration = 1,
 }: LoaderProps) => {
   const CSSVariables = {
-    "--animation-duration": `${imageSpeed ?? 1}s`,
+    "--animation-duration": toSeconds(imageAnimationDuration),
   } as CSSProperties;
 
   return (
     <div className={clsx(styles.overlay, className)} style={CSSVariables}>
-      <div className={styles.container} style={{ gap: `${imageGap ?? 1}rem` }}>
-        {showImage && (
-          <img
-            className={styles.image}
-            src={imageSrc ?? LoaderIcon}
-            style={{ width: `${imageSize ?? 50}px` }}
-            alt=""
-          ></img>
+      <div className={styles.container} style={{ gap: toRem(imageGap) }}>
+        {hasIcon && (
+          <>
+            {icon ?? (
+              <LoaderIcon className={styles.image} style={{ width: toPx(imageWidth) }}></LoaderIcon>
+            )}
+          </>
         )}
         {text && <span>{text}</span>}
       </div>

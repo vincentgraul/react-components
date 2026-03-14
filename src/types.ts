@@ -1,8 +1,6 @@
 export type FontWeight = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
-export type AlignItems = "start" | "center" | "end";
-export type JustifyContent = "start" | "center" | "end";
-export type Width = number | "auto" | "fit-content";
-export type Height = number | "auto" | "fit-content";
+export type Position = "start" | "center" | "end";
+export type Size = number | "auto" | "fit-content";
 export type BorderStyle =
   | "none"
   | "dotted"

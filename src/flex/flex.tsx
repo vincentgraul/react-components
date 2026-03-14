@@ -1,10 +1,12 @@
 import { ReactNode } from "react";
 import clsx from "clsx";
 import styles from "./flex.module.css";
+import { Size } from "../types";
+import { isNumber, toPercentage, toRem } from "../utils";
 
 export type FlexProps = {
   children: ReactNode;
-  direction?: "row" | "column";
+  flexDirection?: "row" | "column";
   justifyContent?:
     | "start"
     | "center"
@@ -16,8 +18,8 @@ export type FlexProps = {
   alignItems?: "start" | "center" | "end" | "stretch";
   alignSelf?: "start" | "center" | "end" | "stretch";
   wrap?: "nowrap" | "wrap" | "wrap-reverse";
-  width?: number;
-  height?: number;
+  width?: Size;
+  height?: Size;
   padding?: string;
   gap?: number;
   className?: string;
@@ -26,28 +28,28 @@ export type FlexProps = {
 export const Flex = ({
   className,
   children,
-  direction,
+  flexDirection,
   justifyContent,
   alignItems,
   alignSelf,
   wrap,
-  width,
-  height,
+  width = 100,
+  height = "auto",
   padding,
-  gap,
+  gap = 0,
 }: FlexProps) => (
   <div
     className={clsx(styles.container, className)}
     style={{
-      width: `${width ?? 100}%`,
-      height: height !== undefined ? `${height}rem` : "auto",
-      flexDirection: direction,
+      width: isNumber(width) ? toPercentage(width) : width,
+      height: isNumber(height) ? toRem(height) : height,
+      flexDirection,
       justifyContent,
       alignItems,
       alignSelf,
       flexWrap: wrap,
       padding,
-      gap: `${gap ?? 0}rem`,
+      gap: toRem(gap),
     }}
   >
     {children}

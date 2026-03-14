@@ -1,17 +1,19 @@
 import { ButtonHTMLAttributes, ReactNode, CSSProperties } from "react";
 import styles from "./button.module.css";
 import clsx from "clsx";
+import { Position, FontWeight, Size } from "../types";
+import { isNumber, toPercentage, toPx, toRem } from "../utils";
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   children: ReactNode;
   color?: string;
-  width?: number;
-  height?: number;
+  width?: Size;
+  height?: Size;
   backgroundColor?: string;
   borderColor?: string;
-  alignSelf?: "start" | "center" | "end";
+  alignSelf?: Position;
   fontSize?: number;
-  fontWeight?: 400 | 500 | 600 | 700 | 800 | 900;
+  fontWeight?: FontWeight;
   borderRadius?: number;
   borderWidth?: number;
   padding?: string;
@@ -22,18 +24,18 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 export const Button = ({
   className,
   children,
-  width,
-  height,
+  width = 100,
+  height = "auto",
   alignSelf,
-  fontSize,
-  fontWeight,
-  borderRadius,
-  borderWidth,
+  fontSize = 1,
+  fontWeight = 400,
+  borderRadius = 0,
+  borderWidth = 1,
   padding,
-  color,
-  backgroundColor,
-  borderColor,
-  hoverOpacity,
+  color = "black",
+  backgroundColor = "white",
+  borderColor = "black",
+  hoverOpacity = 0.8,
   ...rest
 }: ButtonProps) => {
   const CSSVariables = {
@@ -44,17 +46,17 @@ export const Button = ({
     <button
       className={clsx(styles.container, className)}
       style={{
-        width: `${width ?? 100}%`,
-        height: height !== undefined ? `${height}rem` : "auto",
-        borderRadius: `${borderRadius ?? 0}px`,
-        borderWidth: `${borderWidth ?? 1}px`,
-        fontSize: `${fontSize ?? 1}rem`,
-        fontWeight: fontWeight ?? 400,
+        width: isNumber(width) ? toPercentage(width) : width,
+        height: isNumber(height) ? toRem(height) : height,
+        borderRadius: toPx(borderRadius),
+        borderWidth: toPx(borderWidth),
+        fontSize: toRem(fontSize),
+        fontWeight,
         alignSelf,
         padding,
-        color: color ?? "black",
-        backgroundColor: backgroundColor ?? "white",
-        borderColor: borderColor ?? "black",
+        color,
+        backgroundColor,
+        borderColor,
         ...CSSVariables,
       }}
       {...rest}

@@ -1,10 +1,12 @@
 import { CSSProperties, InputHTMLAttributes } from "react";
 import styles from "./checkbox.module.css";
 import clsx from "clsx";
+import { FontWeight } from "../types";
+import { toPx, toRem } from "../utils";
 
 export type CheckboxProps = Omit<InputHTMLAttributes<HTMLInputElement>, "type"> & {
   label: string;
-  labelWeight?: 400 | 500 | 600 | 700 | 800 | 900;
+  labelFontWeight?: FontWeight;
   labelColor?: string;
   borderWidth?: number;
   borderColor?: string;
@@ -19,19 +21,19 @@ export type CheckboxProps = Omit<InputHTMLAttributes<HTMLInputElement>, "type"> 
 export const Checkbox = ({
   className,
   label,
-  labelWeight,
+  labelFontWeight = 400,
   labelColor,
-  borderWidth,
+  borderWidth = 1,
   borderColor,
   checkColor,
   checkBackgroundColor,
   iconSize,
-  size,
-  gap,
+  size = 1,
+  gap = 0.2,
   ...rest
 }: CheckboxProps) => {
   const CSSVariables = {
-    "--checkbox-size": `${size ?? 1}rem`,
+    "--checkbox-size": toRem(size),
     "--checkbox-color-check": checkColor,
     "--checkbox-background-color-checked": checkBackgroundColor,
   } as CSSProperties;
@@ -39,14 +41,14 @@ export const Checkbox = ({
   return (
     <label
       className={clsx(styles.container, className)}
-      style={{ fontWeight: labelWeight ?? 400, gap: `${gap ?? 0.2}rem`, ...CSSVariables }}
+      style={{ fontWeight: labelFontWeight, gap: toRem(gap), ...CSSVariables }}
     >
       <input
         className={clsx(styles.input, iconSize && styles[`icon-${iconSize}`])}
         type="checkbox"
         style={{
           borderColor,
-          borderWidth: `${borderWidth ?? 1}px`,
+          borderWidth: toPx(borderWidth),
         }}
         {...rest}
       ></input>

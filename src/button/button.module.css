@@ -4,6 +4,6 @@
   border-style: solid;
 
   &:hover {
-    opacity: var(--hover-opacity, 0.8);
+    opacity: var(--hover-opacity);
   }
 }

@@ -3,46 +3,54 @@ import clsx from "clsx";
 import styles from "./drop-zone.module.css";
 import UserIcon from "./assets/user.svg";
 import TrashIcon from "./assets/trash.svg";
+import { BorderStyle, FontWeight, Size } from "../types";
+import { isNumber, toPercentage, toPx, toRem } from "../utils";
 
 export type DropZoneProps = {
   onFileChanged: (file: File | undefined) => void;
   label?: string;
-  labelSize?: number;
-  labelWeight?: 400 | 500 | 600 | 700 | 800 | 900;
+  labelFontSize?: number;
+  labelFontWeight?: FontWeight;
   labelGap?: number;
   previewIcon?: string;
-  previewIconSize?: number;
+  previewIconWidth?: number;
   removeIcon?: string;
-  removeIconSize?: number;
+  removeIconWidth?: number;
   text?: string;
-  textSize?: number;
-  textWeight?: 400 | 500 | 600 | 700 | 800 | 900;
-  width?: number;
-  height?: number;
+  textFontSize?: number;
+  textFontWeight?: FontWeight;
+  width?: Size;
+  height?: Size;
   gap?: number;
   padding?: string;
-  borderSize?: number;
+  borderWidth?: number;
   borderColor?: string;
-  borderStyle?: "solid" | "dashed" | "dotted" | "double";
+  borderStyle?: BorderStyle;
   removeAriaLabel?: string;
   className?: string;
 };
 
 type NoFileProps = Pick<
   DropZoneProps,
-  "previewIcon" | "previewIconSize" | "text" | "textSize" | "textWeight"
+  "previewIcon" | "previewIconWidth" | "text" | "textFontSize" | "textFontWeight"
 >;
-const NoFile = ({ previewIcon, previewIconSize, text, textSize, textWeight }: NoFileProps) => (
+const NoFile = ({
+  previewIcon,
+  previewIconWidth = 50,
+  text,
+  textFontSize = 1,
+  textFontWeight = 400,
+}: NoFileProps) => (
   <>
     <img
       className={styles["preview-icon"]}
       src={previewIcon ?? UserIcon}
-      style={{ width: `${previewIconSize ?? 50}px` }}
+      style={{ width: toPx(previewIconWidth) }}
     ></img>
     {text && (
       <p
         className={styles.text}
-        style={{ fontSize: `${textSize ?? 1}rem`, fontWeight: textWeight ?? 400 }}
+        style={{ fontSize: toRem(textFontSize), fontWeight: textFontWeight }}
       >
         {text}
       </p>
@@ -59,21 +67,21 @@ const WithFile = ({ preview }: WithFileProps) =>
 export const DropZone = ({
   onFileChanged,
   label,
-  labelSize,
-  labelWeight,
-  labelGap,
+  labelFontSize = 1,
+  labelFontWeight = 400,
+  labelGap = 1,
   previewIcon,
-  previewIconSize,
+  previewIconWidth,
   removeIcon,
-  removeIconSize,
+  removeIconWidth = 50,
   text,
-  textSize,
-  textWeight,
-  width,
-  height,
-  gap,
+  textFontSize,
+  textFontWeight,
+  width = 100,
+  height = "auto",
+  gap = 1,
   padding,
-  borderSize,
+  borderWidth = 5,
   borderColor,
   borderStyle,
   removeAriaLabel,
@@ -133,15 +141,15 @@ export const DropZone = ({
     <div
       className={clsx(styles.container, className)}
       style={{
-        width: `${width ?? 100}%`,
-        height: height !== undefined ? `${height}px` : "auto",
-        gap: `${labelGap ?? 1}rem`,
+        width: isNumber(width) ? toPercentage(width) : width,
+        height: isNumber(height) ? toPx(height) : height,
+        gap: toRem(labelGap),
       }}
     >
       {label && (
         <div
           className={styles.label}
-          style={{ fontSize: `${labelSize ?? 1}rem`, fontWeight: labelWeight ?? 400 }}
+          style={{ fontSize: toRem(labelFontSize), fontWeight: labelFontWeight }}
         >
           {label}
         </div>
@@ -153,9 +161,9 @@ export const DropZone = ({
         onDragOver={handleOnDragOver}
         onDragLeave={() => setIsDragging(false)}
         style={{
-          gap: `${gap ?? 1}rem`,
+          gap: toRem(gap),
           padding,
-          borderWidth: `${borderSize ?? 5}px`,
+          borderWidth: toPx(borderWidth),
           borderStyle,
           borderColor,
         }}
@@ -163,7 +171,7 @@ export const DropZone = ({
         {preview ? (
           <WithFile preview={preview} />
         ) : (
-          <NoFile {...{ previewIcon, previewIconSize, text, textSize, textWeight }} />
+          <NoFile {...{ previewIcon, previewIconWidth, text, textFontSize, textFontWeight }} />
         )}
       </div>
 
@@ -177,7 +185,7 @@ export const DropZone = ({
             className={styles["remove-icon"]}
             src={removeIcon ?? TrashIcon}
             alt=""
-            style={{ width: `${removeIconSize ?? 50}px` }}
+            style={{ width: toPx(removeIconWidth) }}
           ></img>
         </button>
       )}

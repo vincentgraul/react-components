@@ -22,8 +22,8 @@
 
   &:focus + .fieldset {
     &:not(:global(.success), :global(.warning), :global(.error)) {
-      color: var(--focus-color, blue);
-      border-color: var(--focus-color, blue);
+      color: var(--focus-color);
+      border-color: var(--focus-color);
     }
   }
 }
@@ -37,18 +37,18 @@
   margin: 0;
 
   :global(&.success) {
-    border-color: var(--success-color, green);
-    color: var(--success-color, green);
+    border-color: var(--success-color);
+    color: var(--success-color);
   }
 
   :global(&.warning) {
-    border-color: var(--warning-color, orange);
-    color: var(--warning-color, orange);
+    border-color: var(--warning-color);
+    color: var(--warning-color);
   }
 
   :global(&.error) {
-    border-color: var(--error-color, red);
-    color: var(--error-color, red);
+    border-color: var(--error-color);
+    color: var(--error-color);
   }
 }
 
@@ -63,14 +63,14 @@
   margin-top: 5px;
 
   :global(&.success) {
-    color: var(--success-color, green);
+    color: var(--success-color);
   }
 
   :global(&.warning) {
-    color: var(--warning-color, orange);
+    color: var(--warning-color);
   }
 
   :global(&.error) {
-    color: var(--error-color, red);
+    color: var(--error-color);
   }
 }

@@ -4,7 +4,7 @@ import styles from "./select.module.css";
 import { SelectOptionWithoutId, SelectOption } from "./select.types";
 import { useOutsideAlerter } from "..";
 import ArrowBottomIcon from "./assets/arrow-down.svg?react";
-import { AlignItems, BorderStyle, FontWeight, Height, Width } from "../types";
+import { BorderStyle, Position, FontWeight, Size } from "../types";
 import { isNumber, toPercentage, toPx, toRem } from "../utils";
 
 export type SelectProps = {
@@ -13,13 +13,13 @@ export type SelectProps = {
   label?: string;
   labelFontSize?: number;
   labelFontWeight?: FontWeight;
-  labelAlignItems?: AlignItems;
+  labelAlignItems?: Position;
   labelMarginBottom?: number;
   selectedOptionFontWeight?: FontWeight;
   optionFontSize?: number;
   optionFontWeight?: FontWeight;
-  width?: Width;
-  height?: Height;
+  width?: Size;
+  height?: Size;
   color?: string;
   borderWidth?: number;
   borderStyle?: BorderStyle;

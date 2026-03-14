@@ -31,4 +31,5 @@
 
 .image {
   animation: loading var(--animation-duration) linear infinite;
+  height: auto;
 }

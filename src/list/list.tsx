@@ -1,13 +1,15 @@
 import { ReactNode } from "react";
-import styles from "./list.module.css";
 import clsx from "clsx";
+import styles from "./list.module.css";
+import { FontWeight } from "../types";
+import { toRem } from "../utils";
 
 export type ListItemProps = {
   icon: ReactNode;
   text: string;
-  textSize?: number;
+  textFontSize?: number;
   textColor?: string;
-  textWeight?: 400 | 500 | 600 | 700 | 800 | 900;
+  textFontWeight?: FontWeight;
   gap?: number;
   className?: string;
 };
@@ -16,26 +18,24 @@ export const ListItem = ({
   className,
   icon,
   text,
-  textSize,
+  textFontSize = 1,
   textColor,
-  textWeight,
-  gap,
-}: ListItemProps) => {
-  return (
-    <li className={clsx(styles.item, className)} style={{ gap: `${gap ?? 0.3}rem` }}>
-      {icon}
-      <span
-        style={{
-          fontSize: `${textSize ?? 1}rem`,
-          color: textColor,
-          fontWeight: textWeight ?? 400,
-        }}
-      >
-        {text}
-      </span>
-    </li>
-  );
-};
+  textFontWeight = 400,
+  gap = 0.3,
+}: ListItemProps) => (
+  <li className={clsx(styles.item, className)} style={{ gap: toRem(gap) }}>
+    {icon}
+    <span
+      style={{
+        fontSize: toRem(textFontSize),
+        color: textColor,
+        fontWeight: textFontWeight,
+      }}
+    >
+      {text}
+    </span>
+  </li>
+);
 
 export type ListProps = {
   children: ReactNode;
@@ -43,8 +43,8 @@ export type ListProps = {
   className?: string;
 };
 
-export const List = ({ className, children, gap }: ListProps) => (
-  <ul className={clsx(styles.list, className)} style={{ gap: `${gap ?? 0.5}rem` }}>
+export const List = ({ className, children, gap = 0.5 }: ListProps) => (
+  <ul className={clsx(styles.list, className)} style={{ gap: toRem(gap) }}>
     {children}
   </ul>
 );
