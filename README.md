@@ -27,6 +27,7 @@
 | Checkbox           | React component used to display a checkbox                                          |
 | List               | React component used to display a list                                              |
 | Text               | React component used to display a text                                              |
+| Radio              | React component used to display a radio                                             |
 
 ## License
 
