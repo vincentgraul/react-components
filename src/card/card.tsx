@@ -1,13 +1,13 @@
 import { ReactNode } from "react";
 import clsx from "clsx";
 import styles from "./card.module.css";
-import { Position, FontWeight, Size, Title } from "../types";
+import { Position, FontWeight, Size, Text } from "../types";
 import { isNumber, toPercentage, toPx, toRem } from "../utils";
 
 export type CardProps = {
   children: ReactNode;
   title?: string;
-  titleAs?: Title;
+  titleAs?: Text;
   titleFontSize?: number;
   titleFontWeight?: FontWeight;
   titleColor?: string;

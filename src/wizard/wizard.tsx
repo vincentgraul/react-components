@@ -2,12 +2,12 @@ import { ReactElement, useState, Children, ElementType } from "react";
 import clsx from "clsx";
 import styles from "./wizard.module.css";
 import { StepProps } from "./wizard.types";
-import { FontWeight, Position, Title } from "../types";
+import { FontWeight, Position, Text } from "../types";
 import { toRem } from "../utils";
 
 type HeaderProps = {
   titles?: string[];
-  titleAs?: Title;
+  titleAs?: Text;
   titleFontSize?: number;
   titleFontWeight?: FontWeight;
   stepIndicatorFontWeight?: FontWeight;

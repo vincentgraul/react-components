@@ -1,15 +1,17 @@
 import { ReactNode } from "react";
 import clsx from "clsx";
 import styles from "./text.module.css";
+import { FontStyle, FontWeight, Position, Text as TextType } from "../types";
+import { toRem } from "../utils";
 
 export type TextProps = {
   children: ReactNode;
   fontSize?: number;
-  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "span" | "p";
-  fontWeight?: 400 | 500 | 600 | 700 | 800 | 900;
-  textAlign?: "left" | "center" | "right" | "justify";
+  as?: TextType;
+  fontWeight?: FontWeight;
+  textAlign?: Position;
   lineHeight?: number;
-  fontStyle?: "normal" | "italic" | "oblique";
+  fontStyle?: FontStyle;
   color?: string;
   className?: string;
 };
@@ -17,29 +19,25 @@ export type TextProps = {
 export const Text = ({
   className,
   children,
-  fontSize,
-  as,
-  fontWeight,
-  lineHeight,
-  textAlign,
-  fontStyle,
+  fontSize = 1,
+  as: TextAs = "p",
+  fontWeight = 400,
+  lineHeight = 1.5,
+  textAlign = "start",
+  fontStyle = "normal",
   color,
-}: TextProps) => {
-  const TextAs = as ?? "p";
-
-  return (
-    <TextAs
-      className={clsx(styles.container, className)}
-      style={{
-        fontSize: `${fontSize ?? 1}rem`,
-        fontWeight: fontWeight ?? 400,
-        lineHeight: `${lineHeight ?? 1.5}rem`,
-        textAlign: textAlign ?? "left",
-        fontStyle: fontStyle ?? "normal",
-        color: color ?? "black",
-      }}
-    >
-      {children}
-    </TextAs>
-  );
-};
+}: TextProps) => (
+  <TextAs
+    className={clsx(styles.container, className)}
+    style={{
+      fontSize: toRem(fontSize),
+      fontWeight,
+      lineHeight: toRem(lineHeight),
+      textAlign,
+      fontStyle,
+      color,
+    }}
+  >
+    {children}
+  </TextAs>
+);

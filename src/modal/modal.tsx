@@ -2,14 +2,14 @@ import { ElementType, ReactNode, useEffect, useRef } from "react";
 import clsx from "clsx";
 import styles from "./modal.module.css";
 import { useOutsideAlerter } from "..";
-import { FontWeight, Position, Title } from "../types";
+import { FontWeight, Position, Text } from "../types";
 import CloseIcon from "./assets/close.svg?react";
 import { toRem } from "../utils";
 
 export type ModalProps = {
   children: ReactNode;
   title?: string;
-  titleAs?: Title;
+  titleAs?: Text;
   titleFontSize?: number;
   titleFontWeight?: FontWeight;
   titleColor?: string;
