@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import clsx from "clsx";
 import styles from "./card.module.css";
-import { Position, FontWeight, Size, Text } from "../types";
+import { Position, FontWeight, Size, Text, BorderStyle } from "../types";
 import { isNumber, toPercentage, toPx, toRem } from "../utils";
 
 export type CardProps = {
@@ -15,6 +15,9 @@ export type CardProps = {
   titleGap?: number;
   backgroundColor?: string;
   borderRadius?: number;
+  borderWidth?: number;
+  borderStyle?: BorderStyle;
+  borderColor?: string;
   padding?: string;
   width?: Size;
   height?: Size;
@@ -33,6 +36,9 @@ export const Card = ({
   titleGap = 2,
   backgroundColor,
   borderRadius = 0,
+  borderWidth = 0,
+  borderStyle = "solid",
+  borderColor,
   width = 100,
   height = "auto",
   padding,
@@ -40,9 +46,12 @@ export const Card = ({
   <div
     className={clsx(styles.container, className)}
     style={{
-      borderRadius: toPx(borderRadius),
       width: isNumber(width) ? toPercentage(width) : width,
       height: isNumber(height) ? toRem(height) : height,
+      borderRadius: toPx(borderRadius),
+      borderWidth: toPx(borderWidth),
+      borderStyle,
+      borderColor,
       gap: toRem(titleGap),
       backgroundColor,
       padding,

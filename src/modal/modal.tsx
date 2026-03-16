@@ -15,6 +15,7 @@ export type ModalProps = {
   titleColor?: string;
   titleJustifyContent?: Position;
   titleMarginBottom?: number;
+  overlayBackgroundColor?: string;
   hasCloseIcon?: boolean;
   closeIcon?: ReactNode;
   closeIconColor?: string;
@@ -41,14 +42,15 @@ export const Modal = ({
   titleAs: Title = "h2",
   titleFontSize = 1.5,
   titleFontWeight = 700,
-  titleColor = "black",
+  titleColor,
   titleJustifyContent,
   titleMarginBottom = 2,
+  overlayBackgroundColor = "rgba(0, 0, 0, 0.5)",
   hasCloseIcon,
   closeIcon,
   closeIconColor,
   closeIconMarginBottom = 1,
-  backgroundColor = "#f9fbff",
+  backgroundColor = "rgb(255, 255, 255)",
   padding,
   ConfirmButton,
   confirmButtonText,
@@ -95,7 +97,10 @@ export const Modal = ({
   };
 
   return (
-    <div className={clsx(styles.overlay, className)}>
+    <div
+      className={clsx(styles.overlay, className)}
+      style={{ backgroundColor: overlayBackgroundColor }}
+    >
       <div className={styles.container} ref={ref} style={{ backgroundColor, padding }}>
         {hasCloseIcon
           ? (closeIcon ?? (

@@ -46,12 +46,12 @@ export const Select = ({
   optionFontWeight = 400,
   width = 100,
   height = 3,
-  color = "black",
+  color,
   borderWidth = 1,
   borderStyle = "solid",
-  backgroundColor = "transparent",
-  hoverOptionBackgroundColor = "#ecf0f1",
-  hoverOptionColor = "black",
+  backgroundColor,
+  hoverOptionBackgroundColor = "rgba(50, 115, 255, 0.08)",
+  hoverOptionColor,
   hoverFontWeight = 400,
   icon,
   onChange,
@@ -155,7 +155,8 @@ export const Select = ({
             className={styles["selected-option-arrow-container"]}
             style={{
               borderLeftStyle: borderStyle,
-              borderWidth: toPx(borderWidth),
+              borderLeftWidth: toPx(borderWidth),
+              borderLeftColor: color,
             }}
           >
             <ArrowBottomIcon className={styles["selected-option-arrow"]} style={{ color }} />

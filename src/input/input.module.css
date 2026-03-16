@@ -18,7 +18,6 @@
   background-color: transparent;
   outline: none;
   z-index: 1;
-  color: black;
 
   &:focus + .fieldset {
     &:not(:global(.success), :global(.warning), :global(.error)) {

@@ -24,8 +24,8 @@ export const Radio = ({
   size = 1.5,
   borderStyle = "solid",
   borderColor,
-  checkedBorderColor = "#3273FF",
-  checkedBackgroundColor = "#3273FF",
+  checkedBorderColor = "rgb(50, 115, 255)",
+  checkedBackgroundColor = "rgb(50, 115, 255)",
   checkedLabelColor,
   className,
   ...rest
