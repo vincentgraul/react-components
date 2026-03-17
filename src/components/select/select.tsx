@@ -61,7 +61,6 @@ export const Select = ({
     "--hover-text-color": hoverOptionColor,
     "--hover-text-weight": hoverFontWeight,
   } as CSSProperties;
-
   const options = optionsProps.map((option: SelectOptionWithoutId, index: number) => ({
     ...option,
     id: index,
@@ -69,7 +68,9 @@ export const Select = ({
   const hasOneOption = options.length < 2;
 
   const [isListVisible, setListVisibility] = useState<boolean>(false);
-  const [selectedOption, setSelectedOption] = useState<SelectOption | null>(null);
+  const [selectedOption, setSelectedOption] = useState<SelectOption>(
+    options.find((option) => option.value === selectedValue) ?? options[0],
+  );
   const ref = useRef(null);
   const { hasClickedOutside, onReset: onResetOutsideAlerter } = useOutsideAlerter(ref);
 
@@ -86,13 +87,6 @@ export const Select = ({
       onChange(option);
     }
   };
-
-  useEffect(() => {
-    if (!selectedOption) {
-      const value = options.find((option) => option.value === selectedValue) ?? options[0];
-      setSelectedOption(value);
-    }
-  }, [options]);
 
   useEffect(() => {
     if (hasClickedOutside) {

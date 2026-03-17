@@ -32,7 +32,7 @@ export const Text = ({
     style={{
       fontSize: toRem(fontSize),
       fontWeight,
-      lineHeight: toRem(lineHeight),
+      lineHeight,
       textAlign,
       fontStyle,
       color,
