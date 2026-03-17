@@ -1,11 +1,7 @@
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useMatchResolution } from "../../../src";
 
-export default {
-  title: "useMatchResolution",
-  component: useMatchResolution,
-};
-
-export const Basic = () => {
+const ComponentWithUseMatchResolution = () => {
   const { resolution } = useMatchResolution();
 
   return (
@@ -29,3 +25,12 @@ export const Basic = () => {
     </div>
   );
 };
+
+const meta = {
+  component: ComponentWithUseMatchResolution,
+} satisfies Meta<typeof useMatchResolution>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Basic: Story = {};

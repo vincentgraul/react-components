@@ -1,12 +1,8 @@
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useRef } from "react";
 import { useOutsideAlerter } from "../../../src";
 
-export default {
-  title: "useOutsideAlerter",
-  component: useOutsideAlerter,
-};
-
-export const Basic = () => {
+const ComponentWithUseOutsideAlerter = () => {
   const ref = useRef(null);
   const { hasClickedOutside } = useOutsideAlerter(ref);
 
@@ -17,3 +13,12 @@ export const Basic = () => {
     </div>
   );
 };
+
+const meta = {
+  component: ComponentWithUseOutsideAlerter,
+} satisfies Meta<typeof useOutsideAlerter>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Basic: Story = {};

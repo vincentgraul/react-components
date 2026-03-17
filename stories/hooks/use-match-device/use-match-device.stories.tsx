@@ -1,11 +1,7 @@
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useMatchDevice, Device } from "../../../src";
 
-export default {
-  title: "useMatchDevice",
-  component: useMatchDevice,
-};
-
-export const Basic = () => {
+const ComponentWithUseMatchDevice = () => {
   const device: Device = useMatchDevice(navigator.userAgent);
 
   return (
@@ -20,3 +16,12 @@ export const Basic = () => {
     </div>
   );
 };
+
+const meta = {
+  component: ComponentWithUseMatchDevice,
+} satisfies Meta<typeof useMatchDevice>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Basic: Story = {};
