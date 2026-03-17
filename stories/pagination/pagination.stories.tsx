@@ -1,85 +1,61 @@
-import { usePagination, Pagination } from "../../src";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { usePagination, Pagination, usePaginationProps } from "../../src";
+import DoubleLeftArrowIcon from "./assets/double-left-arrow.svg?react";
+import DoubleRightArrowIcon from "./assets/double-right-arrow.svg?react";
+import SingleLeftArrowIcon from "./assets/single-left-arrow.svg?react";
+import SingleRightArrowIcon from "./assets/single-right-arrow.svg?react";
 
-export default {
-  title: "Pagination",
-  component: Pagination,
-};
-
-export const Basic = () => {
-  const pagination = usePagination({ page: 1, totalRecords: 15 });
+const PaginationWithHook = (props: usePaginationProps) => {
+  const pagination = usePagination(props);
   return <Pagination {...pagination} />;
 };
 
-export const WithOnePage = () => {
-  const pagination = usePagination({ page: 1, totalRecords: 5 });
-  return <Pagination {...pagination} />;
+const meta = {
+  component: PaginationWithHook,
+} satisfies Meta<typeof PaginationWithHook>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Basic: Story = {
+  args: {
+    page: 1,
+    totalRecords: 15,
+  },
 };
 
-export const WithMultiplePages = () => {
-  const pagination = usePagination({ page: 1, totalRecords: 150 });
-  return <Pagination {...pagination} />;
+export const WithOnePage: Story = {
+  args: {
+    page: 1,
+    totalRecords: 5,
+  },
 };
 
-export const WithSingleArrow = () => {
-  const pagination = usePagination({ page: 1, totalRecords: 150 });
-
-  return (
-    <Pagination
-      {...pagination}
-      renderSingleArrow={(position) => (position === "left" ? "<" : ">")}
-    />
-  );
+export const WithMultiplePages: Story = {
+  args: {
+    page: 1,
+    totalRecords: 150,
+  },
 };
 
-export const WithMultipleArrow = () => {
-  const pagination = usePagination({ page: 1, totalRecords: 150 });
+export const WithCustomArrows: Story = {
+  args: {
+    page: 1,
+    totalRecords: 150,
+  },
+  render: () => {
+    const pagination = usePagination({ page: 1, totalRecords: 150 });
 
-  return (
-    <Pagination
-      {...pagination}
-      renderDoubleArrow={(position) => (position === "left" ? "<<" : ">>")}
-    />
-  );
-};
-
-export const WithSingleAndMultipleArrows = () => {
-  const pagination = usePagination({ page: 1, totalRecords: 150 });
-
-  return (
-    <Pagination
-      {...pagination}
-      renderSingleArrow={(position) => (position === "left" ? "<" : ">")}
-      renderDoubleArrow={(position) => (position === "left" ? "<<" : ">>")}
-    />
-  );
-};
-
-export const WithSingleAndMultipleArrowsImage = () => {
-  const pagination = usePagination({ page: 1, totalRecords: 150 });
-
-  return (
-    <Pagination
-      {...pagination}
-      renderSingleArrow={(position) => (
-        <img
-          style={{ minWidth: 0, minHeight: 0, width: "0.5rem" }}
-          src={
-            position === "left"
-              ? "./assets/single-left-arrow.svg"
-              : "./assets/single-right-arrow.svg"
-          }
-        />
-      )}
-      renderDoubleArrow={(position) => (
-        <img
-          style={{ minWidth: 0, minHeight: 0, width: "0.8rem" }}
-          src={
-            position === "left"
-              ? "./assets/double-left-arrow.svg"
-              : "./assets/double-right-arrow.svg"
-          }
-        />
-      )}
-    />
-  );
+    return (
+      <Pagination
+        {...pagination}
+        renderSingleArrow={(position) =>
+          position === "left" ? <SingleLeftArrowIcon /> : <SingleRightArrowIcon />
+        }
+        renderDoubleArrow={(position) =>
+          position === "left" ? <DoubleLeftArrowIcon /> : <DoubleRightArrowIcon />
+        }
+      ></Pagination>
+    );
+  },
 };
