@@ -1,35 +1,24 @@
-import { useEffect, useState } from "react";
-import { BreadcrumbType, BreadcrumbElementType } from "./breadcrumb.types";
+import { BreadcrumbItem } from "./breadcrumb.types";
+
+export type useBreadcrumbProps = {
+  url?: URL;
+  mapping?: {
+    path: string;
+    label: string;
+  }[];
+};
 
 export const useBreadcrumb = ({
   url = new URL(location.href),
   mapping,
-}: BreadcrumbType): BreadcrumbElementType[] => {
-  const [elements, setElements] = useState<BreadcrumbElementType[]>([]);
+}: useBreadcrumbProps): BreadcrumbItem[] => {
+  const paths = url.pathname.split("/").slice(1);
+  let previousPath = "";
 
-  const prepareElements = (paths: string[]) => {
-    let previousPath: string = "";
-    paths.shift();
-
-    return paths.map((path: string) => {
-      let label: string = path;
-      const url = `${previousPath}/${path}`;
-      previousPath = url;
-
-      if (mapping) {
-        const value = mapping.find((value) => value.url === path);
-        label = value ? value.label : path;
-      }
-
-      return { label, url };
-    });
-  };
-
-  useEffect(() => {
-    const paths: string[] = url.pathname.split("/");
-
-    setElements(prepareElements(paths));
-  }, [url]);
-
-  return elements;
+  return paths.map((path) => {
+    const label = mapping?.find(({ path: mappingPath }) => path === mappingPath)?.label ?? path;
+    const currentPath = `${previousPath}/${path}`;
+    previousPath = currentPath;
+    return { label, url: currentPath };
+  });
 };

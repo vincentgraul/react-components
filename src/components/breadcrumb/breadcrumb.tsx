@@ -1,48 +1,64 @@
-import { Fragment, ReactNode } from "react";
+import { ReactNode } from "react";
 import clsx from "clsx";
 import styles from "./breadcrumb.module.css";
 import ArrowRightIcon from "./assets/arrow-right.svg?react";
-import { useBreadcrumb } from "./use-breadcrumb";
-import type { BreadcrumbType, BreadcrumbElementType } from "./breadcrumb.types";
-import { toPx } from "../../utils";
+import { useBreadcrumb, useBreadcrumbProps } from "./use-breadcrumb";
+import type { BreadcrumbItem } from "./breadcrumb.types";
+import { toPx, toRem } from "../../utils";
 
-export type BreadcrumbProps = BreadcrumbType & {
-  onClick: (element: BreadcrumbElementType) => void;
+export type BreadcrumbProps = {
+  config: useBreadcrumbProps;
+  onClick: (element: BreadcrumbItem) => void;
+  color?: string;
+  fontSize?: number;
   icon?: ReactNode;
   iconWidth?: number;
+  iconMargin?: number;
   className?: string;
 };
 
 export const Breadcrumb = ({
-  className,
+  config,
   onClick,
   icon,
   iconWidth = 50,
-  url,
-  mapping,
+  iconMargin = 1,
+  color,
+  fontSize = 2,
+  className,
 }: BreadcrumbProps) => {
-  const elements: BreadcrumbElementType[] = useBreadcrumb({ url, mapping });
+  const items: BreadcrumbItem[] = useBreadcrumb(config);
 
   return (
-    <div className={clsx(styles.container, className)}>
-      {elements.map((element: BreadcrumbElementType, index: number) => (
-        <Fragment key={element.label}>
-          <a className={styles.link} onClick={() => onClick(element)}>
-            {element.label}
-          </a>
+    <nav aria-label="breadcrumb" className={clsx(styles.container, className)}>
+      <ol className={styles["list-item"]}>
+        {items.map((item, index) => (
+          <li key={item.url} className={styles.item}>
+            <a
+              className={styles.link}
+              onClick={() => onClick(item)}
+              style={{ color, fontSize: toRem(fontSize) }}
+              href={item.url}
+            >
+              {item.label}
+            </a>
 
-          {index < elements.length - 1 && (
-            <>
-              {icon ?? (
-                <ArrowRightIcon
-                  className={styles.arrow}
-                  style={{ width: toPx(iconWidth) }}
-                ></ArrowRightIcon>
-              )}
-            </>
-          )}
-        </Fragment>
-      ))}
-    </div>
+            {index < items.length - 1 && (
+              <span aria-hidden>
+                {icon ?? (
+                  <ArrowRightIcon
+                    style={{
+                      width: toPx(iconWidth),
+                      marginLeft: toRem(iconMargin),
+                      marginRight: toRem(iconMargin),
+                    }}
+                  />
+                )}
+              </span>
+            )}
+          </li>
+        ))}
+      </ol>
+    </nav>
   );
 };

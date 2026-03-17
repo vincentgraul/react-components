@@ -1,12 +1,4 @@
-export type BreadcrumbElementType = {
+export type BreadcrumbItem = {
   label: string;
   url: string;
-};
-
-export type BreadcrumbType = {
-  url?: URL;
-  mapping?: {
-    url: string;
-    label: string;
-  }[];
 };
