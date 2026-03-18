@@ -10,14 +10,6 @@ export type PaginationProps = PaginationData & {
   className?: string;
 };
 
-/**
- * React component used to display a pagination (with numbers).
- * @public
- * @param props - An object which contains:
- * - properties inherited from the Pagination interface in usePagination hook
- * - some properties to customise the rendering
- * @returns A React component.
- */
 export const Pagination = ({
   className,
   page,

@@ -2,6 +2,7 @@ import { ReactNode, PropsWithChildren } from "react";
 import clsx from "clsx";
 import styles from "./table.module.css";
 import { Column } from "./table.types";
+import { ObjectLiteral, Primitive } from "./table.types";
 
 export type TableProps<T> = {
   columns: Column[];
@@ -17,15 +18,6 @@ export type TableProps<T> = {
   className?: string;
 };
 
-/**
- * React component used to display a data table.
- * @public
- * @param props - An Object which contains:
- * - columns: the table columns
- * - records: the table records
- * - some properties to customise the rendering
- * @returns A React component.
- */
 export const Table = <T,>({
   className,
   columns,

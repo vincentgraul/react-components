@@ -22,7 +22,6 @@
   "scripts": {
     "build": "npm run lint && vite build",
     "test": "jest",
-    "doc": "typedoc",
     "lint": "eslint src",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
@@ -32,16 +31,13 @@
     "react-dom": "^19.2.4"
   },
   "dependencies": {
-    "@vincentgraul/types": "^1.0.3",
     "@vincentgraul/utils": "^1.0.7",
     "clsx": "^2.1.1",
-    "intersection-observer": "^0.12.2",
     "ua-parser-js": "^2.0.9"
   },
   "devDependencies": {
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "@types/ua-parser-js": "^0.7.39",
     "@eslint/eslintrc": "^3.3.4",
     "@eslint/js": "^10.0.1",
     "@storybook/react": "^10.2.13",
@@ -62,7 +58,6 @@
     "prettier": "^3.8.1",
     "storybook": "^10.2.13",
     "ts-jest": "^29.4.6",
-    "typedoc": "^0.28.17",
     "typescript": "^5.9.3",
     "vite": "^8.0.0",
     "vite-plugin-dts": "^4.5.4",

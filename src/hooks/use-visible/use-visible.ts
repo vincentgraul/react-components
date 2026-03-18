@@ -1,11 +1,5 @@
 import { useEffect, useState, RefObject } from "react";
 
-/**
- * React hook to know if an element is visible.
- * @public
- * @param target - The target where you want to identify its visibility.
- * @returns The visibility of the target.
- */
 export const useVisible = (target: RefObject<HTMLElement>): boolean => {
   const [isVisible, setVisibility] = useState<boolean>(false);
 

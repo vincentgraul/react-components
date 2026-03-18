@@ -18,16 +18,6 @@ export const defaultBreakpoints: Breakpoints = {
   landscape: "(orientation: landscape)",
 };
 
-/**
- * React hook to detect the resolution (desktop, laptop, tablet, mobile...).
- * @public
- * @param breakpoints - List of breakpoints (used for determine when a resolution is a "desktop", a "laptop" etc.).
- * @param UA - The user agent (used for determine the resolution in case of SSR).
- * @returns An object with three properties:
- * - resolution: object with multiple properties (isDesktop, isLaptop...) used for know the current resolution
- * - breakpoints: the breakpoints passed as parameters
- * - match: function used to detect the current resolution with a custom breakpoint
- */
 export const useMatchResolution = (
   breakpoints: Breakpoints = defaultBreakpoints,
   UA: string = "",
