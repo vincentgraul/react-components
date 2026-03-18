@@ -29,10 +29,6 @@ export const CountrySelector = ({
     };
   });
 
-  if (!options) {
-    return null;
-  }
-
   return (
     <Select
       className={className}

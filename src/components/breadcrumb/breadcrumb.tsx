@@ -2,8 +2,7 @@ import { ReactNode } from "react";
 import clsx from "clsx";
 import styles from "./breadcrumb.module.css";
 import ArrowRightIcon from "./assets/arrow-right.svg?react";
-import { useBreadcrumb, useBreadcrumbProps } from "./use-breadcrumb";
-import type { BreadcrumbItem } from "./breadcrumb.types";
+import { useBreadcrumb, useBreadcrumbProps, BreadcrumbItem } from "../..";
 import { toPx, toRem } from "../../utils";
 
 export type BreadcrumbProps = {

@@ -25,10 +25,10 @@ export const Pagination = ({
   renderDoubleArrow,
 }: PaginationProps) => {
   const CSSVariables = {
-    "--hover-background-color": colors?.hover.background,
-    "--hover-text-color": colors?.hover.text,
-    "--selected-background-color": colors?.selected.background,
-    "--selected-text-color": colors?.selected.text,
+    "--hover-background-color": colors?.hover.background ?? "rgb(211, 211, 211)",
+    "--hover-text-color": colors?.hover.text ?? "rgb(0, 0, 0)",
+    "--selected-background-color": colors?.selected.background ?? "rgb(0, 0, 0)",
+    "--selected-text-color": colors?.selected.text ?? "rgb(255, 255, 255)",
   } as CSSProperties;
 
   return (
@@ -49,10 +49,10 @@ export const Pagination = ({
         </>
       )}
 
-      {items.map((currentPage: number, index: number) => (
+      {items.map((currentPage: number) => (
         <div
           className={clsx(styles.item, currentPage === page && styles.selected)}
-          key={index}
+          key={currentPage}
           onClick={() => goToPage(currentPage)}
         >
           {currentPage}

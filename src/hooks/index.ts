@@ -4,3 +4,4 @@ export * from "./use-outside-alerter";
 export * from "./use-pagination";
 export * from "./use-scroll-to";
 export * from "./use-visible";
+export * from "./use-breadcrumb";

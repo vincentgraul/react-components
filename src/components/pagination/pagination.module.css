@@ -1,9 +1,4 @@
 .container {
-  --hover-background-color: lightgrey;
-  --hover-text-color: black;
-  --selected-background-color: black;
-  --selected-text-color: white;
-
   display: flex;
 }
 

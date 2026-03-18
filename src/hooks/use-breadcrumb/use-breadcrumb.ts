@@ -1,4 +1,4 @@
-import { BreadcrumbItem } from "./breadcrumb.types";
+import { BreadcrumbItem } from "./use-breadcrumb.types";
 
 export type useBreadcrumbProps = {
   url?: URL;
