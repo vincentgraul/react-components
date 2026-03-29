@@ -53,7 +53,7 @@ export const WithCustomColumnsRow: Story = {
 
 export const WithCustomColumnsCell: Story = {
   args: {
-    renderColumnsCell: (columns, key) => <Th key={`${columns.name}-${key}`}>- {columns.name} -</Th>,
+    renderColumnsCell: (columns, key) => <Th key={key}>- {columns.name} -</Th>,
   },
 };
 

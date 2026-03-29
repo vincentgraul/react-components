@@ -9,7 +9,7 @@
 | useMatchDevice     | React hook to detect the device (mobile, tablet or desktop) based on the user agent |
 | useScrollTo        | React hook to scroll to an element                                                  |
 | usePagination      | React hook to manage pagination                                                     |
-| useBreacrumb       | React hook to manage breadcrumb                                                     |
+| useBreadcrumb      | React hook to manage breadcrumb                                                     |
 | Table              | React component used to display a data table                                        |
 | Pagination         | React component used to display a pagination (with numbers)                         |
 | useOutsideAlerter  | React hook to know if an click has been triggered outside an element                |

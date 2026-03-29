@@ -17,5 +17,10 @@
 }
 
 .link {
+  cursor: pointer;
   text-decoration: none;
+}
+
+.icon {
+  height: auto;
 }

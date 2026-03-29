@@ -42,16 +42,13 @@ export const Loader = ({
       style={{ backgroundColor: overlayBackgroundColor, ...CSSVariables }}
     >
       <div className={styles.container} style={{ gap: toRem(iconGap), color }}>
-        {hasIcon && (
-          <>
-            {icon ?? (
-              <LoaderIcon
-                className={styles.image}
-                style={{ width: toPx(iconWidth), color: iconColor }}
-              ></LoaderIcon>
-            )}
-          </>
-        )}
+        {hasIcon &&
+          (icon ?? (
+            <LoaderIcon
+              className={styles.image}
+              style={{ width: toPx(iconWidth), color: iconColor }}
+            ></LoaderIcon>
+          ))}
         {text && <span style={{ fontWeight }}>{text}</span>}
       </div>
     </div>

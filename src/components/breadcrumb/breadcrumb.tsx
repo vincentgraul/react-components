@@ -37,7 +37,6 @@ export const Breadcrumb = ({
               className={styles.link}
               onClick={() => onClick(item)}
               style={{ color, fontSize: toRem(fontSize) }}
-              href={item.url}
             >
               {item.label}
             </a>
@@ -46,6 +45,7 @@ export const Breadcrumb = ({
               <span aria-hidden>
                 {icon ?? (
                   <ArrowRightIcon
+                    className={styles.icon}
                     style={{
                       width: toPx(iconWidth),
                       marginLeft: toRem(iconMargin),

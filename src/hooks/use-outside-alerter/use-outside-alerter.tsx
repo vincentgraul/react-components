@@ -11,11 +11,8 @@ export const useOutsideAlerter = (ref: RefObject<HTMLElement | null>): OutsideAl
   useEffect(() => {
     const handleOnClickOutside = (event: MouseEvent) => {
       if (event.target && ref.current) {
-        const value: boolean = !ref.current.contains(event.target as Node);
-
-        if (value !== hasClickedOutside) {
-          setClickedOutside(value);
-        }
+        const value = !ref.current.contains(event.target as Node);
+        setClickedOutside(value);
       }
     };
 
@@ -23,7 +20,7 @@ export const useOutsideAlerter = (ref: RefObject<HTMLElement | null>): OutsideAl
     return () => {
       document.removeEventListener("mousedown", handleOnClickOutside);
     };
-  }, [ref, hasClickedOutside]);
+  }, [ref]);
 
   return { hasClickedOutside, onReset: handleOnReset };
 };

@@ -4,9 +4,10 @@ import styles from "./table.module.css";
 import { Column } from "./table.types";
 import { ObjectLiteral, Primitive } from "./table.types";
 
-export type TableProps<T> = {
+export type TableProps<T extends ObjectLiteral> = {
   columns: Column[];
   records: T[];
+  uniqueKey?: string;
   renderHeader?: () => ReactNode;
   renderFooter?: () => ReactNode;
   renderColumnsRow?: (columns: ReactNode) => ReactNode;
@@ -18,10 +19,11 @@ export type TableProps<T> = {
   className?: string;
 };
 
-export const Table = <T,>({
+export const Table = <T extends ObjectLiteral>({
   className,
   columns,
   records,
+  uniqueKey,
   renderHeader = () => null,
   renderFooter = () => null,
   renderColumnsRow = (columns: ReactNode) => <tr>{columns}</tr>,
@@ -33,22 +35,22 @@ export const Table = <T,>({
 }: TableProps<T>) => {
   const displayColumns = () =>
     renderColumnsRow(
-      columns.map((column: Column, index: number) => renderColumnsCell(column, `column-${index}`)),
+      columns.map((column: Column) => renderColumnsCell(column, `column-${column.name}`)),
     );
 
   const displayRows = () => {
-    const columnNames: string[] = columns.map((column: Column) => column.name);
+    const columnNames = columns.map((column) => column.name);
 
-    return records.map((record: T, rowIndex: number) => {
-      const cells: Primitive[] = columnNames.map((name: string) => (record as ObjectLiteral)[name]);
+    return records.map((record, index) => {
+      const rowKey = uniqueKey ? record[uniqueKey] : index;
 
       return renderRecordsRow(
-        cells.map((cell: Primitive, cellIndex: number) =>
-          cell
-            ? renderRecordsCell(cell, `cell-${cellIndex}`)
-            : renderRecordsEmptyCell(`cell-${cellIndex}`),
-        ),
-        `row-${rowIndex}`,
+        columnNames.map((name) => {
+          const cell = record[name];
+          const cellKey = `row-${rowKey}-cell-${name}`;
+          return cell ? renderRecordsCell(cell, cellKey) : renderRecordsEmptyCell(cellKey);
+        }),
+        `row-${rowKey}`,
       );
     });
   };
@@ -60,12 +62,10 @@ export const Table = <T,>({
       {records.length === 0 ? (
         renderNoRecords()
       ) : (
-        <>
-          <table className={styles.main}>
-            <thead>{displayColumns()}</thead>
-            <tbody className={styles.tbody}>{displayRows()}</tbody>
-          </table>
-        </>
+        <table className={styles.main}>
+          <thead>{displayColumns()}</thead>
+          <tbody className={styles.tbody}>{displayRows()}</tbody>
+        </table>
       )}
 
       {renderFooter()}
