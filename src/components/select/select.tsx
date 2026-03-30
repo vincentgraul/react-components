@@ -1,189 +1,192 @@
-import { CSSProperties, ReactNode, useEffect, useRef, useState } from "react";
 import clsx from "clsx";
-import styles from "./select.module.css";
-import { SelectOptionWithoutId, SelectOption } from "./select.types";
+import { type CSSProperties, type ReactNode, useEffect, useRef, useState } from "react";
 import { useOutsideAlerter } from "../..";
-import ArrowBottomIcon from "./assets/arrow-down.svg?react";
-import { BorderStyle, Position, FontWeight, Size } from "../../types";
+import type { BorderStyle, FontWeight, Position, Size } from "../../types";
 import { isNumber, toPercentage, toPx, toRem } from "../../utils";
+import ArrowBottomIcon from "./assets/arrow-down.svg?react";
+import styles from "./select.module.css";
+import type { SelectOption, SelectOptionWithoutId } from "./select.types";
 
 export type SelectProps = {
-  options: SelectOptionWithoutId[];
-  selectedValue?: string;
-  label?: string;
-  labelFontSize?: number;
-  labelFontWeight?: FontWeight;
-  labelAlignItems?: Position;
-  labelMarginBottom?: number;
-  selectedOptionFontWeight?: FontWeight;
-  optionFontSize?: number;
-  optionFontWeight?: FontWeight;
-  width?: Size;
-  height?: Size;
-  color?: string;
-  borderWidth?: number;
-  borderStyle?: BorderStyle;
-  backgroundColor?: string;
-  hoverOptionBackgroundColor?: string;
-  hoverOptionColor?: string;
-  hoverFontWeight?: FontWeight;
-  icon?: ReactNode;
-  onChange?: (option: SelectOption) => void;
-  className?: string;
+	options: SelectOptionWithoutId[];
+	selectedValue?: string;
+	label?: string;
+	labelFontSize?: number;
+	labelFontWeight?: FontWeight;
+	labelAlignItems?: Position;
+	labelMarginBottom?: number;
+	selectedOptionFontWeight?: FontWeight;
+	optionFontSize?: number;
+	optionFontWeight?: FontWeight;
+	width?: Size;
+	height?: Size;
+	color?: string;
+	borderWidth?: number;
+	borderStyle?: BorderStyle;
+	backgroundColor?: string;
+	hoverOptionBackgroundColor?: string;
+	hoverOptionColor?: string;
+	hoverFontWeight?: FontWeight;
+	icon?: ReactNode;
+	onChange?: (option: SelectOption) => void;
+	className?: string;
 };
 
 export const Select = ({
-  className,
-  options: optionsProps,
-  selectedValue,
-  label,
-  labelFontSize = 1,
-  labelFontWeight = 400,
-  labelAlignItems = "center",
-  labelMarginBottom = 1,
-  optionFontSize = 1,
-  selectedOptionFontWeight = 400,
-  optionFontWeight = 400,
-  width = 100,
-  height = 3,
-  color,
-  borderWidth = 1,
-  borderStyle = "solid",
-  backgroundColor,
-  hoverOptionBackgroundColor = "rgba(50, 115, 255, 0.08)",
-  hoverOptionColor,
-  hoverFontWeight = 400,
-  icon,
-  onChange,
+	className,
+	options: optionsProps,
+	selectedValue,
+	label,
+	labelFontSize = 1,
+	labelFontWeight = 400,
+	labelAlignItems = "center",
+	labelMarginBottom = 1,
+	optionFontSize = 1,
+	selectedOptionFontWeight = 400,
+	optionFontWeight = 400,
+	width = 100,
+	height = 3,
+	color,
+	borderWidth = 1,
+	borderStyle = "solid",
+	backgroundColor,
+	hoverOptionBackgroundColor = "rgba(50, 115, 255, 0.08)",
+	hoverOptionColor,
+	hoverFontWeight = 400,
+	icon,
+	onChange,
 }: SelectProps) => {
-  const CSSVariables = {
-    "--hover-background-color": hoverOptionBackgroundColor,
-    "--hover-text-color": hoverOptionColor,
-    "--hover-text-weight": hoverFontWeight,
-  } as CSSProperties;
-  const options = optionsProps.map((option: SelectOptionWithoutId, index: number) => ({
-    ...option,
-    id: index,
-  }));
-  const hasOneOption = options.length < 2;
+	const CSSVariables = {
+		"--hover-background-color": hoverOptionBackgroundColor,
+		"--hover-text-color": hoverOptionColor,
+		"--hover-text-weight": hoverFontWeight,
+	} as CSSProperties;
+	const options = optionsProps.map((option: SelectOptionWithoutId, index: number) => ({
+		...option,
+		id: index,
+	}));
+	const hasOneOption = options.length < 2;
 
-  const [isListVisible, setListVisibility] = useState<boolean>(false);
-  const [selectedOption, setSelectedOption] = useState<SelectOption>(
-    options.find((option) => option.value === selectedValue) ?? options[0],
-  );
-  const ref = useRef(null);
-  const { hasClickedOutside, onReset: onResetOutsideAlerter } = useOutsideAlerter(ref);
+	const [isListVisible, setListVisibility] = useState<boolean>(false);
+	const [selectedOption, setSelectedOption] = useState<SelectOption>(
+		options.find((option) => option.value === selectedValue) ?? options[0],
+	);
+	const ref = useRef(null);
+	const { hasClickedOutside, onReset: onResetOutsideAlerter } = useOutsideAlerter(ref);
 
-  const handleSelectedOptionClick = () => {
-    onResetOutsideAlerter();
-    setListVisibility(!isListVisible);
-  };
+	const handleSelectedOptionClick = () => {
+		onResetOutsideAlerter();
+		setListVisibility(!isListVisible);
+	};
 
-  const handleOptionClick = (option: SelectOption) => {
-    setSelectedOption(option);
-    setListVisibility(false);
+	const handleOptionClick = (option: SelectOption) => {
+		setSelectedOption(option);
+		setListVisibility(false);
 
-    if (onChange) {
-      onChange(option);
-    }
-  };
+		if (onChange) {
+			onChange(option);
+		}
+	};
 
-  useEffect(() => {
-    if (hasClickedOutside) {
-      setListVisibility(false);
-    }
-  }, [hasClickedOutside]);
+	useEffect(() => {
+		if (hasClickedOutside) {
+			setListVisibility(false);
+		}
+	}, [hasClickedOutside]);
 
-  if (!selectedOption) {
-    return null;
-  }
+	if (!selectedOption) {
+		return null;
+	}
 
-  return (
-    <div
-      className={clsx(styles.container, className)}
-      ref={ref}
-      style={{
-        width: isNumber(width) ? toPercentage(width) : width,
-        alignItems: labelAlignItems,
-        ...CSSVariables,
-      }}
-    >
-      {label && (
-        <span
-          style={{
-            fontSize: toRem(labelFontSize),
-            fontWeight: labelFontWeight,
-            marginBottom: toRem(labelMarginBottom),
-          }}
-        >
-          {label}
-        </span>
-      )}
+	return (
+		<div
+			className={clsx(styles.container, className)}
+			ref={ref}
+			style={{
+				width: isNumber(width) ? toPercentage(width) : width,
+				alignItems: labelAlignItems,
+				...CSSVariables,
+			}}
+		>
+			{label && (
+				<span
+					style={{
+						fontSize: toRem(labelFontSize),
+						fontWeight: labelFontWeight,
+						marginBottom: toRem(labelMarginBottom),
+					}}
+				>
+					{label}
+				</span>
+			)}
 
-      <div
-        className={styles["selected-option-container"]}
-        onClick={handleSelectedOptionClick}
-        style={{
-          borderWidth: toPx(borderWidth),
-          borderColor: color,
-          borderStyle,
-          backgroundColor,
-          color,
-          cursor: hasOneOption ? "default" : "pointer",
-          pointerEvents: hasOneOption ? "none" : "auto",
-          height: isNumber(height) ? toRem(height) : height,
-        }}
-      >
-        <span
-          className={styles["selected-option-text"]}
-          style={{
-            fontSize: toRem(optionFontSize),
-            fontWeight: selectedOptionFontWeight,
-            borderColor: color,
-          }}
-        >
-          {selectedOption.label}
-        </span>
-        {icon ?? (
-          <div
-            className={styles["selected-option-arrow-container"]}
-            style={{
-              borderLeftStyle: borderStyle,
-              borderLeftWidth: toPx(borderWidth),
-              borderLeftColor: color,
-            }}
-          >
-            <ArrowBottomIcon className={styles["selected-option-arrow"]} style={{ color }} />
-          </div>
-        )}
-      </div>
+			<button
+				type="button"
+				className={styles["selected-option-container"]}
+				onClick={handleSelectedOptionClick}
+				style={{
+					borderWidth: toPx(borderWidth),
+					borderColor: color,
+					borderStyle,
+					backgroundColor,
+					color,
+					cursor: hasOneOption ? "default" : "pointer",
+					pointerEvents: hasOneOption ? "none" : "auto",
+					height: isNumber(height) ? toRem(height) : height,
+				}}
+			>
+				<span
+					className={styles["selected-option-text"]}
+					style={{
+						fontSize: toRem(optionFontSize),
+						fontWeight: selectedOptionFontWeight,
+						borderColor: color,
+					}}
+				>
+					{selectedOption.label}
+				</span>
+				{icon ?? (
+					<div
+						className={styles["selected-option-arrow-container"]}
+						style={{
+							borderLeftStyle: borderStyle,
+							borderLeftWidth: toPx(borderWidth),
+							borderLeftColor: color,
+						}}
+					>
+						<ArrowBottomIcon className={styles["selected-option-arrow"]} style={{ color }} />
+					</div>
+				)}
+			</button>
 
-      {isListVisible && (
-        <ul
-          className={styles["options-list"]}
-          style={{
-            borderWidth: toPx(borderWidth),
-            borderColor: color,
-            borderStyle,
-            backgroundColor,
-            color,
-            fontSize: toRem(optionFontSize),
-            fontWeight: optionFontWeight,
-          }}
-        >
-          {options
-            .filter((option: SelectOption) => option.id !== selectedOption.id)
-            .map((option: SelectOption) => (
-              <li
-                className={styles.option}
-                key={option.id}
-                onClick={() => handleOptionClick(option)}
-              >
-                {option.label}
-              </li>
-            ))}
-        </ul>
-      )}
-    </div>
-  );
+			{isListVisible && (
+				<ul
+					className={styles["options-list"]}
+					style={{
+						borderWidth: toPx(borderWidth),
+						borderColor: color,
+						borderStyle,
+						backgroundColor,
+						color,
+						fontSize: toRem(optionFontSize),
+						fontWeight: optionFontWeight,
+					}}
+				>
+					{options
+						.filter((option: SelectOption) => option.id !== selectedOption.id)
+						.map((option: SelectOption) => (
+							<li key={option.id}>
+								<button
+									className={styles.option}
+									type="button"
+									onClick={() => handleOptionClick(option)}
+								>
+									{option.label}
+								</button>
+							</li>
+						))}
+				</ul>
+			)}
+		</div>
+	);
 };

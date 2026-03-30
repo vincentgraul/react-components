@@ -1,24 +1,24 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { useMatchDevice, Device } from "../../../src";
+import { type Device, useMatchDevice } from "../../../src";
 
 const ComponentWithUseMatchDevice = () => {
-  const device: Device = useMatchDevice(navigator.userAgent);
+	const device: Device = useMatchDevice(navigator.userAgent);
 
-  return (
-    <div>
-      <p>Device informations (based on user agent):</p>
-      <ul>
-        <li>{`isMobile: ${device.isMobile}`}</li>
-        <li>{`isTablet: ${device.isTablet}`}</li>
-        <li>{`isMobileOrTablet: ${device.isMobileOrTablet}`}</li>
-        <li>{`isDesktop: ${device.isDesktop}`}</li>
-      </ul>
-    </div>
-  );
+	return (
+		<div>
+			<p>Device informations (based on user agent):</p>
+			<ul>
+				<li>{`isMobile: ${device.isMobile}`}</li>
+				<li>{`isTablet: ${device.isTablet}`}</li>
+				<li>{`isMobileOrTablet: ${device.isMobileOrTablet}`}</li>
+				<li>{`isDesktop: ${device.isDesktop}`}</li>
+			</ul>
+		</div>
+	);
 };
 
 const meta = {
-  component: ComponentWithUseMatchDevice,
+	component: ComponentWithUseMatchDevice,
 } satisfies Meta<typeof useMatchDevice>;
 
 export default meta;

@@ -2,16 +2,16 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Breadcrumb } from "../../../src";
 
 const meta = {
-  component: Breadcrumb,
-  args: {
-    config: {
-      url: new URL(
-        "https://stackoverflow.com/questions/39334400/how-to-split-url-to-get-url-path-in-javascript?value=3&name=5",
-      ),
-    },
-    onClick: (item) => console.log(item),
-    color: "black",
-  },
+	component: Breadcrumb,
+	args: {
+		config: {
+			url: new URL(
+				"https://stackoverflow.com/questions/39334400/how-to-split-url-to-get-url-path-in-javascript?value=3&name=5",
+			),
+		},
+		onClick: (item) => console.log(item),
+		color: "black",
+	},
 } satisfies Meta<typeof Breadcrumb>;
 
 export default meta;

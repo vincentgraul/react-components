@@ -16,6 +16,9 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
+			"correctness": {
+				"noUnknownPseudoClass": "off"
+			},
 			"recommended": true
 		}
 	},

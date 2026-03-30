@@ -1,35 +1,36 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .drop-zone {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  border: 5px dashed black;
-  align-items: center;
-  cursor: pointer;
-  padding: 1rem;
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	border: 5px dashed black;
+	align-items: center;
+	padding: 1rem;
+	background-color: transparent;
+	cursor: pointer;
 }
 
 .drop-zone--dragging {
-  opacity: 0.5;
+	opacity: 0.5;
 }
 
 .text {
-  margin: 0;
-  text-align: center;
+	margin: 0;
+	text-align: center;
 }
 
 .preview-file {
-  width: 100%;
+	width: 100%;
 }
 
 .remove-button {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
+	background: none;
+	border: none;
+	padding: 0;
+	cursor: pointer;
 }

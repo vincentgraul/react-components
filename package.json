@@ -1,58 +1,58 @@
 {
-  "name": "@vincentgraul/react-components",
-  "version": "1.0.90",
-  "type": "module",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/react-components.js"
-    },
-    "./styles": "./dist/react-components.css"
-  },
-  "license": "GPL-3.0-only",
-  "repository": "https://github.com/vincentgraul/react-components.git",
-  "files": [
-    "dist"
-  ],
-  "author": {
-    "name": "Vincent Graul",
-    "email": "vincent.graul@outlook.com",
-    "url": "https://vincentgraul.com"
-  },
-  "scripts": {
-    "build": "bun lint && vite build",
-    "test": "jest",
-    "lint": "biome lint src",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
-  },
-  "peerDependencies": {
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4"
-  },
-  "dependencies": {
-    "@vincentgraul/utils": "^1.0.7",
-    "clsx": "^2.1.1",
-    "ua-parser-js": "^2.0.9"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "2.4.9",
-    "@storybook/react": "^10.2.13",
-    "@storybook/react-vite": "^10.2.13",
-    "@testing-library/react": "^16.3.2",
-    "@types/jest": "^30.0.0",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^6.0.1",
-    "jest": "^30.2.0",
-    "jest-environment-jsdom": "^30.2.0",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "storybook": "^10.2.13",
-    "ts-jest": "^29.4.6",
-    "typescript": "^5.9.3",
-    "vite": "^8.0.0",
-    "vite-plugin-dts": "^4.5.4",
-    "vite-plugin-svgr": "^4.5.0"
-  }
+	"name": "@vincentgraul/react-components",
+	"version": "1.0.90",
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/react-components.js"
+		},
+		"./styles": "./dist/react-components.css"
+	},
+	"license": "GPL-3.0-only",
+	"repository": "https://github.com/vincentgraul/react-components.git",
+	"files": [
+		"dist"
+	],
+	"author": {
+		"name": "Vincent Graul",
+		"email": "vincent.graul@outlook.com",
+		"url": "https://vincentgraul.com"
+	},
+	"scripts": {
+		"build": "bun lint && vite build",
+		"test": "jest",
+		"lint": "biome lint",
+		"storybook": "storybook dev -p 6006",
+		"build-storybook": "storybook build"
+	},
+	"peerDependencies": {
+		"react": "^19.2.4",
+		"react-dom": "^19.2.4"
+	},
+	"dependencies": {
+		"@vincentgraul/utils": "^1.0.7",
+		"clsx": "^2.1.1",
+		"ua-parser-js": "^2.0.9"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.4.9",
+		"@storybook/react": "^10.2.13",
+		"@storybook/react-vite": "^10.2.13",
+		"@testing-library/react": "^16.3.2",
+		"@types/jest": "^30.0.0",
+		"@types/react": "^19.2.14",
+		"@types/react-dom": "^19.2.3",
+		"@vitejs/plugin-react": "^6.0.1",
+		"jest": "^30.2.0",
+		"jest-environment-jsdom": "^30.2.0",
+		"react": "^19.2.4",
+		"react-dom": "^19.2.4",
+		"storybook": "^10.2.13",
+		"ts-jest": "^29.4.6",
+		"typescript": "^5.9.3",
+		"vite": "^8.0.0",
+		"vite-plugin-dts": "^4.5.4",
+		"vite-plugin-svgr": "^4.5.0"
+	}
 }

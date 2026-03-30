@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 export type CountrySelectorOption = {
-  value: string;
-  label: ReactNode;
+	value: string;
+	label: ReactNode;
 };

@@ -1,9 +1,9 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 export type SelectOption = {
-  id: number;
-  label: string | ReactNode;
-  value: string;
+	id: number;
+	label: string | ReactNode;
+	value: string;
 };
 
 export type SelectOptionWithoutId = Omit<SelectOption, "id">;

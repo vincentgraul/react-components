@@ -1,25 +1,21 @@
-import { useEffect, useState, RefObject } from "react";
+import { type RefObject, useEffect, useState } from "react";
 
 export const useVisible = (target: RefObject<HTMLElement>): boolean => {
-  const [isVisible, setVisibility] = useState<boolean>(false);
+	const [isVisible, setVisibility] = useState<boolean>(false);
 
-  const handleObserver = (entry: IntersectionObserverEntry) => {
-    setVisibility(entry.isIntersecting);
-  };
+	useEffect(() => {
+		const observer = new IntersectionObserver(([entry]) => setVisibility(entry.isIntersecting));
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => handleObserver(entry));
+		if (target?.current) {
+			observer.observe(target.current);
+		}
 
-    if (target && target.current) {
-      observer.observe(target.current);
-    }
+		return () => {
+			if (target?.current) {
+				observer.unobserve(target.current);
+			}
+		};
+	}, [target]);
 
-    return () => {
-      if (target && target.current) {
-        observer.unobserve(target.current);
-      }
-    };
-  }, [target]);
-
-  return isVisible;
+	return isVisible;
 };

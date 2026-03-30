@@ -1,63 +1,64 @@
-import { ReactNode } from "react";
 import clsx from "clsx";
-import styles from "./breadcrumb.module.css";
-import ArrowRightIcon from "./assets/arrow-right.svg?react";
-import { useBreadcrumb, useBreadcrumbProps, BreadcrumbItem } from "../..";
+import type { ReactNode } from "react";
+import { type BreadcrumbItem, useBreadcrumb, type useBreadcrumbProps } from "../..";
 import { toPx, toRem } from "../../utils";
+import ArrowRightIcon from "./assets/arrow-right.svg?react";
+import styles from "./breadcrumb.module.css";
 
 export type BreadcrumbProps = {
-  config: useBreadcrumbProps;
-  onClick: (element: BreadcrumbItem) => void;
-  color?: string;
-  fontSize?: number;
-  icon?: ReactNode;
-  iconWidth?: number;
-  iconMargin?: number;
-  className?: string;
+	config: useBreadcrumbProps;
+	onClick: (element: BreadcrumbItem) => void;
+	color?: string;
+	fontSize?: number;
+	icon?: ReactNode;
+	iconWidth?: number;
+	iconMargin?: number;
+	className?: string;
 };
 
 export const Breadcrumb = ({
-  config,
-  onClick,
-  icon,
-  iconWidth = 50,
-  iconMargin = 1,
-  color,
-  fontSize = 2,
-  className,
+	config,
+	onClick,
+	icon,
+	iconWidth = 50,
+	iconMargin = 1,
+	color,
+	fontSize = 2,
+	className,
 }: BreadcrumbProps) => {
-  const items: BreadcrumbItem[] = useBreadcrumb(config);
+	const items: BreadcrumbItem[] = useBreadcrumb(config);
 
-  return (
-    <nav aria-label="breadcrumb" className={clsx(styles.container, className)}>
-      <ol className={styles["list-item"]}>
-        {items.map((item, index) => (
-          <li key={item.url} className={styles.item}>
-            <a
-              className={styles.link}
-              onClick={() => onClick(item)}
-              style={{ color, fontSize: toRem(fontSize) }}
-            >
-              {item.label}
-            </a>
+	return (
+		<nav aria-label="breadcrumb" className={clsx(styles.container, className)}>
+			<ol className={styles["list-item"]}>
+				{items.map((item, index) => (
+					<li key={item.url} className={styles.item}>
+						<button
+							type="button"
+							className={styles.link}
+							onClick={() => onClick(item)}
+							style={{ color, fontSize: toRem(fontSize) }}
+						>
+							{item.label}
+						</button>
 
-            {index < items.length - 1 && (
-              <span aria-hidden>
-                {icon ?? (
-                  <ArrowRightIcon
-                    className={styles.icon}
-                    style={{
-                      width: toPx(iconWidth),
-                      marginLeft: toRem(iconMargin),
-                      marginRight: toRem(iconMargin),
-                    }}
-                  />
-                )}
-              </span>
-            )}
-          </li>
-        ))}
-      </ol>
-    </nav>
-  );
+						{index < items.length - 1 && (
+							<span aria-hidden>
+								{icon ?? (
+									<ArrowRightIcon
+										className={styles.icon}
+										style={{
+											width: toPx(iconWidth),
+											marginLeft: toRem(iconMargin),
+											marginRight: toRem(iconMargin),
+										}}
+									/>
+								)}
+							</span>
+						)}
+					</li>
+				))}
+			</ol>
+		</nav>
+	);
 };

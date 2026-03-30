@@ -1,9 +1,9 @@
 .container {
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  border-style: solid;
+	padding: 0.5rem 1rem;
+	cursor: pointer;
+	border-style: solid;
 
-  &:hover {
-    opacity: var(--hover-opacity);
-  }
+	&:hover {
+		opacity: var(--hover-opacity);
+	}
 }

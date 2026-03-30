@@ -3,19 +3,19 @@ import { useRef } from "react";
 import { useOutsideAlerter } from "../../../src";
 
 const ComponentWithUseOutsideAlerter = () => {
-  const ref = useRef(null);
-  const { hasClickedOutside } = useOutsideAlerter(ref);
+	const ref = useRef(null);
+	const { hasClickedOutside } = useOutsideAlerter(ref);
 
-  return (
-    <div>
-      <p>Has clicked outside: {hasClickedOutside.toString()}</p>
-      <p ref={ref}>Click on the text</p>
-    </div>
-  );
+	return (
+		<div>
+			<p>Has clicked outside: {hasClickedOutside.toString()}</p>
+			<p ref={ref}>Click on the text</p>
+		</div>
+	);
 };
 
 const meta = {
-  component: ComponentWithUseOutsideAlerter,
+	component: ComponentWithUseOutsideAlerter,
 } satisfies Meta<typeof useOutsideAlerter>;
 
 export default meta;

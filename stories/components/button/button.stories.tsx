@@ -2,14 +2,14 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button } from "../../../src";
 
 const meta = {
-  component: Button,
+	component: Button,
 } satisfies Meta<typeof Button>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
-  args: {
-    children: "Confirm",
-  },
+	args: {
+		children: "Confirm",
+	},
 };
