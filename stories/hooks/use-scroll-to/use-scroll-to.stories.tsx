@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { useScrollTo } from "../../../src";
 
 const ComponentWithUseScrollTo = () => {
-	const elementRef = useRef(null);
+	const elementRef = useRef<HTMLParagraphElement>(null);
 	const { scrollToTop } = useScrollTo(elementRef);
 
 	return (
@@ -127,7 +127,7 @@ const ComponentWithUseScrollTo = () => {
 
 const meta = {
 	component: ComponentWithUseScrollTo,
-} satisfies Meta<typeof useScrollTo>;
+} satisfies Meta<typeof ComponentWithUseScrollTo>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

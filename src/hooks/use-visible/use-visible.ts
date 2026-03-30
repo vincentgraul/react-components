@@ -1,6 +1,6 @@
 import { type RefObject, useEffect, useState } from "react";
 
-export const useVisible = (target: RefObject<HTMLElement>): boolean => {
+export const useVisible = (target: RefObject<HTMLElement | null>): boolean => {
 	const [isVisible, setVisibility] = useState<boolean>(false);
 
 	useEffect(() => {

@@ -1,7 +1,7 @@
 import type { RefObject } from "react";
 import type { ScrollEvents } from "./use-scroll-to.types";
 
-export const useScrollTo = (target: RefObject<HTMLElement>): ScrollEvents => {
+export const useScrollTo = (target: RefObject<HTMLElement | null>): ScrollEvents => {
 	const isClientSide: boolean = typeof window !== "undefined";
 
 	if (!isClientSide) {
@@ -9,7 +9,7 @@ export const useScrollTo = (target: RefObject<HTMLElement>): ScrollEvents => {
 	}
 
 	const scrollToTop = (): void => {
-		if (target.current) {
+		if (target?.current) {
 			window.scrollTo(0, target.current.offsetTop);
 		}
 	};
