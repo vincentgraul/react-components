@@ -13,6 +13,11 @@ export type PaginationProps = PaginationData & {
 	itemActiveBackgroundColor?: string;
 	renderSingleArrow?: (position: "left" | "right") => ReactNode;
 	renderDoubleArrow?: (position: "left" | "right") => ReactNode;
+	ariaLabelFirstPage?: string;
+	ariaLabelPreviousPage?: string;
+	ariaLabelPage?: (page: number) => string;
+	ariaLabelNextPage?: string;
+	ariaLabelLastPage?: string;
 	className?: string;
 };
 
@@ -34,6 +39,11 @@ export const Pagination = ({
 	goToPage,
 	renderSingleArrow,
 	renderDoubleArrow,
+	ariaLabelFirstPage,
+	ariaLabelPreviousPage,
+	ariaLabelPage,
+	ariaLabelNextPage,
+	ariaLabelLastPage,
 }: PaginationProps) => {
 	const CSSVariables = {
 		"--item-color": itemColor ?? "rgb(0, 0, 0)",
@@ -48,11 +58,21 @@ export const Pagination = ({
 		<div className={clsx(styles.container, className)} style={CSSVariables}>
 			{page > 1 && (
 				<>
-					<button type="button" className={styles.item} onClick={() => goToFirst()}>
+					<button
+						type="button"
+						aria-label={ariaLabelFirstPage ?? "First page"}
+						className={styles.item}
+						onClick={() => goToFirst()}
+					>
 						{renderDoubleArrow ? renderDoubleArrow("left") : <ChevronsLeft />}
 					</button>
 
-					<button type="button" className={styles.item} onClick={() => goToLeft()}>
+					<button
+						type="button"
+						aria-label={ariaLabelPreviousPage ?? "Previous page"}
+						className={styles.item}
+						onClick={() => goToLeft()}
+					>
 						{renderSingleArrow ? renderSingleArrow("left") : <ChevronLeft />}
 					</button>
 				</>
@@ -61,6 +81,7 @@ export const Pagination = ({
 			{items.map((currentPage: number) => (
 				<button
 					type="button"
+					aria-label={ariaLabelPage ? ariaLabelPage(currentPage) : `Page ${currentPage}`}
 					className={clsx(styles.item, currentPage === page && styles.active)}
 					key={currentPage}
 					onClick={() => goToPage(currentPage)}
@@ -71,11 +92,21 @@ export const Pagination = ({
 
 			{page < total && (
 				<>
-					<button type="button" className={styles.item} onClick={() => goToRight()}>
+					<button
+						type="button"
+						aria-label={ariaLabelNextPage ?? "Next page"}
+						className={styles.item}
+						onClick={() => goToRight()}
+					>
 						{renderSingleArrow ? renderSingleArrow("right") : <ChevronRight />}
 					</button>
 
-					<button type="button" className={styles.item} onClick={() => goToLast()}>
+					<button
+						type="button"
+						aria-label={ariaLabelLastPage ?? "Last page"}
+						className={styles.item}
+						onClick={() => goToLast()}
+					>
 						{renderDoubleArrow ? renderDoubleArrow("right") : <ChevronsRight />}
 					</button>
 				</>

@@ -9,6 +9,9 @@ const PaginationWithHook = (props: usePaginationProps) => {
 
 const meta = {
 	component: PaginationWithHook,
+	args: {
+		page: 1,
+	},
 } satisfies Meta<typeof PaginationWithHook>;
 
 export default meta;
@@ -16,28 +19,24 @@ type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
 	args: {
-		page: 1,
 		totalRecords: 15,
 	},
 };
 
 export const WithOnePage: Story = {
 	args: {
-		page: 1,
 		totalRecords: 5,
 	},
 };
 
 export const WithMultiplePages: Story = {
 	args: {
-		page: 1,
 		totalRecords: 150,
 	},
 };
 
 export const WithCustomArrows: Story = {
 	args: {
-		page: 1,
 		totalRecords: 150,
 	},
 	render: () => {
@@ -52,6 +51,7 @@ export const WithCustomArrows: Story = {
 				renderDoubleArrow={(position) =>
 					position === "left" ? <ArrowBigLeftDash /> : <ArrowBigRightDash />
 				}
+				ariaLabelPage={(page: number) => `Page numéro ${page}`}
 			></Pagination>
 		);
 	},
