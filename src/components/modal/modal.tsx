@@ -1,9 +1,9 @@
 import clsx from "clsx";
+import { X } from "lucide-react";
 import { type ElementType, type ReactNode, useCallback, useEffect, useRef } from "react";
 import { useOutsideAlerter } from "../..";
 import type { FontWeight, Position, Text } from "../../types";
 import { toRem } from "../../utils";
-import CloseIcon from "./assets/close.svg?react";
 import styles from "./modal.module.css";
 
 export type ModalProps = {
@@ -19,6 +19,7 @@ export type ModalProps = {
 	hasCloseIcon?: boolean;
 	closeIcon?: ReactNode;
 	closeIconColor?: string;
+	closeIconSize?: number;
 	closeIconMarginBottom?: number;
 	ConfirmButton?: ElementType;
 	confirmButtonText?: string;
@@ -49,6 +50,7 @@ export const Modal = ({
 	hasCloseIcon,
 	closeIcon,
 	closeIconColor,
+	closeIconSize = 1.5,
 	closeIconMarginBottom = 1,
 	backgroundColor = "rgb(255, 255, 255)",
 	padding,
@@ -104,11 +106,13 @@ export const Modal = ({
 			<div className={styles.container} ref={ref} style={{ backgroundColor, padding }}>
 				{hasCloseIcon
 					? (closeIcon ?? (
-							<CloseIcon
+							<X
 								className={styles.close}
 								onClick={handleOnClose}
-								style={{ marginBottom: toRem(closeIconMarginBottom), color: closeIconColor }}
-							></CloseIcon>
+								color={closeIconColor}
+								size={toRem(closeIconSize)}
+								style={{ marginBottom: toRem(closeIconMarginBottom) }}
+							></X>
 						))
 					: null}
 

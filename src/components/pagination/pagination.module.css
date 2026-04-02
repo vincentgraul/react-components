@@ -9,19 +9,20 @@
 	display: flex;
 	align-items: center;
 	cursor: pointer;
-	background-color: transparent;
+	color: var(--item-color);
+	background-color: var(--item-background-color);
 
 	&:first-child {
 		border-width: 1px 1px 1px 1px;
 	}
 
-	&:hover:not(.selected) {
-		background-color: var(--hover-background-color);
-		color: var(--hover-text-color);
+	&:hover:not(.active) {
+		background-color: var(--item-hover-background-color);
+		color: var(--item-hover-color);
 	}
 
-	&.selected {
-		background-color: var(--selected-background-color);
-		color: var(--selected-text-color);
+	&.active {
+		background-color: var(--item-active-background-color);
+		color: var(--item-active-color);
 	}
 }

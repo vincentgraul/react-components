@@ -1,9 +1,16 @@
 import clsx from "clsx";
-import { type ChangeEvent, type DragEvent, useEffect, useMemo, useRef, useState } from "react";
+import { Trash2, User } from "lucide-react";
+import {
+	type ChangeEvent,
+	type DragEvent,
+	type ReactNode,
+	useEffect,
+	useMemo,
+	useRef,
+	useState,
+} from "react";
 import type { BorderStyle, FontWeight, Size } from "../../types";
 import { isNumber, toPercentage, toPx, toRem } from "../../utils";
-import TrashIcon from "./assets/trash.svg";
-import UserIcon from "./assets/user.svg";
 import styles from "./drop-zone.module.css";
 
 export type DropZoneProps = {
@@ -12,10 +19,10 @@ export type DropZoneProps = {
 	labelFontSize?: number;
 	labelFontWeight?: FontWeight;
 	labelGap?: number;
-	previewIcon?: string;
-	previewIconWidth?: number;
-	removeIcon?: string;
-	removeIconWidth?: number;
+	previewIcon?: ReactNode;
+	previewIconSize?: number;
+	removeIcon?: ReactNode;
+	removeIconSize?: number;
 	text?: string;
 	textFontSize?: number;
 	textFontWeight?: FontWeight;
@@ -32,22 +39,17 @@ export type DropZoneProps = {
 
 type NoFileProps = Pick<
 	DropZoneProps,
-	"previewIcon" | "previewIconWidth" | "text" | "textFontSize" | "textFontWeight"
+	"previewIcon" | "previewIconSize" | "text" | "textFontSize" | "textFontWeight"
 >;
 const NoFile = ({
 	previewIcon,
-	previewIconWidth = 50,
+	previewIconSize = 3,
 	text,
 	textFontSize = 1,
 	textFontWeight = 400,
 }: NoFileProps) => (
 	<>
-		<img
-			alt="previous icon"
-			className={styles["preview-icon"]}
-			src={previewIcon ?? UserIcon}
-			style={{ width: toPx(previewIconWidth) }}
-		></img>
+		{previewIcon ?? <User size={toRem(previewIconSize)} />}
 		{text && (
 			<p
 				className={styles.text}
@@ -72,9 +74,9 @@ export const DropZone = ({
 	labelFontWeight = 400,
 	labelGap = 1,
 	previewIcon,
-	previewIconWidth,
+	previewIconSize,
 	removeIcon,
-	removeIconWidth = 50,
+	removeIconSize = 3,
 	text,
 	textFontSize,
 	textFontWeight,
@@ -173,7 +175,7 @@ export const DropZone = ({
 				{preview ? (
 					<WithFile preview={preview} />
 				) : (
-					<NoFile {...{ previewIcon, previewIconWidth, text, textFontSize, textFontWeight }} />
+					<NoFile {...{ previewIcon, previewIconSize, text, textFontSize, textFontWeight }} />
 				)}
 			</button>
 
@@ -184,12 +186,7 @@ export const DropZone = ({
 					onClick={handleOnRemove}
 					aria-label={removeAriaLabel ?? "Remove uploaded picture"}
 				>
-					<img
-						className={styles["remove-icon"]}
-						src={removeIcon ?? TrashIcon}
-						alt=""
-						style={{ width: toPx(removeIconWidth) }}
-					></img>
+					{removeIcon ?? <Trash2 size={toRem(removeIconSize)} />}
 				</button>
 			)}
 

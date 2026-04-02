@@ -1,8 +1,8 @@
 import clsx from "clsx";
+import { ChevronRight } from "lucide-react";
 import type { ReactNode } from "react";
 import { type BreadcrumbItem, useBreadcrumb, type useBreadcrumbProps } from "../..";
 import { toPx, toRem } from "../../utils";
-import ArrowRightIcon from "./assets/arrow-right.svg?react";
 import styles from "./breadcrumb.module.css";
 
 export type BreadcrumbProps = {
@@ -45,7 +45,7 @@ export const Breadcrumb = ({
 						{index < items.length - 1 && (
 							<span aria-hidden>
 								{icon ?? (
-									<ArrowRightIcon
+									<ChevronRight
 										className={styles.icon}
 										style={{
 											width: toPx(iconWidth),

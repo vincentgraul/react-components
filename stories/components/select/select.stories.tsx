@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Bike, Car } from "lucide-react";
 import { Flex, Select } from "../../../src";
-import BikeIcon from "./assets/bike.svg?react";
-import CarIcon from "./assets/car.svg?react";
 
 const meta = {
 	component: Select,
@@ -32,7 +31,7 @@ export const WithIcon: Story = {
 			{
 				label: (
 					<Flex alignItems="center" gap={0.5}>
-						<CarIcon />
+						<Car />
 						<span>Car</span>
 					</Flex>
 				),
@@ -41,7 +40,7 @@ export const WithIcon: Story = {
 			{
 				label: (
 					<Flex alignItems="center" gap={0.5}>
-						<BikeIcon />
+						<Bike />
 						<span>Bike</span>
 					</Flex>
 				),

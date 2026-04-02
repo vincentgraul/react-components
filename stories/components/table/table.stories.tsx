@@ -1,10 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { type PropsWithChildren, useEffect, useState } from "react";
+import { type PropsWithChildren, useState } from "react";
 import { Pagination, Table, Td, Th, Tr, usePagination } from "../../../src";
-import DoubleLeftArrowIcon from "./assets/double-left-arrow.svg?react";
-import DoubleRightArrowIcon from "./assets/double-right-arrow.svg?react";
-import SingleLeftArrowIcon from "./assets/single-left-arrow.svg?react";
-import SingleRightArrowIcon from "./assets/single-right-arrow.svg?react";
 
 const meta = {
 	component: Table,
@@ -128,18 +124,14 @@ export const WithNoRecords: Story = {
 
 export const Advanced: Story = {
 	render: () => {
-		const [advancedTotalRecords, setAdvancedTotalRecords] = useState(meta.args.records);
-		const [advancedRecords, setAdvancedRecords] = useState<typeof meta.args.records>([]);
-		const pagination = usePagination({ page: 1, totalRecords: advancedTotalRecords.length });
+		const [advancedRecords, setAdvancedRecords] = useState<typeof meta.args.records>(
+			meta.args.records,
+		);
+		const pagination = usePagination({ page: 1, totalRecords: advancedRecords.length });
 
 		const handleAddRecord = () => {
-			setAdvancedTotalRecords([...advancedTotalRecords, advancedTotalRecords[0]]);
+			setAdvancedRecords([...advancedRecords, advancedRecords[0]]);
 		};
-
-		useEffect(() => {
-			const offset = (pagination.page - 1) * pagination.maxRecordsPerPage;
-			setAdvancedRecords(advancedTotalRecords.slice(offset, offset + pagination.maxRecordsPerPage));
-		}, [advancedTotalRecords, pagination]);
 
 		return (
 			<Table
@@ -160,12 +152,10 @@ export const Advanced: Story = {
 					<Block>
 						<Pagination
 							{...pagination}
-							renderSingleArrow={(position) =>
-								position === "left" ? <SingleLeftArrowIcon /> : <SingleRightArrowIcon />
-							}
-							renderDoubleArrow={(position) =>
-								position === "left" ? <DoubleLeftArrowIcon /> : <DoubleRightArrowIcon />
-							}
+							itemColor="black"
+							itemBackgroundColor="white"
+							itemActiveBackgroundColor="#7F00FF"
+							itemHoverBackgroundColor="grey"
 						></Pagination>
 					</Block>
 				)}

@@ -1,5 +1,5 @@
 .flag {
-  display: block;
-  margin: auto;
-  border-radius: 2px;
+	display: block;
+	margin: auto;
+	aspect-ratio: 4 / 3;
 }

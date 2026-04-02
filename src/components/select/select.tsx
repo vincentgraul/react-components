@@ -1,9 +1,9 @@
 import clsx from "clsx";
+import { ChevronDown } from "lucide-react";
 import { type CSSProperties, type ReactNode, useEffect, useRef, useState } from "react";
 import { useOutsideAlerter } from "../..";
 import type { BorderStyle, FontWeight, Position, Size } from "../../types";
 import { isNumber, toPercentage, toPx, toRem } from "../../utils";
-import ArrowBottomIcon from "./assets/arrow-down.svg?react";
 import styles from "./select.module.css";
 import type { SelectOption, SelectOptionWithoutId } from "./select.types";
 
@@ -154,7 +154,7 @@ export const Select = ({
 							borderLeftColor: color,
 						}}
 					>
-						<ArrowBottomIcon className={styles["selected-option-arrow"]} style={{ color }} />
+						<ChevronDown className={styles["selected-option-arrow"]} color={color} />
 					</div>
 				)}
 			</button>

@@ -127,7 +127,7 @@ const ComponentWithUseScrollTo = () => {
 
 const meta = {
 	component: ComponentWithUseScrollTo,
-} satisfies Meta<typeof ComponentWithUseScrollTo>;
+} satisfies Meta<typeof useScrollTo>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

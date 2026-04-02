@@ -1,9 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { ArrowBigLeft, ArrowBigLeftDash, ArrowBigRight, ArrowBigRightDash } from "lucide-react";
 import { Pagination, usePagination, type usePaginationProps } from "../../../src";
-import ArrowLeftIcon from "./assets/arrow-left.svg?react";
-import ArrowLeftDashIcon from "./assets/arrow-left-dash.svg?react";
-import ArrowRightIcon from "./assets/arrow-right.svg?react";
-import ArrowRightDashIcon from "./assets/arrow-right-dash.svg?react";
 
 const PaginationWithHook = (props: usePaginationProps) => {
 	const pagination = usePagination(props);
@@ -50,10 +47,10 @@ export const WithCustomArrows: Story = {
 			<Pagination
 				{...pagination}
 				renderSingleArrow={(position) =>
-					position === "left" ? <ArrowLeftIcon /> : <ArrowRightIcon />
+					position === "left" ? <ArrowBigLeft /> : <ArrowBigRight />
 				}
 				renderDoubleArrow={(position) =>
-					position === "left" ? <ArrowLeftDashIcon /> : <ArrowRightDashIcon />
+					position === "left" ? <ArrowBigLeftDash /> : <ArrowBigRightDash />
 				}
 			></Pagination>
 		);

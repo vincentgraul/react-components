@@ -1,8 +1,8 @@
 import clsx from "clsx";
+import { LoaderCircle } from "lucide-react";
 import type { CSSProperties, ReactNode } from "react";
 import type { FontWeight } from "../../types";
-import { toPx, toRem, toSeconds } from "../../utils";
-import LoaderIcon from "./assets/loader.svg?react";
+import { toRem, toSeconds } from "../../utils";
 import styles from "./loader.module.css";
 
 export type LoaderProps = {
@@ -12,7 +12,7 @@ export type LoaderProps = {
 	overlayBackgroundColor?: string;
 	hasIcon?: boolean;
 	icon?: ReactNode;
-	iconWidth?: number;
+	iconSize?: number;
 	iconColor?: string;
 	iconGap?: number;
 	iconAnimationDuration?: number;
@@ -27,7 +27,7 @@ export const Loader = ({
 	color,
 	hasIcon,
 	icon,
-	iconWidth = 50,
+	iconSize = 3,
 	iconColor,
 	iconGap = 1,
 	iconAnimationDuration = 1,
@@ -44,10 +44,11 @@ export const Loader = ({
 			<div className={styles.container} style={{ gap: toRem(iconGap), color }}>
 				{hasIcon &&
 					(icon ?? (
-						<LoaderIcon
+						<LoaderCircle
 							className={styles.image}
-							style={{ width: toPx(iconWidth), color: iconColor }}
-						></LoaderIcon>
+							color={iconColor}
+							size={toRem(iconSize)}
+						></LoaderCircle>
 					))}
 				{text && <span style={{ fontWeight }}>{text}</span>}
 			</div>
