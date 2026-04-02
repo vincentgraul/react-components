@@ -9,7 +9,8 @@
 		"skipLibCheck": true,
 		"resolveJsonModule": true,
 		"removeComments": true,
-		"isolatedModules": true
+		"isolatedModules": true,
+		"types": ["vite/client"]
 	},
 	"include": ["src", "types.d.ts"]
 }
