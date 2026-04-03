@@ -9,7 +9,7 @@ const ComponentWithUseVisible = () => {
 	return (
 		<div>
 			<p
-				style={{ position: "fixed", fontWeight: "bold", color: "red", zIndex: 2 }}
+				style={{ position: "fixed", fontWeight: "bold", color: "#C40000", zIndex: 2 }}
 			>{`Title is visible: ${isVisible}`}</p>
 			<h1 ref={elementRef}>Title</h1>
 			<p>

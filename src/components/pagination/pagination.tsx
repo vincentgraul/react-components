@@ -39,11 +39,11 @@ export const Pagination = ({
 	goToPage,
 	renderSingleArrow,
 	renderDoubleArrow,
-	ariaLabelFirstPage,
-	ariaLabelPreviousPage,
+	ariaLabelFirstPage = "First page",
+	ariaLabelPreviousPage = "Previous page",
 	ariaLabelPage,
-	ariaLabelNextPage,
-	ariaLabelLastPage,
+	ariaLabelNextPage = "Next page",
+	ariaLabelLastPage = "Last page",
 }: PaginationProps) => {
 	const CSSVariables = {
 		"--item-color": itemColor ?? "rgb(0, 0, 0)",
@@ -60,7 +60,7 @@ export const Pagination = ({
 				<>
 					<button
 						type="button"
-						aria-label={ariaLabelFirstPage ?? "First page"}
+						aria-label={ariaLabelFirstPage}
 						className={styles.item}
 						onClick={() => goToFirst()}
 					>
@@ -69,7 +69,7 @@ export const Pagination = ({
 
 					<button
 						type="button"
-						aria-label={ariaLabelPreviousPage ?? "Previous page"}
+						aria-label={ariaLabelPreviousPage}
 						className={styles.item}
 						onClick={() => goToLeft()}
 					>
@@ -94,7 +94,7 @@ export const Pagination = ({
 				<>
 					<button
 						type="button"
-						aria-label={ariaLabelNextPage ?? "Next page"}
+						aria-label={ariaLabelNextPage}
 						className={styles.item}
 						onClick={() => goToRight()}
 					>
@@ -103,7 +103,7 @@ export const Pagination = ({
 
 					<button
 						type="button"
-						aria-label={ariaLabelLastPage ?? "Last page"}
+						aria-label={ariaLabelLastPage}
 						className={styles.item}
 						onClick={() => goToLast()}
 					>

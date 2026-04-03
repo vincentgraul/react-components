@@ -28,6 +28,7 @@ export type SelectProps = {
 	hoverOptionColor?: string;
 	hoverFontWeight?: FontWeight;
 	icon?: ReactNode;
+	ariaLabelIcon?: string;
 	onChange?: (option: SelectOption) => void;
 	className?: string;
 };
@@ -54,6 +55,7 @@ export const Select = ({
 	hoverOptionColor,
 	hoverFontWeight = 400,
 	icon,
+	ariaLabelIcon = "Choose an option",
 	onChange,
 }: SelectProps) => {
 	const CSSVariables = {
@@ -122,6 +124,7 @@ export const Select = ({
 
 			<button
 				type="button"
+				aria-label={ariaLabelIcon}
 				className={styles["selected-option-container"]}
 				onClick={handleSelectedOptionClick}
 				style={{
