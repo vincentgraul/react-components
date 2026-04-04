@@ -88,12 +88,6 @@ jspm_packages/
 .env
 .env.test
 
-### VisualStudioCode ###
-.vscode
-
-### WebStorm ###
-.idea
-
 ### Storybook ###
 storybook-static
 
