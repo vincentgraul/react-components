@@ -1,75 +1,47 @@
-.container {
-	position: relative;
-}
-
-.input-container {
-	display: inline-flex;
-	align-items: center;
-	position: relative;
-	width: 100%;
-	height: 100%;
-}
-
 .input {
-	width: 100%;
-	height: 100%;
+	box-sizing: border-box;
 	padding: 10px;
-	border: 0;
-	background-color: transparent;
+	border: var(--border-width) solid var(--info-color);
 	outline: none;
-	z-index: 1;
 }
 
-.fieldset {
-	border: 1px solid black;
-	border-radius: 5px;
-	position: absolute;
-	inset: -8.5px 0 0;
-	font-size: 15px;
-	margin: 0;
+.container {
+	display: flex;
+	flex-direction: column;
 
 	:global(&.success) {
-		border-color: var(--success-color);
 		color: var(--success-color);
+
+		.input {
+			border-color: var(--success-color);
+		}
 	}
 
 	:global(&.warning) {
-		border-color: var(--warning-color);
 		color: var(--warning-color);
+
+		.input {
+			border-color: var(--warning-color);
+		}
 	}
 
 	:global(&.error) {
-		border-color: var(--error-color);
 		color: var(--error-color);
-	}
-}
 
-.input:focus + .fieldset {
-	&:not(:global(.success), :global(.warning), :global(.error)) {
-		color: var(--focus-color);
+		.input {
+			border-color: var(--error-color);
+		}
+	}
+
+	.input:focus {
 		border-color: var(--focus-color);
+		border-width: var(--focus-border-width);
 	}
 }
 
-.legend {
-	padding: 0 5px;
-}
-
-.message-container {
+.message {
 	display: flex;
 	align-items: center;
-	gap: 5px;
-	margin-top: 5px;
-
-	:global(&.success) {
-		color: var(--success-color);
-	}
-
-	:global(&.warning) {
-		color: var(--warning-color);
-	}
-
-	:global(&.error) {
-		color: var(--error-color);
-	}
+	margin-top: 1rem;
+	gap: 0.5rem;
 }

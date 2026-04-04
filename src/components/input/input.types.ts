@@ -1,10 +1,20 @@
+import type { ReactNode } from "react";
+
 export type InputType = "text" | "password";
 
 export type InputColors = {
-  focus: string;
-  success: string;
-  error: string;
-  warning: string;
+	info: string;
+	focus: string;
+	success: string;
+	error: string;
+	warning: string;
 };
 
-export type InputStatus = "success" | "warning" | "error" | "focus";
+export type InputIcons = {
+	info: ReactNode;
+	success: ReactNode;
+	error: ReactNode;
+	warning: ReactNode;
+};
+
+export type InputStatus = "info" | "success" | "warning" | "error";

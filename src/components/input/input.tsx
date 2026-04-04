@@ -1,20 +1,31 @@
 import clsx from "clsx";
-import { type CSSProperties, type FocusEvent, type InputHTMLAttributes, useState } from "react";
-import type { FontWeight, Size } from "../../types";
+import { CircleAlert, CircleCheck, Info, TriangleAlert } from "lucide-react";
+import type { CSSProperties, InputHTMLAttributes } from "react";
+import type { FontWeight, Position, Size } from "../../types";
 import { isNumber, toPercentage, toPx, toRem } from "../../utils";
 import styles from "./input.module.css";
-import type { InputColors, InputStatus, InputType } from "./input.types";
+import type { InputColors, InputIcons, InputStatus, InputType } from "./input.types";
+
+const defaultIcons = {
+	info: <Info />,
+	error: <CircleAlert />,
+	warning: <TriangleAlert />,
+	success: <CircleCheck />,
+};
 
 export type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, "type"> & {
 	label: string;
 	type: InputType;
 	colors?: InputColors;
+	icons?: InputIcons;
 	status?: InputStatus;
 	message?: string;
 	width?: Size;
 	height?: Size;
 	borderWidth?: number;
 	borderWidthFocus?: number;
+	labelAlignSelf?: Position;
+	labelMarginBottom?: number;
 	labelFontWeight?: FontWeight;
 	labelFontSize?: number;
 	messageFontWeight?: FontWeight;
@@ -23,94 +34,78 @@ export type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, "type"> & {
 };
 
 export const Input = ({
-	className,
 	label,
 	message,
 	colors = {
-		success: "green",
-		error: "red",
-		warning: "orange",
-		focus: "blue",
+		info: "#000000",
+		success: "#1A7A1A",
+		error: "#C40000",
+		warning: "#B35A00",
+		focus: "#0055CC",
 	},
-	status,
+	icons = defaultIcons,
+	status = "info",
 	width = 100,
 	height = "auto",
 	borderWidth = 1,
 	borderWidthFocus = 2,
+	labelMarginBottom = 1,
 	labelFontWeight = 400,
 	labelFontSize = 1,
+	labelAlignSelf = "center",
 	messageFontWeight = 400,
 	messageFontSize = 1,
-	onFocus,
-	onBlur,
+	className,
 	...rest
 }: InputProps) => {
-	const [isFocus, setIsFocus] = useState(false);
 	const CSSVariables = {
+		"--info-color": colors.info,
 		"--success-color": colors.success,
 		"--warning-color": colors.warning,
 		"--error-color": colors.error,
 		"--focus-color": colors.focus,
+		"--border-width": toPx(borderWidth),
+		"--focus-border-width": toPx(borderWidthFocus),
 	} as CSSProperties;
 
-	const handleOnFocus = (e: FocusEvent<HTMLInputElement>) => {
-		if (onFocus) {
-			onFocus(e);
-		}
-		setIsFocus(true);
-	};
-
-	const handleOnBlur = (e: FocusEvent<HTMLInputElement>) => {
-		if (onBlur) {
-			onBlur(e);
-		}
-		setIsFocus(false);
-	};
+	const Icon = icons[status];
 
 	return (
-		<div
-			className={clsx(styles.container, className)}
+		<label
+			className={clsx(styles.container, status, className)}
 			style={{
-				width: isNumber(width) ? toPercentage(width) : width,
-				height: isNumber(height) ? toRem(height) : height,
 				...CSSVariables,
 			}}
 		>
-			<div className={styles["input-container"]}>
-				<input
-					className={clsx(styles.input, status)}
-					{...rest}
-					onFocus={handleOnFocus}
-					onBlur={handleOnBlur}
-				/>
-				<fieldset
-					className={clsx(styles.fieldset, status)}
-					style={{
-						borderWidth: toPx(isFocus ? borderWidthFocus : borderWidth),
-					}}
-				>
-					<legend
-						className={styles.legend}
-						style={{
-							fontWeight: labelFontWeight,
-							fontSize: toRem(labelFontSize),
-						}}
-					>
-						{label}
-					</legend>
-				</fieldset>
-			</div>
+			<span
+				className={styles.label}
+				style={{
+					fontSize: toRem(labelFontSize),
+					fontWeight: labelFontWeight,
+					marginBottom: toRem(labelMarginBottom),
+					alignSelf: labelAlignSelf,
+				}}
+			>
+				{label}
+			</span>
+			<input
+				className={styles.input}
+				style={{
+					width: isNumber(width) ? toPercentage(width) : width,
+					height: isNumber(height) ? toRem(height) : height,
+				}}
+				{...rest}
+			/>
 
 			{message && (
-				<div className={clsx(styles["message-container"], status)}>
-					<span
-						className={styles.message}
-						style={{ fontWeight: messageFontWeight, fontSize: toRem(messageFontSize) }}
-					>
-						{message}
-					</span>
-				</div>
+				<span
+					className={styles.message}
+					style={{ fontWeight: messageFontWeight, fontSize: toRem(messageFontSize) }}
+				>
+					{Icon}
+					{message}
+				</span>
 			)}
-		</div>
+		</label>
 	);
 };
