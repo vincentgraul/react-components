@@ -17,14 +17,14 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
-	play: async ({ canvas, userEvent, args }) => {
-		const buttons = canvas.getAllByRole("button");
+	play: async ({ args, canvas, userEvent }) => {
+		const buttons = canvas.queryAllByRole("button");
 		expect(buttons).toHaveLength(3);
 
-		const separators = canvas.getAllByTestId("separator");
+		const separators = canvas.queryAllByTestId("separator");
 		expect(separators).toHaveLength(2);
 
-		const expectedItem = [
+		const expectedItems = [
 			{ label: "questions", url: "/questions" },
 			{ label: "1", url: "/questions/1" },
 			{ label: "team", url: "/questions/1/team" },
@@ -32,7 +32,27 @@ export const Basic: Story = {
 
 		for (let i = 0; i < buttons.length; i++) {
 			await userEvent.click(buttons[i]);
-			expect(args.onClick).toHaveBeenNthCalledWith(i + 1, expectedItem[i]);
+			expect(args.onClick).toHaveBeenNthCalledWith(i + 1, expectedItems[i]);
 		}
+	},
+};
+
+export const WithOne: Story = {
+	args: {
+		...meta.args,
+		config: {
+			url: new URL("https://vincentgraul.com/questions"),
+		},
+	},
+	play: async ({ args, canvas, userEvent }) => {
+		const buttons = canvas.queryAllByRole("button");
+		expect(buttons).toHaveLength(1);
+
+		const separators = canvas.queryByTestId("separator");
+		expect(separators).toBeNull();
+
+		const expectedItem = { label: "questions", url: "/questions" };
+		await userEvent.click(buttons[0]);
+		expect(args.onClick).toHaveBeenCalledWith(expectedItem);
 	},
 };
