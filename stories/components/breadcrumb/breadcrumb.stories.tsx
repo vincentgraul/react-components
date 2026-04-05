@@ -1,15 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, fn } from "storybook/test";
 import { Breadcrumb } from "../../../src";
 
 const meta = {
 	component: Breadcrumb,
 	args: {
 		config: {
-			url: new URL(
-				"https://stackoverflow.com/questions/39334400/how-to-split-url-to-get-url-path-in-javascript?value=3&name=5",
-			),
+			url: new URL("https://vincentgraul.com/questions/1/team"),
 		},
-		onClick: (item) => console.log(item),
+		onClick: fn(),
 		color: "black",
 	},
 } satisfies Meta<typeof Breadcrumb>;
@@ -17,4 +16,23 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Basic: Story = {};
+export const Basic: Story = {
+	play: async ({ canvas, userEvent, args }) => {
+		const buttons = canvas.getAllByRole("button");
+		expect(buttons).toHaveLength(3);
+
+		const separators = canvas.getAllByTestId("separator");
+		expect(separators).toHaveLength(2);
+
+		const expectedItem = [
+			{ label: "questions", url: "/questions" },
+			{ label: "1", url: "/questions/1" },
+			{ label: "team", url: "/questions/1/team" },
+		];
+
+		for (let i = 0; i < buttons.length; i++) {
+			await userEvent.click(buttons[i]);
+			expect(args.onClick).toHaveBeenNthCalledWith(i + 1, expectedItem[i]);
+		}
+	},
+};

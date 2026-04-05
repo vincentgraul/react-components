@@ -43,7 +43,7 @@ export const Breadcrumb = ({
 						</button>
 
 						{index < items.length - 1 && (
-							<span aria-hidden>
+							<span aria-hidden data-testid="separator">
 								{icon ?? (
 									<ChevronRight
 										className={styles.icon}
