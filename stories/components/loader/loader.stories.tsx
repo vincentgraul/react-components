@@ -1,26 +1,31 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { expect } from "storybook/test";
-import { Loader } from "../../../src";
+import { Loader, Spinner, Text } from "../../../src";
 
 const meta = {
 	component: Loader,
-	args: {
-		text: "In progress...",
-	},
 } satisfies Meta<typeof Loader>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
+	args: {
+		children: <Text>Chargement en cours...</Text>,
+	},
 	play: async ({ canvas }) => {
 		await expect(canvas.queryByRole("img", { name: "Loading" })).not.toBeInTheDocument();
 	},
 };
 
-export const WithImage: Story = {
+export const WithIcon: Story = {
 	args: {
-		hasIcon: true,
+		children: (
+			<>
+				<Spinner />
+				<Text>Chargement en cours...</Text>
+			</>
+		),
 	},
 	play: async ({ canvas }) => {
 		await expect(canvas.getByRole("img", { name: "Loading" })).toBeInTheDocument();

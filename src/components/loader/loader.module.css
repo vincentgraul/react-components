@@ -1,33 +1,28 @@
 .overlay {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow-y: auto;
-  z-index: 2;
+	position: fixed;
+	inset: 0;
+	z-index: 9999;
 }
 
 .container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+	position: relative;
+	top: 50%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 @keyframes loading {
-  from {
-    transform: rotate(0deg);
-  }
+	from {
+		transform: rotate(0deg);
+	}
 
-  to {
-    transform: rotate(360deg);
-  }
+	to {
+		transform: rotate(360deg);
+	}
 }
 
-.image {
-  animation: loading var(--animation-duration) linear infinite;
-  height: auto;
+.spinner {
+	animation: loading var(--animation-duration) linear infinite;
+	height: auto;
 }
