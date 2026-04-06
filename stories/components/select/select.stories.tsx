@@ -30,7 +30,7 @@ export const Basic: Story = {
 		// Show options
 		await userEvent.click(canvas.getByRole("button", { name: "Choose an option" }));
 
-		await expect(canvas.queryByRole("list")).toBeInTheDocument();
+		await expect(canvas.getByRole("list")).toBeInTheDocument();
 
 		// Select an option
 		await userEvent.click(canvas.getByRole("button", { name: "Italy" }));
@@ -97,6 +97,6 @@ export const WithLabel: Story = {
 		label: "Personnages",
 	},
 	play: async ({ canvas }) => {
-		await expect(canvas.queryByText("Personnages")).toBeInTheDocument();
+		await expect(canvas.getByText("Personnages")).toBeInTheDocument();
 	},
 };

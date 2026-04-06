@@ -28,10 +28,8 @@ export const Basic: Story = {
 		await userEvent.upload(input, file);
 		await expect(args.onFileChanged).toHaveBeenCalledTimes(1);
 
-		await expect(canvas.queryByRole("button", { name: "Upload a file" })).toBeInTheDocument();
-		await expect(
-			canvas.queryByRole("button", { name: "Remove uploaded file" }),
-		).toBeInTheDocument();
+		await expect(canvas.getByRole("button", { name: "Upload a file" })).toBeInTheDocument();
+		await expect(canvas.getByRole("button", { name: "Remove uploaded file" })).toBeInTheDocument();
 
 		await userEvent.click(canvas.getByRole("button", { name: "Remove uploaded file" }));
 		await expect(args.onFileChanged).toHaveBeenCalledTimes(2);

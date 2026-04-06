@@ -33,7 +33,7 @@ export const Basic: Story = {
 export const WithTitle: Story = {
 	args: { title: "Welcome" },
 	play: async ({ canvas }) => {
-		const title = canvas.queryByRole("heading", { level: 2 });
+		const title = canvas.getByRole("heading", { level: 2 });
 		await expect(title).toBeInTheDocument();
 		await expect(title).toHaveTextContent("Welcome");
 	},
@@ -42,7 +42,7 @@ export const WithTitle: Story = {
 export const WithCloseIcon: Story = {
 	args: { hasCloseIcon: true },
 	play: async ({ canvas }) => {
-		await expect(canvas.queryByRole("img", { name: "Close" })).toBeInTheDocument();
+		await expect(canvas.getByRole("img", { name: "Close" })).toBeInTheDocument();
 	},
 };
 
@@ -60,23 +60,23 @@ export const WithButtons: Story = {
 		declineButtonText: "No",
 	},
 	play: async ({ canvas }) => {
-		await expect(canvas.queryByRole("button", { name: "Yes" })).toBeInTheDocument();
-		await expect(canvas.queryByRole("button", { name: "No" })).toBeInTheDocument();
+		await expect(canvas.getByRole("button", { name: "Yes" })).toBeInTheDocument();
+		await expect(canvas.getByRole("button", { name: "No" })).toBeInTheDocument();
 	},
 };
 
 export const WithOnlyConfirmButton: Story = {
 	args: { ConfirmButton: MyCustomButton },
 	play: async ({ canvas }) => {
-		await expect(canvas.queryByRole("button", { name: "Confirm" })).toBeInTheDocument();
+		await expect(canvas.getByRole("button", { name: "Confirm" })).toBeInTheDocument();
 	},
 };
 
 export const WithRender: Story = {
 	args: { renderHeader: () => <div>header</div>, renderFooter: () => <div>footer</div> },
 	play: async ({ canvas }) => {
-		await expect(canvas.queryByText("header")).toBeInTheDocument();
-		await expect(canvas.queryByText("footer")).toBeInTheDocument();
+		await expect(canvas.getByText("header")).toBeInTheDocument();
+		await expect(canvas.getByText("footer")).toBeInTheDocument();
 	},
 };
 

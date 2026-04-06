@@ -23,6 +23,6 @@ export const WithImage: Story = {
 		hasIcon: true,
 	},
 	play: async ({ canvas }) => {
-		await expect(canvas.queryByRole("img", { name: "Loading" })).toBeInTheDocument();
+		await expect(canvas.getByRole("img", { name: "Loading" })).toBeInTheDocument();
 	},
 };

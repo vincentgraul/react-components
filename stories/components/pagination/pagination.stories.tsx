@@ -34,8 +34,8 @@ export const Basic: Story = {
 		await expect(items[1]).not.toHaveAttribute("aria-current");
 		await expect(items[2]).not.toHaveAttribute("aria-current");
 
-		await expect(canvas.queryByRole("button", { name: "Next page" })).toBeInTheDocument();
-		await expect(canvas.queryByRole("button", { name: "Last page" })).toBeInTheDocument();
+		await expect(canvas.getByRole("button", { name: "Next page" })).toBeInTheDocument();
+		await expect(canvas.getByRole("button", { name: "Last page" })).toBeInTheDocument();
 		await expect(canvas.queryByRole("button", { name: "Previous page" })).not.toBeInTheDocument();
 		await expect(canvas.queryByRole("button", { name: "First page" })).not.toBeInTheDocument();
 
@@ -44,10 +44,10 @@ export const Basic: Story = {
 		await userEvent.click(canvas.getByRole("button", { name: "Next page" }));
 
 		await expect(items[1]).toHaveAttribute("aria-current", "page");
-		await expect(canvas.queryByRole("button", { name: "Next page" })).toBeInTheDocument();
-		await expect(canvas.queryByRole("button", { name: "Last page" })).toBeInTheDocument();
-		await expect(canvas.queryByRole("button", { name: "Previous page" })).toBeInTheDocument();
-		await expect(canvas.queryByRole("button", { name: "First page" })).toBeInTheDocument();
+		await expect(canvas.getByRole("button", { name: "Next page" })).toBeInTheDocument();
+		await expect(canvas.getByRole("button", { name: "Last page" })).toBeInTheDocument();
+		await expect(canvas.getByRole("button", { name: "Previous page" })).toBeInTheDocument();
+		await expect(canvas.getByRole("button", { name: "First page" })).toBeInTheDocument();
 
 		// Navigate to last page
 
@@ -56,26 +56,26 @@ export const Basic: Story = {
 		await expect(items[2]).toHaveAttribute("aria-current", "page");
 		await expect(canvas.queryByRole("button", { name: "Next page" })).not.toBeInTheDocument();
 		await expect(canvas.queryByRole("button", { name: "Last page" })).not.toBeInTheDocument();
-		await expect(canvas.queryByRole("button", { name: "Previous page" })).toBeInTheDocument();
-		await expect(canvas.queryByRole("button", { name: "First page" })).toBeInTheDocument();
+		await expect(canvas.getByRole("button", { name: "Previous page" })).toBeInTheDocument();
+		await expect(canvas.getByRole("button", { name: "First page" })).toBeInTheDocument();
 
 		// Navigate to previous page
 
 		await userEvent.click(canvas.getByRole("button", { name: "Previous page" }));
 
 		await expect(items[1]).toHaveAttribute("aria-current", "page");
-		await expect(canvas.queryByRole("button", { name: "Next page" })).toBeInTheDocument();
-		await expect(canvas.queryByRole("button", { name: "Last page" })).toBeInTheDocument();
-		await expect(canvas.queryByRole("button", { name: "Previous page" })).toBeInTheDocument();
-		await expect(canvas.queryByRole("button", { name: "First page" })).toBeInTheDocument();
+		await expect(canvas.getByRole("button", { name: "Next page" })).toBeInTheDocument();
+		await expect(canvas.getByRole("button", { name: "Last page" })).toBeInTheDocument();
+		await expect(canvas.getByRole("button", { name: "Previous page" })).toBeInTheDocument();
+		await expect(canvas.getByRole("button", { name: "First page" })).toBeInTheDocument();
 
 		// Navigate to first page
 
 		await userEvent.click(canvas.getByRole("button", { name: "First page" }));
 
 		await expect(items[0]).toHaveAttribute("aria-current", "page");
-		await expect(canvas.queryByRole("button", { name: "Next page" })).toBeInTheDocument();
-		await expect(canvas.queryByRole("button", { name: "Last page" })).toBeInTheDocument();
+		await expect(canvas.getByRole("button", { name: "Next page" })).toBeInTheDocument();
+		await expect(canvas.getByRole("button", { name: "Last page" })).toBeInTheDocument();
 		await expect(canvas.queryByRole("button", { name: "Previous page" })).not.toBeInTheDocument();
 		await expect(canvas.queryByRole("button", { name: "First page" })).not.toBeInTheDocument();
 
@@ -84,10 +84,10 @@ export const Basic: Story = {
 		await userEvent.click(canvas.getByRole("button", { name: "Page 2" }));
 
 		await expect(items[1]).toHaveAttribute("aria-current", "page");
-		await expect(canvas.queryByRole("button", { name: "Next page" })).toBeInTheDocument();
-		await expect(canvas.queryByRole("button", { name: "Last page" })).toBeInTheDocument();
-		await expect(canvas.queryByRole("button", { name: "Previous page" })).toBeInTheDocument();
-		await expect(canvas.queryByRole("button", { name: "First page" })).toBeInTheDocument();
+		await expect(canvas.getByRole("button", { name: "Next page" })).toBeInTheDocument();
+		await expect(canvas.getByRole("button", { name: "Last page" })).toBeInTheDocument();
+		await expect(canvas.getByRole("button", { name: "Previous page" })).toBeInTheDocument();
+		await expect(canvas.getByRole("button", { name: "First page" })).toBeInTheDocument();
 	},
 };
 

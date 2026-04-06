@@ -9,9 +9,7 @@ export type TableProps<T extends ObjectLiteral> = {
 	uniqueKey?: string;
 	renderHeader?: () => ReactNode;
 	renderFooter?: () => ReactNode;
-	renderColumnsRow?: (columns: ReactNode) => ReactNode;
 	renderColumnsCell?: (column: Column, key: string) => ReactNode;
-	renderRecordsRow?: (cells: ReactNode, key: string) => ReactNode;
 	renderRecordsCell?: (cell: Primitive, key: string) => ReactNode;
 	renderRecordsEmptyCell?: (key: string) => ReactNode;
 	renderNoRecords?: () => ReactNode;
@@ -25,17 +23,14 @@ export const Table = <T extends ObjectLiteral>({
 	uniqueKey,
 	renderHeader = () => null,
 	renderFooter = () => null,
-	renderColumnsRow = (columns: ReactNode) => <tr>{columns}</tr>,
-	renderColumnsCell = (column: Column, key: string) => <Th key={key}>{column.name}</Th>,
-	renderRecordsRow = (cells: ReactNode, key: string) => <Tr key={key}>{cells}</Tr>,
+	renderColumnsCell = (column: Column, key: string) => <Th key={key}>{column.label}</Th>,
 	renderRecordsCell = (cell: Primitive, key: string) => <Td key={key}>{cell}</Td>,
 	renderRecordsEmptyCell = (key: string) => <Td key={key}>X</Td>,
 	renderNoRecords = () => null,
 }: TableProps<T>) => {
-	const displayColumns = () =>
-		renderColumnsRow(
-			columns.map((column: Column) => renderColumnsCell(column, `column-${column.name}`)),
-		);
+	const displayColumns = () => (
+		<tr>{columns.map((column: Column) => renderColumnsCell(column, `column-${column.name}`))}</tr>
+	);
 
 	const displayRows = () => {
 		const columnNames = columns.map((column) => column.name);
@@ -43,13 +38,14 @@ export const Table = <T extends ObjectLiteral>({
 		return records.map((record, index) => {
 			const rowKey = uniqueKey ? record[uniqueKey] : index;
 
-			return renderRecordsRow(
-				columnNames.map((name) => {
-					const cell = record[name];
-					const cellKey = `row-${rowKey}-cell-${name}`;
-					return cell ? renderRecordsCell(cell, cellKey) : renderRecordsEmptyCell(cellKey);
-				}),
-				`row-${rowKey}`,
+			return (
+				<Tr key={`row-${rowKey}`}>
+					{columnNames.map((name) => {
+						const cell = record[name];
+						const cellKey = `row-${rowKey}-cell-${name}`;
+						return cell ? renderRecordsCell(cell, cellKey) : renderRecordsEmptyCell(cellKey);
+					})}
+				</Tr>
 			);
 		});
 	};

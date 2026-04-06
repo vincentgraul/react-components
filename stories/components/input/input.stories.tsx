@@ -28,7 +28,7 @@ export const WithMessage: Story = {
 		autoComplete: "off",
 	},
 	play: async ({ canvas }) => {
-		const message = canvas.queryByRole("alert");
+		const message = canvas.getByRole("alert");
 		await expect(message).toBeInTheDocument();
 		await expect(message).toHaveTextContent("firstname error");
 	},

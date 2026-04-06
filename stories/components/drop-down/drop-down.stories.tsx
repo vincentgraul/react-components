@@ -20,7 +20,7 @@ export const Basic: Story = {
 
 		// test open
 		await userEvent.click(button);
-		await expect(canvas.queryByText("hello")).toBeInTheDocument();
+		await expect(canvas.getByText("hello")).toBeInTheDocument();
 
 		// test close
 		await userEvent.click(button);
@@ -28,6 +28,6 @@ export const Basic: Story = {
 
 		//test re-open
 		await userEvent.click(button);
-		await expect(canvas.queryByText("hello")).toBeInTheDocument();
+		await expect(canvas.getByText("hello")).toBeInTheDocument();
 	},
 };
