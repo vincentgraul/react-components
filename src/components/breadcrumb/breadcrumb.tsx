@@ -43,9 +43,10 @@ export const Breadcrumb = ({
 						</button>
 
 						{index < items.length - 1 && (
-							<span aria-hidden data-testid="separator">
+							<span aria-hidden>
 								{icon ?? (
 									<ChevronRight
+										role="img"
 										className={styles.icon}
 										style={{
 											width: toPx(iconWidth),

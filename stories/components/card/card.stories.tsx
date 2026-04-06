@@ -28,7 +28,7 @@ type Story = StoryObj<typeof meta>;
 export const Basic: Story = {
 	play: ({ canvas }) => {
 		const title = canvas.queryByRole("heading");
-		expect(title).toBeNull();
+		expect(title).not.toBeInTheDocument();
 	},
 };
 
@@ -42,6 +42,6 @@ export const WithTitle: Story = {
 	},
 	play: ({ canvas }) => {
 		const title = canvas.queryByRole("heading", { level: 2 });
-		expect(title).not.toBeNull();
+		expect(title).toBeInTheDocument();
 	},
 };
