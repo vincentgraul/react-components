@@ -82,6 +82,7 @@ export const Pagination = ({
 				<button
 					type="button"
 					aria-label={ariaLabelPage ? ariaLabelPage(currentPage) : `Page ${currentPage}`}
+					aria-current={currentPage === page ? "page" : undefined}
 					className={clsx(styles.item, currentPage === page && styles.active)}
 					key={currentPage}
 					onClick={() => goToPage(currentPage)}
