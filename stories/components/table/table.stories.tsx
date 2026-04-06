@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { type PropsWithChildren, useState } from "react";
+import { expect, within } from "storybook/test";
 import { Pagination, Table, Td, Th, Tr, usePagination } from "../../../src";
 
 const meta = {
@@ -21,7 +22,12 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Basic: Story = {};
+export const Basic: Story = {
+	play: async ({ canvas }) => {
+		await expect(canvas.queryAllByRole("columnheader")).toHaveLength(4);
+		await expect(canvas.queryAllByRole("row")).toHaveLength(3);
+	},
+};
 
 export const WithUnknownColumn: Story = {
 	args: {
@@ -29,6 +35,10 @@ export const WithUnknownColumn: Story = {
 			{ lastname: "Dupont", firstname: "Jean", city: "Paris", sex: "M", age: 28 },
 			{ firstname: "Bernard", lastname: "Durant", age: 43, sex: "M", country: "France" },
 		],
+	},
+	play: async ({ canvas }) => {
+		await expect(canvas.queryByText("city")).not.toBeInTheDocument();
+		await expect(canvas.queryByText("Paris")).not.toBeInTheDocument();
 	},
 };
 
@@ -39,29 +49,26 @@ export const WithDefaultRecordsEmptyCell: Story = {
 			{ lastname: "Durant", age: 43, sex: "M" },
 		],
 	},
-};
-
-export const WithCustomColumnsRow: Story = {
-	args: {
-		renderColumnsRow: (columns) => <Tr>{columns}</Tr>,
+	play: async ({ canvas }) => {
+		await expect(canvas.queryAllByText("X")).toHaveLength(2);
 	},
 };
 
 export const WithCustomColumnsCell: Story = {
 	args: {
-		renderColumnsCell: (columns, key) => <Th key={key}>- {columns.name} -</Th>,
+		renderColumnsCell: (columns, key) => <Th key={key}>- {columns.label} -</Th>,
 	},
-};
-
-export const WithCustomRecordsRow: Story = {
-	args: {
-		renderRecordsRow: (cells, key) => <Tr key={key}>{cells}</Tr>,
+	play: async ({ canvas }) => {
+		await expect(canvas.getByText("- Firstname -")).toBeInTheDocument();
 	},
 };
 
 export const WithCustomRecordsCell: Story = {
 	args: {
 		renderRecordsCell: (cell, key) => <Td key={key}>* {cell} *</Td>,
+	},
+	play: async ({ canvas }) => {
+		await expect(canvas.getByText("* Jean *")).toBeInTheDocument();
 	},
 };
 
@@ -72,6 +79,9 @@ export const WithCustomRecordsEmptyCell: Story = {
 			{ lastname: "Durant", age: 43, sex: "M" },
 		],
 		renderRecordsEmptyCell: (key) => <Td key={key}>-</Td>,
+	},
+	play: async ({ canvas }) => {
+		await expect(canvas.queryAllByText("-")).toHaveLength(2);
 	},
 };
 
@@ -90,6 +100,9 @@ export const WithHeader: Story = {
 			</div>
 		),
 	},
+	play: async ({ canvas }) => {
+		await expect(canvas.getByText("Users data")).toBeInTheDocument();
+	},
 };
 
 export const WithFooter: Story = {
@@ -107,6 +120,9 @@ export const WithFooter: Story = {
 			</div>
 		),
 	},
+	play: async ({ canvas }) => {
+		expect(canvas.getByText(`Total: ${meta.args.records.length} records`)).toBeInTheDocument();
+	},
 };
 
 const Block = ({ children }: PropsWithChildren) => (
@@ -119,6 +135,10 @@ export const WithNoRecords: Story = {
 		renderHeader: () => <Block>Users data</Block>,
 		renderFooter: () => <Block>Coypright 1990 - 2021</Block>,
 		renderNoRecords: () => <div style={{ margin: "2vw 0", textAlign: "center" }}>No data</div>,
+	},
+	play: async ({ canvas }) => {
+		await expect(canvas.queryByRole("table")).not.toBeInTheDocument();
+		await expect(canvas.getByText("No data")).toBeInTheDocument();
 	},
 };
 
