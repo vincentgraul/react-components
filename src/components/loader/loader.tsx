@@ -46,8 +46,10 @@ export const Loader = ({
 					(icon ?? (
 						<LoaderCircle
 							className={styles.image}
+							role="img"
 							color={iconColor}
 							size={toRem(iconSize)}
+							aria-label="Loading"
 						></LoaderCircle>
 					))}
 				{text && <span style={{ fontWeight }}>{text}</span>}
