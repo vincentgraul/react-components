@@ -39,7 +39,6 @@ export const Basic: Story = {
 
 export const WithOne: Story = {
 	args: {
-		...meta.args,
 		config: {
 			url: new URL("https://vincentgraul.com/questions"),
 		},

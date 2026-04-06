@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { type ButtonHTMLAttributes, useState } from "react";
+import { expect } from "storybook/test";
 import { Button, Modal } from "../../../src";
 
 const meta = {
@@ -22,14 +23,27 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Basic: Story = {};
+export const Basic: Story = {
+	play: async ({ canvas }) => {
+		await expect(canvas.queryByRole("heading", { level: 2 })).not.toBeInTheDocument();
+		await expect(canvas.queryByRole("img", { name: "Close" })).not.toBeInTheDocument();
+	},
+};
 
 export const WithTitle: Story = {
 	args: { title: "Welcome" },
+	play: async ({ canvas }) => {
+		const title = canvas.queryByRole("heading", { level: 2 });
+		await expect(title).toBeInTheDocument();
+		await expect(title).toHaveTextContent("Welcome");
+	},
 };
 
 export const WithCloseIcon: Story = {
 	args: { hasCloseIcon: true },
+	play: async ({ canvas }) => {
+		await expect(canvas.queryByRole("img", { name: "Close" })).toBeInTheDocument();
+	},
 };
 
 const MyCustomButton = ({ onClick, children }: ButtonHTMLAttributes<HTMLButtonElement>) => (
@@ -39,15 +53,31 @@ const MyCustomButton = ({ onClick, children }: ButtonHTMLAttributes<HTMLButtonEl
 );
 
 export const WithButtons: Story = {
-	args: { ConfirmButton: MyCustomButton, DeclineButton: MyCustomButton },
+	args: {
+		ConfirmButton: MyCustomButton,
+		confirmButtonText: "Yes",
+		DeclineButton: MyCustomButton,
+		declineButtonText: "No",
+	},
+	play: async ({ canvas }) => {
+		await expect(canvas.queryByRole("button", { name: "Yes" })).toBeInTheDocument();
+		await expect(canvas.queryByRole("button", { name: "No" })).toBeInTheDocument();
+	},
 };
 
 export const WithOnlyConfirmButton: Story = {
 	args: { ConfirmButton: MyCustomButton },
+	play: async ({ canvas }) => {
+		await expect(canvas.queryByRole("button", { name: "Confirm" })).toBeInTheDocument();
+	},
 };
 
 export const WithRender: Story = {
 	args: { renderHeader: () => <div>header</div>, renderFooter: () => <div>footer</div> },
+	play: async ({ canvas }) => {
+		await expect(canvas.queryByText("header")).toBeInTheDocument();
+		await expect(canvas.queryByText("footer")).toBeInTheDocument();
+	},
 };
 
 export const WithOpen: Story = {

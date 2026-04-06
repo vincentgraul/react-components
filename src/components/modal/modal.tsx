@@ -107,6 +107,8 @@ export const Modal = ({
 				{hasCloseIcon
 					? (closeIcon ?? (
 							<X
+								role="img"
+								aria-label="Close"
 								className={styles.close}
 								onClick={handleOnClose}
 								color={closeIconColor}

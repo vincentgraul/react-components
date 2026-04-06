@@ -20,7 +20,6 @@ export const Basic: Story = {
 
 export const WithImage: Story = {
 	args: {
-		...meta.args,
 		hasIcon: true,
 	},
 	play: async ({ canvas }) => {
