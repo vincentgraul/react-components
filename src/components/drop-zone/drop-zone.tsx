@@ -171,6 +171,7 @@ export const DropZone = ({
 					borderStyle,
 					borderColor,
 				}}
+				aria-label="Upload a file"
 			>
 				{preview ? (
 					<WithFile preview={preview} />
@@ -184,13 +185,19 @@ export const DropZone = ({
 					type="button"
 					className={styles["remove-button"]}
 					onClick={handleOnRemove}
-					aria-label={removeAriaLabel ?? "Remove uploaded picture"}
+					aria-label={removeAriaLabel ?? "Remove uploaded file"}
 				>
 					{removeIcon ?? <Trash2 size={toRem(removeIconSize)} />}
 				</button>
 			)}
 
-			<input ref={fileRef} type="file" onChange={handleOnChange} hidden></input>
+			<input
+				ref={fileRef}
+				type="file"
+				onChange={handleOnChange}
+				hidden
+				data-testid="input-file"
+			></input>
 		</div>
 	);
 };
