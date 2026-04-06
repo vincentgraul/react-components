@@ -99,6 +99,7 @@ export const Input = ({
 
 			{message && (
 				<span
+					role="alert"
 					className={styles.message}
 					style={{ fontWeight: messageFontWeight, fontSize: toRem(messageFontSize) }}
 				>
