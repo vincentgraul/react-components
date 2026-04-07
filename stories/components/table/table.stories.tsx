@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { type PropsWithChildren, useState } from "react";
-import { expect, within } from "storybook/test";
-import { Pagination, Table, Td, Th, Tr, usePagination } from "../../../src";
+import { expect } from "storybook/test";
+import { Pagination, Table, Td, Th, usePagination } from "../../../src";
 
 const meta = {
 	component: Table,

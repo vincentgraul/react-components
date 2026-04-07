@@ -41,7 +41,12 @@ export const DropDown = ({
 				width: isNumber(width) ? toPercentage(width) : width,
 			}}
 		>
-			<button type="button" className={styles.button} onClick={handleOnClick}>
+			<button
+				type="button"
+				aria-expanded={isOpen}
+				className={styles.button}
+				onClick={handleOnClick}
+			>
 				<span
 					style={{
 						fontSize: toRem(labelFontSize),
