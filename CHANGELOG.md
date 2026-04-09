@@ -1,5 +1,11 @@
 # @vincentgraul/react-components
 
+## 1.2.2
+
+### Patch Changes
+
+- 7a0f0b3: Fix package json repository
+
 ## 1.2.1
 
 ### Patch Changes
