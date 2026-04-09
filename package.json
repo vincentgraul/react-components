@@ -17,17 +17,22 @@
 	"files": [
 		"dist"
 	],
+	"publishConfig": {
+		"access": "public",
+		"provenance": true
+	},
 	"author": {
 		"name": "Vincent Graul",
 		"email": "vincent.graul@outlook.com",
 		"url": "https://vincentgraul.com"
 	},
 	"scripts": {
-		"build": "bun lint && vite build",
-		"test": "vitest",
+		"dev": "storybook dev",
 		"lint": "biome lint",
-		"storybook": "storybook dev -p 6006",
-		"build-storybook": "storybook build"
+		"test": "vitest run",
+		"build": "vite build",
+		"changeset": "changeset",
+		"release": "bun run build && changeset publish"
 	},
 	"peerDependencies": {
 		"react": "^19.2.4",
@@ -41,6 +46,7 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.4.10",
+		"@changesets/cli": "^2.30.0",
 		"@storybook/addon-a11y": "^10.3.4",
 		"@storybook/addon-vitest": "^10.3.4",
 		"@storybook/react": "^10.3.3",
