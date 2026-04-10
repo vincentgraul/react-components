@@ -1,5 +1,11 @@
 # @vincentgraul/react-components
 
+## 1.2.3
+
+### Patch Changes
+
+- c50a9ff: Change checkbox spacing
+
 ## 1.2.2
 
 ### Patch Changes
