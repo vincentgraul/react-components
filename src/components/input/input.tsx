@@ -7,7 +7,7 @@ import styles from "./input.module.css";
 import type { InputColors, InputIcons, InputStatus, InputType } from "./input.types";
 
 const defaultIcons = {
-	info: <Info />,
+	default: <Info />,
 	error: <CircleAlert />,
 	warning: <TriangleAlert />,
 	success: <CircleCheck />,
@@ -37,14 +37,14 @@ export const Input = ({
 	label,
 	message,
 	colors = {
-		info: "#000000",
+		default: "#000000",
 		success: "#1A7A1A",
 		error: "#C40000",
 		warning: "#B35A00",
 		focus: "#0055CC",
 	},
 	icons = defaultIcons,
-	status = "info",
+	status = "default",
 	width = 100,
 	height = "auto",
 	borderWidth = 1,
@@ -59,7 +59,7 @@ export const Input = ({
 	...rest
 }: InputProps) => {
 	const CSSVariables = {
-		"--info-color": colors.info,
+		"--default-color": colors.default,
 		"--success-color": colors.success,
 		"--warning-color": colors.warning,
 		"--error-color": colors.error,
@@ -74,6 +74,7 @@ export const Input = ({
 		<label
 			className={clsx(styles.container, status, className)}
 			style={{
+				width: isNumber(width) ? toPercentage(width) : width,
 				...CSSVariables,
 			}}
 		>
@@ -91,7 +92,6 @@ export const Input = ({
 			<input
 				className={styles.input}
 				style={{
-					width: isNumber(width) ? toPercentage(width) : width,
 					height: isNumber(height) ? toRem(height) : height,
 				}}
 				{...rest}

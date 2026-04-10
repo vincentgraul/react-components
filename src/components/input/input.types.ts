@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 export type InputType = "text" | "password";
 
 export type InputColors = {
-	info: string;
+	default: string;
 	focus: string;
 	success: string;
 	error: string;
@@ -11,10 +11,10 @@ export type InputColors = {
 };
 
 export type InputIcons = {
-	info: ReactNode;
+	default: ReactNode;
 	success: ReactNode;
 	error: ReactNode;
 	warning: ReactNode;
 };
 
-export type InputStatus = "info" | "success" | "warning" | "error";
+export type InputStatus = "default" | "success" | "warning" | "error";
