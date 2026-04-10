@@ -1,5 +1,11 @@
 # @vincentgraul/react-components
 
+## 1.2.4
+
+### Patch Changes
+
+- 6fc7326: Fix width in Input component
+
 ## 1.2.3
 
 ### Patch Changes
