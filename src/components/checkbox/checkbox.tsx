@@ -25,7 +25,7 @@ export const Checkbox = ({
 	checkColor,
 	checkBackgroundColor,
 	iconSize,
-	size = 2,
+	size = 1.5,
 	...rest
 }: CheckboxProps) => {
 	const CSSVariables = {

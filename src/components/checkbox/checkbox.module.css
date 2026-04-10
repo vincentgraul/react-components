@@ -4,7 +4,7 @@
 	font-size: calc(var(--checkbox-size) * 0.7);
 	cursor: pointer;
 	width: fit-content;
-	gap: calc(var(--checkbox-size) * 0.25);
+	gap: calc(var(--checkbox-size) * 0.5);
 }
 
 .input {
