@@ -1,5 +1,11 @@
 # @vincentgraul/react-components
 
+## 1.3.0
+
+### Minor Changes
+
+- 5819efc: Add onClick in ListItem and add closeOnOutsideClick props in DropDown component
+
 ## 1.2.4
 
 ### Patch Changes
