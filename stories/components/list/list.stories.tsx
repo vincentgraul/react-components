@@ -19,3 +19,14 @@ export const Basic: Story = {
 		),
 	},
 };
+
+export const WithOnClick: Story = {
+	args: {
+		children: (
+			<>
+				<ListItem icon={<ArrowRight />} text="cool" onClick={() => console.log("click")}></ListItem>
+				<ListItem icon={<ArrowRight />} text="top" onClick={() => console.log("click")}></ListItem>
+			</>
+		),
+	},
+};

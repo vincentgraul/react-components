@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { User } from "lucide-react";
 import { expect } from "storybook/test";
 import { DropDown } from "../../../src";
 
@@ -29,5 +30,12 @@ export const Basic: Story = {
 		//test re-open
 		await userEvent.click(button);
 		await expect(canvas.getByText("hello")).toBeInTheDocument();
+	},
+};
+
+export const WithIcon: Story = {
+	args: {
+		icon: <User />,
+		closeOnOutsideClick: true,
 	},
 };
