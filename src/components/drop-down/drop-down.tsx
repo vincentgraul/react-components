@@ -18,7 +18,7 @@ export type DropDownProps = {
 	width?: Size;
 	arrowIcons?: IconsType;
 	arrowIconsColor?: string;
-	contentMarginTop?: number;
+	gap?: number;
 	closeOnOutsideClick?: boolean;
 	overlay?: boolean;
 	className?: string;
@@ -35,7 +35,7 @@ export const DropDown = ({
 	arrowIcons,
 	arrowIconsColor,
 	width = "fit-content",
-	contentMarginTop = 0.5,
+	gap = 1,
 	closeOnOutsideClick,
 	overlay,
 	className,
@@ -61,6 +61,7 @@ export const DropDown = ({
 			style={{
 				width: isNumber(width) ? toPercentage(width) : width,
 				position: overlay ? "relative" : "unset",
+				gap: toRem(gap),
 			}}
 			ref={ref}
 		>
@@ -84,16 +85,17 @@ export const DropDown = ({
 				{ArrowIcon}
 			</button>
 
-			<div
-				className={styles.content}
-				style={{
-					marginTop: toRem(contentMarginTop),
-					position: overlay ? "absolute" : "unset",
-					top: overlay ? "100%" : "unset",
-				}}
-			>
-				{isOpen && children}
-			</div>
+			{isOpen && (
+				<div
+					className={styles.content}
+					style={{
+						position: overlay ? "absolute" : "unset",
+						top: overlay ? "100%" : "unset",
+					}}
+				>
+					{children}
+				</div>
+			)}
 		</div>
 	);
 };

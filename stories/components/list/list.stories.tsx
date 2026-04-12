@@ -13,8 +13,19 @@ export const Basic: Story = {
 	args: {
 		children: (
 			<>
-				<ListItem icon={<ArrowRight />} text="cool"></ListItem>
-				<ListItem icon={<ArrowRight />} text="top"></ListItem>
+				<ListItem text="Item 1"></ListItem>
+				<ListItem text="Item 2"></ListItem>
+			</>
+		),
+	},
+};
+
+export const WithIcon: Story = {
+	args: {
+		children: (
+			<>
+				<ListItem icon={<ArrowRight />} text="Item 1"></ListItem>
+				<ListItem icon={<ArrowRight />} text="Item 2"></ListItem>
 			</>
 		),
 	},
@@ -24,8 +35,16 @@ export const WithOnClick: Story = {
 	args: {
 		children: (
 			<>
-				<ListItem icon={<ArrowRight />} text="cool" onClick={() => console.log("click")}></ListItem>
-				<ListItem icon={<ArrowRight />} text="top" onClick={() => console.log("click")}></ListItem>
+				<ListItem
+					icon={<ArrowRight />}
+					text="Item 1"
+					onClick={() => console.log("click")}
+				></ListItem>
+				<ListItem
+					icon={<ArrowRight />}
+					text="Item 2"
+					onClick={() => console.log("click")}
+				></ListItem>
 			</>
 		),
 	},
@@ -38,8 +57,16 @@ export const WithBackround: Story = {
 		padding: "1rem",
 		children: (
 			<>
-				<ListItem icon={<ArrowRight />} text="cool" onClick={() => console.log("click")}></ListItem>
-				<ListItem icon={<ArrowRight />} text="top" onClick={() => console.log("click")}></ListItem>
+				<ListItem
+					icon={<ArrowRight />}
+					text="Item 1"
+					onClick={() => console.log("click")}
+				></ListItem>
+				<ListItem
+					icon={<ArrowRight />}
+					text="Item 2"
+					onClick={() => console.log("click")}
+				></ListItem>
 			</>
 		),
 	},

@@ -5,8 +5,8 @@ import { toPx, toRem } from "../../utils";
 import styles from "./list.module.css";
 
 export type ListItemProps = {
-	icon: ReactNode;
 	text: string;
+	icon?: ReactNode;
 	textFontSize?: number;
 	textColor?: string;
 	textFontWeight?: FontWeight;
@@ -17,8 +17,8 @@ export type ListItemProps = {
 
 export const ListItem = ({
 	className,
-	icon,
 	text,
+	icon,
 	textFontSize = 1,
 	textColor,
 	textFontWeight = 400,
