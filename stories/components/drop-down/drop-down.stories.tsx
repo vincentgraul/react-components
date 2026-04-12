@@ -37,5 +37,7 @@ export const WithIcon: Story = {
 	args: {
 		icon: <User />,
 		closeOnOutsideClick: true,
+		overlay: true,
+		gap: 2.5,
 	},
 };

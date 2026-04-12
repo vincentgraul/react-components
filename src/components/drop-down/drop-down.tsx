@@ -90,7 +90,7 @@ export const DropDown = ({
 					className={styles.content}
 					style={{
 						position: overlay ? "absolute" : "unset",
-						top: overlay ? "100%" : "unset",
+						top: overlay ? toRem(gap) : "unset",
 					}}
 				>
 					{children}
