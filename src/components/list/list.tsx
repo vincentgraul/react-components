@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import type { ReactNode } from "react";
 import type { FontWeight } from "../../types";
-import { toRem } from "../../utils";
+import { toPx, toRem } from "../../utils";
 import styles from "./list.module.css";
 
 export type ListItemProps = {
@@ -49,11 +49,24 @@ export const ListItem = ({
 export type ListProps = {
 	children: ReactNode;
 	gap?: number;
+	backgroundColor?: string;
+	padding?: string;
+	borderRadius?: number;
 	className?: string;
 };
 
-export const List = ({ className, children, gap = 0.5 }: ListProps) => (
-	<ul className={clsx(styles.list, className)} style={{ gap: toRem(gap) }}>
+export const List = ({
+	className,
+	children,
+	gap = 0.5,
+	backgroundColor,
+	padding,
+	borderRadius = 0,
+}: ListProps) => (
+	<ul
+		className={clsx(styles.list, className)}
+		style={{ gap: toRem(gap), backgroundColor, padding, borderRadius: toPx(borderRadius) }}
+	>
 		{children}
 	</ul>
 );

@@ -17,7 +17,7 @@ export type DropDownProps = {
 	icon?: ReactNode;
 	width?: Size;
 	arrowIcons?: IconsType;
-	iconsColor?: string;
+	arrowIconsColor?: string;
 	contentMarginTop?: number;
 	closeOnOutsideClick?: boolean;
 	overlay?: boolean;
@@ -33,7 +33,7 @@ export const DropDown = ({
 	labelColor,
 	icon,
 	arrowIcons,
-	iconsColor,
+	arrowIconsColor,
 	width = "fit-content",
 	contentMarginTop = 0.5,
 	closeOnOutsideClick,
@@ -44,9 +44,9 @@ export const DropDown = ({
 	const ref = useRef<HTMLDivElement>(null);
 	const { hasClickedOutside } = useOutsideAlerter(ref);
 
-	const Icon = isOpen
-		? (arrowIcons?.up ?? <ChevronUp style={{ color: iconsColor }} />)
-		: (arrowIcons?.down ?? <ChevronDown style={{ color: iconsColor }} />);
+	const ArrowIcon = isOpen
+		? (arrowIcons?.up ?? <ChevronUp style={{ color: arrowIconsColor }} />)
+		: (arrowIcons?.down ?? <ChevronDown style={{ color: arrowIconsColor }} />);
 	const handleOnClick = () => setIsOpen(!isOpen);
 
 	useEffect(() => {
@@ -81,7 +81,7 @@ export const DropDown = ({
 				>
 					{label}
 				</span>
-				{Icon}
+				{ArrowIcon}
 			</button>
 
 			<div

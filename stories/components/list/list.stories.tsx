@@ -30,3 +30,17 @@ export const WithOnClick: Story = {
 		),
 	},
 };
+
+export const WithBackround: Story = {
+	args: {
+		backgroundColor: "#e6d7d7",
+		borderRadius: 5,
+		padding: "1rem",
+		children: (
+			<>
+				<ListItem icon={<ArrowRight />} text="cool" onClick={() => console.log("click")}></ListItem>
+				<ListItem icon={<ArrowRight />} text="top" onClick={() => console.log("click")}></ListItem>
+			</>
+		),
+	},
+};
