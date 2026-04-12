@@ -1,5 +1,11 @@
 # @vincentgraul/react-components
 
+## 1.3.3
+
+### Patch Changes
+
+- d8f5e08: Fix gap content and overlay in Drop down
+
 ## 1.3.2
 
 ### Patch Changes
