@@ -1,5 +1,11 @@
 # @vincentgraul/react-components
 
+## 1.3.1
+
+### Patch Changes
+
+- 290463c: Add background color, padding and border radius in List component
+
 ## 1.3.0
 
 ### Minor Changes
