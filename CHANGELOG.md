@@ -1,5 +1,11 @@
 # @vincentgraul/react-components
 
+## 1.3.2
+
+### Patch Changes
+
+- 696d795: Fix content in Drop down component
+
 ## 1.3.1
 
 ### Patch Changes
