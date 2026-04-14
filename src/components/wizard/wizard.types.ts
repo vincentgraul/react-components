@@ -1,8 +1,8 @@
 export type StepProps = {
-  step: number;
-  totalSteps: number;
-  previousStep: () => void;
-  nextStep: () => void;
-  isFirstStep: boolean;
-  isLastStep: boolean;
+	step: number;
+	totalSteps: number;
+	onPreviousStep: () => void;
+	onNextStep: () => void;
+	isFirstStep: boolean;
+	isLastStep: boolean;
 };

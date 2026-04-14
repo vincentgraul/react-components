@@ -69,21 +69,21 @@ export const Select = ({
 	}));
 	const hasOneOption = options.length < 2;
 
-	const [isListVisible, setListVisibility] = useState<boolean>(false);
+	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const [selectedOption, setSelectedOption] = useState<SelectOption>(
 		options.find((option) => option.value === selectedValue) ?? options[0],
 	);
 	const ref = useRef(null);
 	const { hasClickedOutside, onReset: onResetOutsideAlerter } = useOutsideAlerter(ref);
 
-	const handleSelectedOptionClick = () => {
+	const handleOnShowOptions = () => {
 		onResetOutsideAlerter();
-		setListVisibility(!isListVisible);
+		setIsOpen(!isOpen);
 	};
 
-	const handleOptionClick = (option: SelectOption) => {
+	const handleOnSelect = (option: SelectOption) => {
 		setSelectedOption(option);
-		setListVisibility(false);
+		setIsOpen(false);
 
 		if (onChange) {
 			onChange(option);
@@ -92,7 +92,7 @@ export const Select = ({
 
 	useEffect(() => {
 		if (hasClickedOutside) {
-			setListVisibility(false);
+			setIsOpen(false);
 		}
 	}, [hasClickedOutside]);
 
@@ -125,8 +125,9 @@ export const Select = ({
 			<button
 				type="button"
 				aria-label={ariaLabelIcon}
+				aria-expanded={isOpen}
 				className={styles["selected-option-container"]}
-				onClick={handleSelectedOptionClick}
+				onClick={handleOnShowOptions}
 				style={{
 					borderWidth: toPx(borderWidth),
 					borderColor: color,
@@ -162,7 +163,7 @@ export const Select = ({
 				)}
 			</button>
 
-			{isListVisible && (
+			{isOpen && (
 				<ul
 					className={styles["options-list"]}
 					style={{
@@ -182,7 +183,7 @@ export const Select = ({
 								<button
 									className={styles.option}
 									type="button"
-									onClick={() => handleOptionClick(option)}
+									onClick={() => handleOnSelect(option)}
 								>
 									{option.label}
 								</button>

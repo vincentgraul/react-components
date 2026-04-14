@@ -103,20 +103,26 @@ export const Modal = ({
 			className={clsx(styles.overlay, className)}
 			style={{ backgroundColor: overlayBackgroundColor }}
 		>
-			<div className={styles.container} ref={ref} style={{ backgroundColor, padding }}>
-				{hasCloseIcon
-					? (closeIcon ?? (
-							<X
-								role="img"
-								aria-label="Close"
-								className={styles.close}
-								onClick={handleOnClose}
-								color={closeIconColor}
-								size={toRem(closeIconSize)}
-								style={{ marginBottom: toRem(closeIconMarginBottom) }}
-							></X>
-						))
-					: null}
+			<div
+				className={styles.container}
+				role="dialog"
+				aria-modal="true"
+				ref={ref}
+				style={{ backgroundColor, padding }}
+			>
+				{hasCloseIcon ? (
+					<button
+						className={styles.close}
+						type="button"
+						onClick={handleOnClose}
+						aria-label="Close"
+						style={{ marginBottom: toRem(closeIconMarginBottom) }}
+					>
+						{closeIcon ?? (
+							<X aria-hidden="true" color={closeIconColor} size={toRem(closeIconSize)}></X>
+						)}
+					</button>
+				) : null}
 
 				{renderHeader
 					? renderHeader()

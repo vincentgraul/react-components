@@ -23,6 +23,7 @@
 	padding: 0;
 	overflow: hidden;
 	min-width: 100%;
+	z-index: 1;
 }
 
 .item {
@@ -41,6 +42,6 @@
 }
 
 .item-button:hover {
-	background-color: var(--hover-item-background-color);
-	color: var(--hover-item-text-color);
+	background-color: var(--item-hover-background-color);
+	color: var(--item-hover-text-color);
 }

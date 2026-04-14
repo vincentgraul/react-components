@@ -1,12 +1,11 @@
 import clsx from "clsx";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { type ReactNode, useState } from "react";
-import type { FontStyle, FontWeight, Size } from "../../types";
+import type { FontStyle, FontWeight, Size, UpAndDownArrows } from "../../types";
 import { isNumber, toPercentage, toRem } from "../../utils";
 import styles from "./accordion.module.css";
-import type { IconsType } from "./accordion.types";
 
-type AccordionType = {
+type AccordionProps = {
 	label: string;
 	children: ReactNode;
 	labelFontSize?: number;
@@ -14,7 +13,7 @@ type AccordionType = {
 	labelFontStyle?: FontStyle;
 	labelColor?: string;
 	icon?: ReactNode;
-	arrowIcons?: IconsType;
+	arrowIcons?: UpAndDownArrows;
 	arrowIconsColor?: string;
 	width?: Size;
 	gap?: number;
@@ -34,7 +33,7 @@ export const Accordion = ({
 	width = "fit-content",
 	gap = 1,
 	className,
-}: AccordionType) => {
+}: AccordionProps) => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const ArrowIcon = isOpen

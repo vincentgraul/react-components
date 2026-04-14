@@ -36,7 +36,6 @@ export const Spinner = ({
 export type LoaderProps = {
 	children: ReactNode;
 	backgroundColor?: string;
-	color?: string;
 	gap?: number;
 	className?: string;
 };

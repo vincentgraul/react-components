@@ -21,7 +21,7 @@ export const Basic: Story = {
 		const buttons = canvas.queryAllByRole("button");
 		expect(buttons).toHaveLength(3);
 
-		const separators = canvas.getAllByRole("img", { hidden: true });
+		const separators = canvas.getAllByRole("separator");
 		expect(separators).toHaveLength(2);
 
 		const expectedItems = [
@@ -47,7 +47,7 @@ export const WithOne: Story = {
 		const buttons = canvas.queryAllByRole("button");
 		expect(buttons).toHaveLength(1);
 
-		const separators = canvas.queryByRole("img", { hidden: true });
+		const separators = canvas.queryByRole("separator");
 		await expect(separators).not.toBeInTheDocument();
 
 		const expectedItem = { label: "questions", url: "/questions" };

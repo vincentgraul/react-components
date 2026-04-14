@@ -42,21 +42,18 @@ export const Breadcrumb = ({
 							{item.label}
 						</button>
 
-						{index < items.length - 1 && (
-							<span aria-hidden>
-								{icon ?? (
-									<ChevronRight
-										role="img"
-										className={styles.icon}
-										style={{
-											width: toPx(iconWidth),
-											marginLeft: toRem(iconMargin),
-											marginRight: toRem(iconMargin),
-										}}
-									/>
-								)}
-							</span>
-						)}
+						{index < items.length - 1 &&
+							(icon ?? (
+								<ChevronRight
+									role="separator"
+									className={styles.icon}
+									style={{
+										width: toPx(iconWidth),
+										marginLeft: toRem(iconMargin),
+										marginRight: toRem(iconMargin),
+									}}
+								/>
+							))}
 					</li>
 				))}
 			</ol>

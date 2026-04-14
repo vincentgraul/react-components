@@ -2,10 +2,9 @@ import clsx from "clsx";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { type CSSProperties, type ReactNode, useEffect, useRef, useState } from "react";
 import { useOutsideAlerter } from "../../hooks";
-import type { FontStyle, FontWeight, Size } from "../../types";
+import type { FontStyle, FontWeight, Size, UpAndDownArrows } from "../../types";
 import { isNumber, toPercentage, toPx, toRem } from "../../utils";
 import styles from "./drop-down.module.css";
-import type { IconsType } from "./drop-down.types";
 
 export type DropDownItemProps = {
 	text: string;
@@ -53,7 +52,7 @@ export type DropDownProps = {
 	itemTextColor?: string;
 	icon?: ReactNode;
 	width?: Size;
-	arrowIcons?: IconsType;
+	arrowIcons?: UpAndDownArrows;
 	arrowIconsColor?: string;
 	gap?: number;
 	backgroundColor?: string;
@@ -86,9 +85,9 @@ export const DropDown = ({
 }: DropDownProps) => {
 	const CSSVariables = {
 		"--item-background-color": backgroundColor,
-		"--hover-item-background-color": hoverItemBackgroundColor,
+		"--item-hover-background-color": hoverItemBackgroundColor,
 		"--item-text-color": itemTextColor,
-		"--hover-item-text-color": hoverItemTextColor,
+		"--item-hover-text-color": hoverItemTextColor,
 		"--item-padding": itemPadding,
 	} as CSSProperties;
 

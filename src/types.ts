@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 export type FontWeight = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
 export type FontStyle = "normal" | "italic" | "oblique";
 export type Position = "start" | "center" | "end";
@@ -13,3 +15,4 @@ export type BorderStyle =
 	| "inset"
 	| "outset";
 export type Text = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "span" | "p";
+export type UpAndDownArrows = { up: ReactNode; down: ReactNode };

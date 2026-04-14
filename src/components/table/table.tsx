@@ -28,11 +28,11 @@ export const Table = <T extends ObjectLiteral>({
 	renderRecordsEmptyCell = (key: string) => <Td key={key}>X</Td>,
 	renderNoRecords = () => null,
 }: TableProps<T>) => {
-	const displayColumns = () => (
+	const renderColumns = () => (
 		<tr>{columns.map((column: Column) => renderColumnsCell(column, `column-${column.name}`))}</tr>
 	);
 
-	const displayRows = () => {
+	const renderRows = () => {
 		const columnNames = columns.map((column) => column.name);
 
 		return records.map((record, index) => {
@@ -58,8 +58,8 @@ export const Table = <T extends ObjectLiteral>({
 				renderNoRecords()
 			) : (
 				<table className={styles.main}>
-					<thead>{displayColumns()}</thead>
-					<tbody className={styles.tbody}>{displayRows()}</tbody>
+					<thead>{renderColumns()}</thead>
+					<tbody className={styles.tbody}>{renderRows()}</tbody>
 				</table>
 			)}
 

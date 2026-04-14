@@ -42,7 +42,7 @@ export const WithTitle: Story = {
 export const WithCloseIcon: Story = {
 	args: { hasCloseIcon: true },
 	play: async ({ canvas }) => {
-		await expect(canvas.getByRole("img", { name: "Close" })).toBeInTheDocument();
+		await expect(canvas.getByRole("button", { name: "Close" })).toBeInTheDocument();
 	},
 };
 

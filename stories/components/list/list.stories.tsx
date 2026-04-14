@@ -39,22 +39,3 @@ export const WithIcon: Story = {
 		await expect(canvas.getByTestId("list-item-2-icon")).toBeInTheDocument();
 	},
 };
-
-export const WithOnClick: Story = {
-	args: {
-		children: (
-			<>
-				<ListItem
-					icon={<ArrowRight />}
-					text="Item 1"
-					onClick={() => console.log("click")}
-				></ListItem>
-				<ListItem
-					icon={<ArrowRight />}
-					text="Item 2"
-					onClick={() => console.log("click")}
-				></ListItem>
-			</>
-		),
-	},
-};

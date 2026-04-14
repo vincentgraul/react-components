@@ -145,7 +145,7 @@ export const DropZone = ({
 			className={clsx(styles.container, className)}
 			style={{
 				width: isNumber(width) ? toPercentage(width) : width,
-				height: isNumber(height) ? toPx(height) : height,
+				height: isNumber(height) ? toRem(height) : height,
 				gap: toRem(labelGap),
 			}}
 		>

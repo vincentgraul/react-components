@@ -12,7 +12,6 @@ export type ListItemProps = {
 	textFontStyle?: FontStyle;
 	textColor?: string;
 	gap?: number;
-	onClick?: () => void;
 	className?: string;
 };
 
@@ -25,27 +24,19 @@ export const ListItem = ({
 	textFontWeight = 400,
 	textFontStyle = "normal",
 	gap = 0.3,
-	onClick,
 }: ListItemProps) => (
-	<li className={clsx(styles.item, className)}>
-		<button
-			type="button"
-			className={styles["item-button"]}
-			onClick={onClick}
-			style={{ gap: toRem(gap), cursor: onClick ? "pointer" : "auto" }}
+	<li className={clsx(styles.item, className)} style={{ gap: toRem(gap) }}>
+		{icon}
+		<span
+			style={{
+				fontSize: toRem(textFontSize),
+				color: textColor,
+				fontWeight: textFontWeight,
+				fontStyle: textFontStyle,
+			}}
 		>
-			{icon}
-			<span
-				style={{
-					fontSize: toRem(textFontSize),
-					color: textColor,
-					fontWeight: textFontWeight,
-					fontStyle: textFontStyle,
-				}}
-			>
-				{text}
-			</span>
-		</button>
+			{text}
+		</span>
 	</li>
 );
 

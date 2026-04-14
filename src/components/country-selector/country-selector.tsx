@@ -1,4 +1,4 @@
-import "/node_modules/flag-icons/css/flag-icons.min.css";
+import "flag-icons/css/flag-icons.min.css";
 
 import clsx from "clsx";
 import { toPx } from "../../utils";

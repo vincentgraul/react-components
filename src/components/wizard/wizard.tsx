@@ -23,7 +23,8 @@ const Header = ({
 	totalSteps,
 	hasStepIndicator,
 	stepIndicatorFontWeight = 400,
-}: HeaderProps & Omit<StepProps, "previousStep" | "nextStep" | "isFirstStep" | "isLastStep">) => (
+}: HeaderProps &
+	Omit<StepProps, "onPreviousStep" | "onNextStep" | "isFirstStep" | "isLastStep">) => (
 	<div className={styles.header}>
 		{titles && (
 			<Title
@@ -61,12 +62,12 @@ const Footer = ({
 	gap = 1,
 	isFirstStep,
 	isLastStep,
-	previousStep,
-	nextStep,
+	onPreviousStep,
+	onNextStep,
 }: FooterProps & Omit<StepProps, "step" | "totalSteps">) => (
 	<div className={styles.footer} style={{ justifyContent, gap: toRem(gap) }}>
-		{!isFirstStep && <Button onClick={previousStep}>{previousButtonText}</Button>}
-		{!isLastStep && <Button onClick={nextStep}>{nextButtonText}</Button>}
+		{!isFirstStep && <Button onClick={onPreviousStep}>{previousButtonText}</Button>}
+		{!isLastStep && <Button onClick={onNextStep}>{nextButtonText}</Button>}
 		{isLastStep && onFinalize && <Button onClick={onFinalize}>{finalizeButtonText}</Button>}
 	</div>
 );
@@ -98,11 +99,11 @@ export const Wizard = ({
 	const isLastStep = currentStep === totalSteps;
 	const currentPage: ReactElement = Children.toArray(children)[currentStep - 1] as ReactElement;
 
-	const nextStep = () => {
+	const handleOnNextStep = () => {
 		if (currentStep < totalSteps) setCurrentStep(currentStep + 1);
 	};
 
-	const previousStep = () => {
+	const handleOnPreviousStep = () => {
 		if (currentStep > 1) setCurrentStep(currentStep - 1);
 	};
 
@@ -111,8 +112,8 @@ export const Wizard = ({
 			{renderHeader ? (
 				renderHeader({
 					step: currentStep,
-					previousStep,
-					nextStep,
+					onPreviousStep: handleOnPreviousStep,
+					onNextStep: handleOnNextStep,
 					isFirstStep,
 					isLastStep,
 					totalSteps,
@@ -126,8 +127,8 @@ export const Wizard = ({
 			{renderFooter ? (
 				renderFooter({
 					step: currentStep,
-					previousStep,
-					nextStep,
+					onPreviousStep: handleOnPreviousStep,
+					onNextStep: handleOnNextStep,
 					isFirstStep,
 					isLastStep,
 					totalSteps,
@@ -136,8 +137,8 @@ export const Wizard = ({
 				<Footer
 					isFirstStep={isFirstStep}
 					isLastStep={isLastStep}
-					nextStep={nextStep}
-					previousStep={previousStep}
+					onNextStep={handleOnNextStep}
+					onPreviousStep={handleOnPreviousStep}
 					{...footer}
 				/>
 			)}

@@ -26,12 +26,12 @@ export const Pagination = ({
 	page,
 	total,
 	items,
-	itemColor,
-	itemBackgroundColor,
-	itemHoverColor,
-	itemHoverBackgroundColor,
-	itemActiveColor,
-	itemActiveBackgroundColor,
+	itemColor = "rgb(0, 0, 0)",
+	itemBackgroundColor = "rgb(255, 255, 255)",
+	itemHoverColor = "rgb(0, 0, 0)",
+	itemHoverBackgroundColor = "rgb(211, 211, 211)",
+	itemActiveColor = "rgb(255, 255, 255)",
+	itemActiveBackgroundColor = "rgb(0, 0, 0)",
 	goToFirst,
 	goToLeft,
 	goToRight,
@@ -46,12 +46,12 @@ export const Pagination = ({
 	ariaLabelLastPage = "Last page",
 }: PaginationProps) => {
 	const CSSVariables = {
-		"--item-color": itemColor ?? "rgb(0, 0, 0)",
-		"--item-background-color": itemBackgroundColor ?? "rgb(255, 255, 255)",
-		"--item-hover-color": itemHoverColor ?? "rgb(0, 0, 0)",
-		"--item-hover-background-color": itemHoverBackgroundColor ?? "rgb(211, 211, 211)",
-		"--item-active-color": itemActiveColor ?? "rgb(255, 255, 255)",
-		"--item-active-background-color": itemActiveBackgroundColor ?? "rgb(0, 0, 0)",
+		"--item-color": itemColor,
+		"--item-background-color": itemBackgroundColor,
+		"--item-hover-color": itemHoverColor,
+		"--item-hover-background-color": itemHoverBackgroundColor,
+		"--item-active-color": itemActiveColor,
+		"--item-active-background-color": itemActiveBackgroundColor,
 	} as CSSProperties;
 
 	return (
