@@ -1,6 +1,7 @@
 .container {
 	display: flex;
 	flex-direction: column;
+	position: relative;
 }
 
 .button {
@@ -16,5 +17,30 @@
 .content {
 	display: flex;
 	flex-direction: column;
+	position: absolute;
+	align-items: center;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	min-width: 100%;
+}
+
+.item {
+	list-style: none;
 	width: 100%;
+}
+
+.item-button {
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	padding: var(--item-padding);
+	width: 100%;
+	color: var(--item-text-color);
+	background-color: var(--item-background-color);
+}
+
+.item-button:hover {
+	background-color: var(--hover-item-background-color);
+	color: var(--hover-item-text-color);
 }

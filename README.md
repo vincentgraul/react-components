@@ -29,6 +29,7 @@
 | Text               | React component used to display a text                                              |
 | Radio              | React component used to display a radio                                             |
 | DropDown           | React component used to display a drop down                                         |
+| Accordion           | React component used to display a accordion                                        |
 
 ## License
 

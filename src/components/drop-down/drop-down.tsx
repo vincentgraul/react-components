@@ -1,11 +1,47 @@
 import clsx from "clsx";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { type ReactNode, useEffect, useRef, useState } from "react";
+import { type CSSProperties, type ReactNode, useEffect, useRef, useState } from "react";
 import { useOutsideAlerter } from "../../hooks";
 import type { FontStyle, FontWeight, Size } from "../../types";
-import { isNumber, toPercentage, toRem } from "../../utils";
+import { isNumber, toPercentage, toPx, toRem } from "../../utils";
 import styles from "./drop-down.module.css";
 import type { IconsType } from "./drop-down.types";
+
+export type DropDownItemProps = {
+	text: string;
+	onClick: () => void;
+	textFontSize?: number;
+	textFontWeight?: FontWeight;
+	textFontStyle?: FontStyle;
+	icon?: ReactNode;
+	className?: string;
+};
+
+export const DropDownItem = ({
+	text,
+	icon,
+	onClick,
+	textFontSize = 1,
+	textFontWeight = 400,
+	textFontStyle = "normal",
+	className,
+}: DropDownItemProps) => (
+	<li className={clsx(styles.item, className)}>
+		<button
+			type="button"
+			className={styles["item-button"]}
+			onClick={onClick}
+			style={{
+				fontSize: toRem(textFontSize),
+				fontWeight: textFontWeight,
+				fontStyle: textFontStyle,
+			}}
+		>
+			{icon}
+			{text}
+		</button>
+	</li>
+);
 
 export type DropDownProps = {
 	children: ReactNode;
@@ -14,13 +50,17 @@ export type DropDownProps = {
 	labelFontWeight?: FontWeight;
 	labelFontStyle?: FontStyle;
 	labelColor?: string;
+	itemTextColor?: string;
 	icon?: ReactNode;
 	width?: Size;
 	arrowIcons?: IconsType;
 	arrowIconsColor?: string;
 	gap?: number;
-	closeOnOutsideClick?: boolean;
-	overlay?: boolean;
+	backgroundColor?: string;
+	hoverItemBackgroundColor?: string;
+	hoverItemTextColor?: string;
+	itemPadding?: string;
+	borderRadius?: number;
 	className?: string;
 };
 
@@ -31,15 +71,27 @@ export const DropDown = ({
 	labelFontWeight = 400,
 	labelFontStyle = "normal",
 	labelColor,
+	itemTextColor,
 	icon,
 	arrowIcons,
 	arrowIconsColor,
 	width = "fit-content",
-	gap = 1,
-	closeOnOutsideClick,
-	overlay,
+	backgroundColor,
+	hoverItemBackgroundColor = "rgb(245, 245, 245)",
+	hoverItemTextColor,
+	gap = 2.5,
+	itemPadding = "1rem",
+	borderRadius = 5,
 	className,
 }: DropDownProps) => {
+	const CSSVariables = {
+		"--item-background-color": backgroundColor,
+		"--hover-item-background-color": hoverItemBackgroundColor,
+		"--item-text-color": itemTextColor,
+		"--hover-item-text-color": hoverItemTextColor,
+		"--item-padding": itemPadding,
+	} as CSSProperties;
+
 	const [isOpen, setIsOpen] = useState(false);
 	const ref = useRef<HTMLDivElement>(null);
 	const { hasClickedOutside } = useOutsideAlerter(ref);
@@ -50,18 +102,18 @@ export const DropDown = ({
 	const handleOnClick = () => setIsOpen(!isOpen);
 
 	useEffect(() => {
-		if (closeOnOutsideClick && hasClickedOutside) {
+		if (hasClickedOutside) {
 			setIsOpen(false);
 		}
-	}, [closeOnOutsideClick, hasClickedOutside]);
+	}, [hasClickedOutside]);
 
 	return (
 		<div
 			className={clsx(styles.container, className)}
 			style={{
 				width: isNumber(width) ? toPercentage(width) : width,
-				position: overlay ? "relative" : "unset",
 				gap: toRem(gap),
+				...CSSVariables,
 			}}
 			ref={ref}
 		>
@@ -72,6 +124,7 @@ export const DropDown = ({
 				onClick={handleOnClick}
 			>
 				{icon}
+
 				<span
 					style={{
 						fontSize: toRem(labelFontSize),
@@ -82,19 +135,20 @@ export const DropDown = ({
 				>
 					{label}
 				</span>
+
 				{ArrowIcon}
 			</button>
 
 			{isOpen && (
-				<div
+				<ul
 					className={styles.content}
 					style={{
-						position: overlay ? "absolute" : "unset",
-						top: overlay ? toRem(gap) : "unset",
+						top: toRem(gap),
+						borderRadius: toPx(borderRadius),
 					}}
 				>
 					{children}
-				</div>
+				</ul>
 			)}
 		</div>
 	);

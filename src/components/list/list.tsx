@@ -1,15 +1,16 @@
 import clsx from "clsx";
 import type { ReactNode } from "react";
-import type { FontWeight, Size } from "../../types";
-import { isNumber, toPercentage, toPx, toRem } from "../../utils";
+import type { FontStyle, FontWeight } from "../../types";
+import { toRem } from "../../utils";
 import styles from "./list.module.css";
 
 export type ListItemProps = {
 	text: string;
 	icon?: ReactNode;
 	textFontSize?: number;
-	textColor?: string;
 	textFontWeight?: FontWeight;
+	textFontStyle?: FontStyle;
+	textColor?: string;
 	gap?: number;
 	onClick?: () => void;
 	className?: string;
@@ -22,6 +23,7 @@ export const ListItem = ({
 	textFontSize = 1,
 	textColor,
 	textFontWeight = 400,
+	textFontStyle = "normal",
 	gap = 0.3,
 	onClick,
 }: ListItemProps) => (
@@ -38,6 +40,7 @@ export const ListItem = ({
 					fontSize: toRem(textFontSize),
 					color: textColor,
 					fontWeight: textFontWeight,
+					fontStyle: textFontStyle,
 				}}
 			>
 				{text}
@@ -49,30 +52,14 @@ export const ListItem = ({
 export type ListProps = {
 	children: ReactNode;
 	gap?: number;
-	backgroundColor?: string;
-	padding?: string;
-	borderRadius?: number;
-	width?: Size;
 	className?: string;
 };
 
-export const List = ({
-	className,
-	children,
-	gap = 0.5,
-	backgroundColor,
-	padding,
-	width = 100,
-	borderRadius = 0,
-}: ListProps) => (
+export const List = ({ className, children, gap = 0.5 }: ListProps) => (
 	<ul
 		className={clsx(styles.list, className)}
 		style={{
 			gap: toRem(gap),
-			backgroundColor,
-			padding,
-			borderRadius: toPx(borderRadius),
-			width: isNumber(width) ? toPercentage(width) : width,
 		}}
 	>
 		{children}
