@@ -95,7 +95,7 @@ export const DropDown = ({
 	const ref = useRef<HTMLDivElement>(null);
 	const { hasClickedOutside } = useOutsideAlerter(ref);
 
-	const ArrowIcon = isOpen
+	const arrowIcon = isOpen
 		? (arrowIcons?.up ?? <ChevronUp style={{ color: arrowIconsColor }} />)
 		: (arrowIcons?.down ?? <ChevronDown style={{ color: arrowIconsColor }} />);
 	const handleOnClick = () => setIsOpen(!isOpen);
@@ -135,7 +135,7 @@ export const DropDown = ({
 					{label}
 				</span>
 
-				{ArrowIcon}
+				{arrowIcon}
 			</button>
 
 			{isOpen && (

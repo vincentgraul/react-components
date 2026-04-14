@@ -1,8 +1,8 @@
 import clsx from "clsx";
-import { ChevronDown } from "lucide-react";
-import { type CSSProperties, type ReactNode, useEffect, useRef, useState } from "react";
+import { ChevronDown, ChevronUp } from "lucide-react";
+import { type CSSProperties, useEffect, useRef, useState } from "react";
 import { useOutsideAlerter } from "../..";
-import type { BorderStyle, FontWeight, Position, Size } from "../../types";
+import type { BorderStyle, FontWeight, Position, Size, UpAndDownArrows } from "../../types";
 import { isNumber, toPercentage, toPx, toRem } from "../../utils";
 import styles from "./select.module.css";
 import type { SelectOption, SelectOptionWithoutId } from "./select.types";
@@ -27,8 +27,8 @@ export type SelectProps = {
 	hoverOptionBackgroundColor?: string;
 	hoverOptionColor?: string;
 	hoverFontWeight?: FontWeight;
-	icon?: ReactNode;
-	ariaLabelIcon?: string;
+	arrowIcons?: UpAndDownArrows;
+	ariaLabel?: string;
 	onChange?: (option: SelectOption) => void;
 	className?: string;
 };
@@ -54,8 +54,8 @@ export const Select = ({
 	hoverOptionBackgroundColor = "rgba(50, 115, 255, 0.08)",
 	hoverOptionColor,
 	hoverFontWeight = 400,
-	icon,
-	ariaLabelIcon = "Choose an option",
+	arrowIcons,
+	ariaLabel = "Choose an option",
 	onChange,
 }: SelectProps) => {
 	const CSSVariables = {
@@ -75,6 +75,12 @@ export const Select = ({
 	);
 	const ref = useRef(null);
 	const { hasClickedOutside, onReset: onResetOutsideAlerter } = useOutsideAlerter(ref);
+
+	const arrowIcon = isOpen
+		? (arrowIcons?.up ?? <ChevronUp className={styles["selected-option-arrow"]} color={color} />)
+		: (arrowIcons?.down ?? (
+				<ChevronDown className={styles["selected-option-arrow"]} color={color} />
+			));
 
 	const handleOnShowOptions = () => {
 		onResetOutsideAlerter();
@@ -124,7 +130,7 @@ export const Select = ({
 
 			<button
 				type="button"
-				aria-label={ariaLabelIcon}
+				aria-label={ariaLabel}
 				aria-expanded={isOpen}
 				className={styles["selected-option-container"]}
 				onClick={handleOnShowOptions}
@@ -149,18 +155,17 @@ export const Select = ({
 				>
 					{selectedOption.label}
 				</span>
-				{icon ?? (
-					<div
-						className={styles["selected-option-arrow-container"]}
-						style={{
-							borderLeftStyle: borderStyle,
-							borderLeftWidth: toPx(borderWidth),
-							borderLeftColor: color,
-						}}
-					>
-						<ChevronDown className={styles["selected-option-arrow"]} color={color} />
-					</div>
-				)}
+
+				<div
+					className={styles["selected-option-arrow-container"]}
+					style={{
+						borderLeftStyle: borderStyle,
+						borderLeftWidth: toPx(borderWidth),
+						borderLeftColor: color,
+					}}
+				>
+					{arrowIcon}
+				</div>
 			</button>
 
 			{isOpen && (

@@ -107,6 +107,7 @@ export const Modal = ({
 				className={styles.container}
 				role="dialog"
 				aria-modal="true"
+				aria-label={title ?? "Modal"}
 				ref={ref}
 				style={{ backgroundColor, padding }}
 			>

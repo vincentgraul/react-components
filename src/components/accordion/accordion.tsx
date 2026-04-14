@@ -36,7 +36,7 @@ export const Accordion = ({
 }: AccordionProps) => {
 	const [isOpen, setIsOpen] = useState(false);
 
-	const ArrowIcon = isOpen
+	const arrowIcon = isOpen
 		? (arrowIcons?.up ?? <ChevronUp style={{ color: arrowIconsColor }} />)
 		: (arrowIcons?.down ?? <ChevronDown style={{ color: arrowIconsColor }} />);
 
@@ -66,7 +66,7 @@ export const Accordion = ({
 					{label}
 				</span>
 
-				{ArrowIcon}
+				{arrowIcon}
 			</button>
 
 			{isOpen && <div className={styles.content}>{children}</div>}
