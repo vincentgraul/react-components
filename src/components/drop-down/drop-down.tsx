@@ -1,46 +1,21 @@
 import clsx from "clsx";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { type CSSProperties, type ReactNode, useEffect, useRef, useState } from "react";
+import {
+	type CSSProperties,
+	createContext,
+	type ReactNode,
+	useCallback,
+	useContext,
+	useEffect,
+	useRef,
+	useState,
+} from "react";
 import { useOutsideAlerter } from "../../hooks";
 import type { FontStyle, FontWeight, Size, UpAndDownArrows } from "../../types";
 import { isNumber, toPercentage, toPx, toRem } from "../../utils";
 import styles from "./drop-down.module.css";
 
-export type DropDownItemProps = {
-	text: string;
-	onClick: () => void;
-	textFontSize?: number;
-	textFontWeight?: FontWeight;
-	textFontStyle?: FontStyle;
-	icon?: ReactNode;
-	className?: string;
-};
-
-export const DropDownItem = ({
-	text,
-	icon,
-	onClick,
-	textFontSize = 1,
-	textFontWeight = 400,
-	textFontStyle = "normal",
-	className,
-}: DropDownItemProps) => (
-	<li className={clsx(styles.item, className)}>
-		<button
-			type="button"
-			className={styles["item-button"]}
-			onClick={onClick}
-			style={{
-				fontSize: toRem(textFontSize),
-				fontWeight: textFontWeight,
-				fontStyle: textFontStyle,
-			}}
-		>
-			{icon}
-			{text}
-		</button>
-	</li>
-);
+const DropDownContext = createContext<{ onClose: () => void } | null>(null);
 
 export type DropDownProps = {
 	children: ReactNode;
@@ -60,6 +35,16 @@ export type DropDownProps = {
 	hoverItemTextColor?: string;
 	itemPadding?: string;
 	borderRadius?: number;
+	className?: string;
+};
+
+export type DropDownItemProps = {
+	text: string;
+	onClick: () => void;
+	textFontSize?: number;
+	textFontWeight?: FontWeight;
+	textFontStyle?: FontStyle;
+	icon?: ReactNode;
 	className?: string;
 };
 
@@ -98,57 +83,98 @@ export const DropDown = ({
 	const arrowIcon = isOpen
 		? (arrowIcons?.up ?? <ChevronUp style={{ color: arrowIconsColor }} />)
 		: (arrowIcons?.down ?? <ChevronDown style={{ color: arrowIconsColor }} />);
+
 	const handleOnClick = () => setIsOpen(!isOpen);
+	const handleOnClose = useCallback(() => setIsOpen(false), []);
 
 	useEffect(() => {
 		if (hasClickedOutside) {
-			setIsOpen(false);
+			handleOnClose();
 		}
-	}, [hasClickedOutside]);
+	}, [hasClickedOutside, handleOnClose]);
 
 	return (
-		<div
-			className={clsx(styles.container, className)}
-			style={{
-				width: isNumber(width) ? toPercentage(width) : width,
-				gap: toRem(gap),
-				...CSSVariables,
-			}}
-			ref={ref}
-		>
-			<button
-				type="button"
-				aria-expanded={isOpen}
-				className={styles.button}
-				onClick={handleOnClick}
+		<DropDownContext value={{ onClose: handleOnClose }}>
+			<div
+				className={clsx(styles.container, className)}
+				style={{
+					width: isNumber(width) ? toPercentage(width) : width,
+					gap: toRem(gap),
+					...CSSVariables,
+				}}
+				ref={ref}
 			>
-				{icon}
-
-				<span
-					style={{
-						fontSize: toRem(labelFontSize),
-						fontWeight: labelFontWeight,
-						fontStyle: labelFontStyle,
-						color: labelColor,
-					}}
+				<button
+					type="button"
+					aria-expanded={isOpen}
+					className={styles.button}
+					onClick={handleOnClick}
 				>
-					{label}
-				</span>
+					{icon}
 
-				{arrowIcon}
-			</button>
+					<span
+						style={{
+							fontSize: toRem(labelFontSize),
+							fontWeight: labelFontWeight,
+							fontStyle: labelFontStyle,
+							color: labelColor,
+						}}
+					>
+						{label}
+					</span>
 
-			{isOpen && (
-				<ul
-					className={styles.content}
-					style={{
-						top: toRem(gap),
-						borderRadius: toPx(borderRadius),
-					}}
-				>
-					{children}
-				</ul>
-			)}
-		</div>
+					{arrowIcon}
+				</button>
+
+				{isOpen && (
+					<ul
+						className={styles.content}
+						style={{
+							top: toRem(gap),
+							borderRadius: toPx(borderRadius),
+						}}
+					>
+						{children}
+					</ul>
+				)}
+			</div>
+		</DropDownContext>
 	);
 };
+
+const DropDownItem = ({
+	text,
+	icon,
+	onClick,
+	textFontSize = 1,
+	textFontWeight = 400,
+	textFontStyle = "normal",
+	className,
+}: DropDownItemProps) => {
+	const context = useContext(DropDownContext);
+
+	const handleOnClick = () => {
+		onClick();
+		context?.onClose();
+	};
+
+	return (
+		<li className={clsx(styles.item, className)}>
+			<button
+				type="button"
+				className={styles["item-button"]}
+				onClick={handleOnClick}
+				style={{
+					fontSize: toRem(textFontSize),
+					fontWeight: textFontWeight,
+					fontStyle: textFontStyle,
+				}}
+			>
+				{icon}
+				{text}
+			</button>
+		</li>
+	);
+};
+
+DropDown.Item = DropDownItem;

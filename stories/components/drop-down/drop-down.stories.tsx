@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { User } from "lucide-react";
 import { expect } from "storybook/test";
-import { DropDown, DropDownItem } from "../../../src";
+import { DropDown } from "../../../src";
 
 const meta = {
 	component: DropDown,
 	args: {
 		children: (
 			<>
-				<DropDownItem text="Logout" onClick={() => console.log("click")} />
-				<DropDownItem text="Hello" onClick={() => console.log("click")} />
+				<DropDown.Item text="Logout" onClick={() => console.log("click")} />
+				<DropDown.Item text="Hello" onClick={() => console.log("click")} />
 			</>
 		),
 		backgroundColor: "rgb(0,0,0)",
@@ -27,17 +27,21 @@ export const Basic: Story = {
 		const button = canvas.getByRole("button");
 		await expect(canvas.queryByRole("list")).not.toBeInTheDocument();
 
-		// test open
+		// Open drop down
 		await userEvent.click(button);
 		await expect(canvas.getByRole("list")).toBeInTheDocument();
 
-		// test close
+		// Close drop down
 		await userEvent.click(button);
 		await expect(canvas.queryByRole("list")).not.toBeInTheDocument();
 
-		//test re-open
+		// Open drop down again
 		await userEvent.click(button);
 		await expect(canvas.getByRole("list")).toBeInTheDocument();
+
+		// Click on drop down item
+		await userEvent.click(canvas.getByText("Logout"));
+		await expect(canvas.queryByRole("list")).not.toBeInTheDocument();
 	},
 };
 
