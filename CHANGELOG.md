@@ -1,5 +1,16 @@
 # @vincentgraul/react-components
 
+## 1.4.0
+
+### Minor Changes
+
+- 08a3477: Add accordion component
+
+### Patch Changes
+
+- 1c49b98: Add up and down arrows in Select component
+- 9dd4370: Refactor, clean duplicate code and fix accessibility
+
 ## 1.3.3
 
 ### Patch Changes
