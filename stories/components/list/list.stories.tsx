@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ArrowRight } from "lucide-react";
 import { expect } from "storybook/test";
-import { List, ListItem } from "../../../src";
+import { List } from "../../../src";
 
 const meta = {
 	component: List,
@@ -14,8 +14,8 @@ export const Basic: Story = {
 	args: {
 		children: (
 			<>
-				<ListItem text="Item 1"></ListItem>
-				<ListItem text="Item 2"></ListItem>
+				<List.Item text="Item 1" />
+				<List.Item text="Item 2" />
 			</>
 		),
 	},
@@ -29,8 +29,8 @@ export const WithIcon: Story = {
 	args: {
 		children: (
 			<>
-				<ListItem icon={<ArrowRight data-testid="list-item-1-icon" />} text="Item 1"></ListItem>
-				<ListItem icon={<ArrowRight data-testid="list-item-2-icon" />} text="Item 2"></ListItem>
+				<List.Item icon={<ArrowRight data-testid="list-item-1-icon" />} text="Item 1" />
+				<List.Item icon={<ArrowRight data-testid="list-item-2-icon" />} text="Item 2" />
 			</>
 		),
 	},

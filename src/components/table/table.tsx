@@ -68,6 +68,10 @@ export const Table = <T extends ObjectLiteral>({
 	);
 };
 
-export const Th = ({ children }: PropsWithChildren) => <th className={styles.th}>{children}</th>;
-export const Tr = ({ children }: PropsWithChildren) => <tr className={styles.tr}>{children}</tr>;
-export const Td = ({ children }: PropsWithChildren) => <td className={styles.td}>{children}</td>;
+const Th = ({ children }: PropsWithChildren) => <th className={styles.th}>{children}</th>;
+const Tr = ({ children }: PropsWithChildren) => <tr className={styles.tr}>{children}</tr>;
+const Td = ({ children }: PropsWithChildren) => <td className={styles.td}>{children}</td>;
+
+Table.Th = Th;
+Table.Tr = Tr;
+Table.Td = Td;

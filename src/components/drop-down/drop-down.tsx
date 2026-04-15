@@ -38,16 +38,6 @@ export type DropDownProps = {
 	className?: string;
 };
 
-export type DropDownItemProps = {
-	text: string;
-	onClick: () => void;
-	textFontSize?: number;
-	textFontWeight?: FontWeight;
-	textFontStyle?: FontStyle;
-	icon?: ReactNode;
-	className?: string;
-};
-
 export const DropDown = ({
 	children,
 	label,
@@ -140,6 +130,16 @@ export const DropDown = ({
 			</div>
 		</DropDownContext>
 	);
+};
+
+export type DropDownItemProps = {
+	text: string;
+	onClick: () => void;
+	textFontSize?: number;
+	textFontWeight?: FontWeight;
+	textFontStyle?: FontStyle;
+	icon?: ReactNode;
+	className?: string;
 };
 
 const DropDownItem = ({

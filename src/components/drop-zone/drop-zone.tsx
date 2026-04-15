@@ -41,6 +41,7 @@ type NoFileProps = Pick<
 	DropZoneProps,
 	"previewIcon" | "previewIconSize" | "text" | "textFontSize" | "textFontWeight"
 >;
+
 const NoFile = ({
 	previewIcon,
 	previewIconSize = 3,
@@ -64,6 +65,7 @@ const NoFile = ({
 type WithFileProps = {
 	preview: string;
 };
+
 const WithFile = ({ preview }: WithFileProps) =>
 	preview && <img alt="preview file" className={styles["preview-file"]} src={preview}></img>;
 

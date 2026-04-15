@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { type PropsWithChildren, useState } from "react";
 import { expect } from "storybook/test";
-import { Pagination, Table, Td, Th, usePagination } from "../../../src";
+import { Pagination, Table, usePagination } from "../../../src";
 
 const meta = {
 	component: Table,
@@ -56,7 +56,7 @@ export const WithDefaultRecordsEmptyCell: Story = {
 
 export const WithCustomColumnsCell: Story = {
 	args: {
-		renderColumnsCell: (columns, key) => <Th key={key}>- {columns.label} -</Th>,
+		renderColumnsCell: (columns, key) => <Table.Th key={key}>- {columns.label} -</Table.Th>,
 	},
 	play: async ({ canvas }) => {
 		await expect(canvas.getByText("- Firstname -")).toBeInTheDocument();
@@ -65,7 +65,7 @@ export const WithCustomColumnsCell: Story = {
 
 export const WithCustomRecordsCell: Story = {
 	args: {
-		renderRecordsCell: (cell, key) => <Td key={key}>* {cell} *</Td>,
+		renderRecordsCell: (cell, key) => <Table.Td key={key}>* {cell} *</Table.Td>,
 	},
 	play: async ({ canvas }) => {
 		await expect(canvas.getByText("* Jean *")).toBeInTheDocument();
@@ -78,7 +78,7 @@ export const WithCustomRecordsEmptyCell: Story = {
 			{ lastname: "Dupont", firstname: "Jean", age: 28 },
 			{ lastname: "Durant", age: 43, sex: "M" },
 		],
-		renderRecordsEmptyCell: (key) => <Td key={key}>-</Td>,
+		renderRecordsEmptyCell: (key) => <Table.Td key={key}>-</Table.Td>,
 	},
 	play: async ({ canvas }) => {
 		await expect(canvas.queryAllByText("-")).toHaveLength(2);

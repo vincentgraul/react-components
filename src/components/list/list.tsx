@@ -4,6 +4,23 @@ import type { FontStyle, FontWeight } from "../../types";
 import { toRem } from "../../utils";
 import styles from "./list.module.css";
 
+export type ListProps = {
+	children: ReactNode;
+	gap?: number;
+	className?: string;
+};
+
+export const List = ({ className, children, gap = 0.5 }: ListProps) => (
+	<ul
+		className={clsx(styles.list, className)}
+		style={{
+			gap: toRem(gap),
+		}}
+	>
+		{children}
+	</ul>
+);
+
 export type ListItemProps = {
 	text: string;
 	icon?: ReactNode;
@@ -15,7 +32,7 @@ export type ListItemProps = {
 	className?: string;
 };
 
-export const ListItem = ({
+const ListItem = ({
 	className,
 	text,
 	icon,
@@ -40,19 +57,4 @@ export const ListItem = ({
 	</li>
 );
 
-export type ListProps = {
-	children: ReactNode;
-	gap?: number;
-	className?: string;
-};
-
-export const List = ({ className, children, gap = 0.5 }: ListProps) => (
-	<ul
-		className={clsx(styles.list, className)}
-		style={{
-			gap: toRem(gap),
-		}}
-	>
-		{children}
-	</ul>
-);
+List.Item = ListItem;

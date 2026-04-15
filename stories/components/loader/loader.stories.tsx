@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { expect } from "storybook/test";
-import { Loader, Spinner, Text } from "../../../src";
+import { Loader, Text } from "../../../src";
 
 const meta = {
 	component: Loader,
@@ -22,7 +22,7 @@ export const WithIcon: Story = {
 	args: {
 		children: (
 			<>
-				<Spinner />
+				<Loader.Spinner />
 				<Text>Chargement en cours...</Text>
 			</>
 		),
