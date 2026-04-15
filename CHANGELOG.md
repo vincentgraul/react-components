@@ -1,5 +1,12 @@
 # @vincentgraul/react-components
 
+## 1.4.1
+
+### Patch Changes
+
+- 3bbe4cc: Change List, Table and DropDown component to dot notation structure
+- 80e2a49: Close drop down on item click
+
 ## 1.4.0
 
 ### Minor Changes
