@@ -14,6 +14,7 @@ export * from "./modal";
 export * from "./pagination";
 export * from "./radio";
 export * from "./select";
+export * from "./sidebar";
 export * from "./table";
 export * from "./text";
 export * from "./wizard";

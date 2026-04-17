@@ -1,0 +1,45 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.header {
+	display: flex;
+}
+
+.header-icon {
+	background-color: transparent;
+	border: none;
+	color: inherit;
+	cursor: pointer;
+}
+
+.list {
+	display: flex;
+	flex-direction: column;
+	list-style: none;
+	padding: 0;
+}
+
+.item {
+	display: flex;
+	gap: 0.5rem;
+	width: 100%;
+	color: inherit;
+	align-items: center;
+	cursor: pointer;
+	padding: var(--item-padding);
+	background-color: transparent;
+	border: none;
+}
+
+.item:hover {
+	color: var(--item-hover-color);
+	background-color: var(--item-hover-background-color);
+}
+
+.item.isActive {
+	color: var(--item-active-color);
+	background-color: var(--item-active-background-color);
+}
