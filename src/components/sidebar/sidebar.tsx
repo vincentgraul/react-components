@@ -11,6 +11,7 @@ export type HeaderProps = {
 	backgroundColor?: string;
 	padding?: string;
 	iconOnClick?: () => void;
+	iconAriaLabel?: string;
 	className?: string;
 };
 
@@ -21,6 +22,7 @@ const Header = ({
 	backgroundColor,
 	padding = "1rem",
 	iconOnClick,
+	iconAriaLabel,
 	className,
 }: HeaderProps) => (
 	<header
@@ -28,7 +30,12 @@ const Header = ({
 		style={{ justifyContent, padding, backgroundColor, color }}
 	>
 		{iconOnClick ? (
-			<button className={styles["header-icon"]} type="button" onClick={iconOnClick}>
+			<button
+				className={styles["header-icon"]}
+				type="button"
+				onClick={iconOnClick}
+				aria-label={iconAriaLabel ?? "Navigate to homepage"}
+			>
 				{icon}
 			</button>
 		) : (
@@ -68,7 +75,7 @@ export const Sidebar = ({
 	itemHoverBackgroundColor = "rgb(255, 255, 255)",
 	itemPadding = "1rem",
 	itemActiveColor = "rgb(255, 255, 255)",
-	itemActiveBackgroundColor = "rgb(54, 157, 221)",
+	itemActiveBackgroundColor = "rgb(30, 100, 180)",
 	ariaLabel = "Sidebar",
 	className,
 }: SidebarProps) => {

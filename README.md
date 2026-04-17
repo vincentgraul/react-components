@@ -30,6 +30,7 @@
 | Radio              | React component used to display a radio                                             |
 | DropDown           | React component used to display a drop down                                         |
 | Accordion           | React component used to display a accordion                                        |
+| Sidebar           | React component used to display a Sidebar                                            |
 
 ## License
 
