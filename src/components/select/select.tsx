@@ -156,16 +156,7 @@ export const Select = ({
 					{selectedOption.label}
 				</span>
 
-				<div
-					className={styles["selected-option-arrow-container"]}
-					style={{
-						borderLeftStyle: borderStyle,
-						borderLeftWidth: toPx(borderWidth),
-						borderLeftColor: color,
-					}}
-				>
-					{arrowIcon}
-				</div>
+				{arrowIcon}
 			</button>
 
 			{isOpen && (

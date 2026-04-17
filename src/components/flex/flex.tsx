@@ -42,7 +42,7 @@ export const Flex = ({
 		className={clsx(styles.container, className)}
 		style={{
 			width: isNumber(width) ? toPercentage(width) : width,
-			height: isNumber(height) ? toRem(height) : height,
+			height: isNumber(height) ? toPercentage(height) : height,
 			flexDirection,
 			justifyContent,
 			alignItems,

@@ -21,13 +21,6 @@
 	padding: 10px;
 }
 
-.selected-option-arrow-container {
-	display: flex;
-	align-items: center;
-	padding: 0 10px;
-	height: 100%;
-}
-
 .selected-option-arrow {
 	width: auto;
 	height: 60%;

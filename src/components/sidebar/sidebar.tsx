@@ -52,11 +52,12 @@ export type SidebarProps = {
 	padding?: string;
 	color?: string;
 	backgroundColor?: string;
+	gap?: number;
 	itemHoverColor?: string;
 	itemHoverBackgroundColor?: string;
 	itemActiveColor?: string;
 	itemActiveBackgroundColor?: string;
-	gap?: number;
+	itemGap?: number;
 	itemPadding?: string;
 	ariaLabel?: string;
 	className?: string;
@@ -68,9 +69,10 @@ export const Sidebar = ({
 	renderHeader,
 	color = "rgb(255, 255, 255)",
 	backgroundColor = "rgb(0, 0, 0)",
+	gap = 1,
 	width = 20,
 	padding,
-	gap = 1,
+	itemGap = 1,
 	itemHoverColor = "rgb(0, 0, 0)",
 	itemHoverBackgroundColor = "rgb(255, 255, 255)",
 	itemPadding = "1rem",
@@ -93,6 +95,7 @@ export const Sidebar = ({
 			style={{
 				color,
 				backgroundColor,
+				gap: toRem(gap),
 				padding,
 				width: isNumber(width) ? toPercentage(width) : width,
 				...CSSVariables,
@@ -101,7 +104,7 @@ export const Sidebar = ({
 		>
 			{renderHeader ? renderHeader() : <Header {...header} />}
 
-			<ul className={styles.list} style={{ gap: toRem(gap) }}>
+			<ul className={styles.list} style={{ gap: toRem(itemGap) }}>
 				{children}
 			</ul>
 		</nav>
