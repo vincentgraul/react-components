@@ -1,5 +1,11 @@
 # @vincentgraul/react-components
 
+## 1.5.1
+
+### Patch Changes
+
+- 2d7396a: Remove border in Select and add gap in Sidebar
+
 ## 1.5.0
 
 ### Minor Changes
